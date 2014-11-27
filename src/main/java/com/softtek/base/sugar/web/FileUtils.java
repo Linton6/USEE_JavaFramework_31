@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.web.file;
+package com.softtek.base.sugar.web;
 
 import com.softtek.base.sugar.config.FilePathConfig;
 import com.softtek.base.sugar.tools.Configuration;
