@@ -1,7 +1,6 @@
 package com.softtek.base.action.converter;
 
 import com.softtek.base.domain.AdminUser;
-import com.softtek.base.sugar.tools.DateTimeUtils;
 import com.softtek.base.sugar.web.WebLayerUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -25,8 +24,8 @@ public class AdminUserConverter {
 			jsonObject.put("loginPassword", WebLayerUtil.getDefaultByNullString(adminUser.getLoginPassword(), ""));
 			jsonObject.put("realName", WebLayerUtil.getDefaultByNullString(adminUser.getRealName(), ""));
 			jsonObject.put("email", WebLayerUtil.getDefaultByNullString(adminUser.getEmail(), ""));
-			jsonObject.put("createDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getCreateDate()), ""));
-			jsonObject.put("updateDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getUpdateDate()), ""));
+			//jsonObject.put("createDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getCreateDate()), ""));
+			//jsonObject.put("updateDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getUpdateDate()), ""));
 
 			jsonArray.add(jsonObject);
 		}
