@@ -24,4 +24,29 @@ public class UrlHelp {
 	public static String getUrlPath(HttpServletRequest request) {
 		return getUrlBasePath(request) + request.getContextPath();
 	}
+
+	/**
+	 * 获取当前请求的完整URL
+	 *
+	 * @param request HttpServletRequest Object.
+	 * @return String.
+	 */
+	public static String getFullRequestURL(HttpServletRequest request) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(request.getRequestURL().toString());
+		if (request.getQueryString() != null) {
+			stringBuilder.append("?" + request.getQueryString());
+		}
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * 获取当前请求的URL
+	 *
+	 * @param request HttpServletRequest Object.
+	 * @return String.
+	 */
+	public static String getRequestURL(HttpServletRequest request) {
+		return request.getRequestURL().toString();// + "?" + request.getQueryString();
+	}
 }
