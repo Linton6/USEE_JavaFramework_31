@@ -37,8 +37,8 @@ public class LoginAction {
 	@RequestMapping("/login")
 	@ResponseBody
 	public JSONObject Login(@RequestParam(value = "agentName", required = false) String agentName,
-							@RequestParam(value = "password", required = false) String password,
-							HttpServletRequest request) {
+	                        @RequestParam(value = "password", required = false) String password,
+	                        HttpServletRequest request) {
 
 		logger.info("登陆请求提交的【用户名】为[" + agentName + "]");
 		logger.info("登陆请求提交的【密  码】为[" + password + "]");

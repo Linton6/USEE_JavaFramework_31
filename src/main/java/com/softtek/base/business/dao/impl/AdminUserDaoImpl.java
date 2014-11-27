@@ -3,7 +3,6 @@ package com.softtek.base.business.dao.impl;
 import com.softtek.base.business.dao.AdminUserDao;
 import com.softtek.base.domain.AdminUser;
 import com.softtek.base.sugar.tools.QueryUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -37,6 +36,16 @@ public class AdminUserDaoImpl implements AdminUserDao {
 		Map<String, Object> conditionHash = new HashMap<String, Object>();
 		if (queryHash == null) {
 			return conditionHash;
+		}
+
+		String loginName = queryHash.get("loginName");
+		if (!StringUtils.isEmpty(loginName)) {
+			conditionHash.put("loginName = ?{paramIndex} ", loginName);
+		}
+
+		String loginPassword = queryHash.get("loginPassword");
+		if (!StringUtils.isEmpty(loginPassword)) {
+			conditionHash.put("loginPassword = ?{paramIndex} ", loginPassword);
 		}
 
         /*String String = queryHash.get("String");
@@ -117,19 +126,4 @@ public class AdminUserDaoImpl implements AdminUserDao {
 	// ******************************************************************************
 	// ********************************** CRUD END **********************************
 	// ******************************************************************************
-
-	@Override
-	public AdminUser login(String loginName, String loginPassword) {
-		List<AdminUser> customers = entityManager.createQuery("select au from AdminUser au where au.loginName = :loginName and au.loginPassword = :loginPassword", AdminUser.class)
-				.setParameter("loginName", loginName)
-				.setParameter("loginPassword", loginPassword)
-				.getResultList();
-		if (CollectionUtils.isEmpty(customers)) {
-			return null;
-		}
-
-		AdminUser adminUser = customers.get(0);
-
-		return adminUser;
-	}
 }

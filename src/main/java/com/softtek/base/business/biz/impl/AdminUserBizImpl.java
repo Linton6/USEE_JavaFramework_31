@@ -3,12 +3,14 @@ package com.softtek.base.business.biz.impl;
 import com.softtek.base.business.biz.AdminUserBiz;
 import com.softtek.base.business.dao.AdminUserDao;
 import com.softtek.base.domain.AdminUser;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,25 @@ public class AdminUserBizImpl implements AdminUserBiz {
 
 	@Autowired
 	private AdminUserDao adminUserDao;
+
+	@Override
+	public AdminUser login(String loginName, String loginPassword) {
+
+		if (StringUtils.isEmpty(loginName) || StringUtils.isEmpty(loginPassword)) {
+			return null;
+		}
+
+		Map<String, String> queryHash = new HashMap<String, String>();
+		queryHash.put("loginName", loginName);
+		queryHash.put("loginPassword", loginPassword);
+
+		List<AdminUser> adminUserList = findList(queryHash);
+		if (adminUserList != null && adminUserList.size() > 0) {
+			return adminUserList.get(0);
+		} else {
+			return null;
+		}
+	}
 
 	// ******************************************************************************
 	// ********************************* CRUD START *********************************
@@ -88,16 +109,4 @@ public class AdminUserBizImpl implements AdminUserBiz {
 	// ******************************************************************************
 	// ********************************** CRUD END **********************************
 	// ******************************************************************************
-
-	@Override
-	@Transactional
-	public AdminUser login(String loginName, String loginPasswd) {
-
-		AdminUser customer = adminUserDao.login(loginName, loginPasswd);
-		if (customer != null) {
-			return customer;
-		} else {
-			return null;
-		}
-	}
 }
