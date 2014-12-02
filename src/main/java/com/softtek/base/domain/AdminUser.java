@@ -13,9 +13,9 @@ import java.util.Date;
 @GenericGenerator(name = "BASE_ADMIN_USER_GEN", strategy = "enhanced-table",
 		parameters = {
 				@org.hibernate.annotations.Parameter(name = "table_name", value = "table_generator"),
-				@org.hibernate.annotations.Parameter(name = "value_column_name", value = "next"),
 				@org.hibernate.annotations.Parameter(name = "segment_column_name", value = "segment_name"),
 				@org.hibernate.annotations.Parameter(name = "segment_value", value = "admin_user_id"),
+				@org.hibernate.annotations.Parameter(name = "value_column_name", value = "next"),
 				@org.hibernate.annotations.Parameter(name = "initial_value", value = "1000"),
 				@org.hibernate.annotations.Parameter(name = "increment_size", value = "10"),
 				@org.hibernate.annotations.Parameter(name = "optimizer", value = "pooled-lo")
