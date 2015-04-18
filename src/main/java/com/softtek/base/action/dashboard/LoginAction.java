@@ -2,7 +2,7 @@ package com.softtek.base.action.dashboard;
 
 import com.softtek.base.business.biz.AdminUserBiz;
 import com.softtek.base.domain.AdminUser;
-import com.softtek.base.sugar.config.Constant;
+import com.softtek.base.sugar.config.ConstantKey;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +56,7 @@ public class LoginAction {
 		logger.debug("登录成功，登录信息是：" + loginUser);
 
 		//登陆成功，保存用户【Session】
-		request.getSession().setAttribute(Constant.WEB_USER_INFO_KEY, loginUser);
+		request.getSession().setAttribute(ConstantKey.WEB_USER_INFO_KEY, loginUser);
 
 		result.put("success", Boolean.TRUE);
 		result.put("msg", "登录成功");

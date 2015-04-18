@@ -3,7 +3,7 @@ package com.softtek.base.sugar.config;
 /**
  * Author: 居泽平  Date: 13-11-23, 下午7:43
  */
-public class FilePathConfig {
+public class ConstantFilePath {
 
 	/**
 	 * 文件保存的根目录

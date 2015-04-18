@@ -85,6 +85,9 @@
                         $("#password").val("");
                     }
                 }
+            },
+            error: function () {
+                alert("出错了，请联系管理员");
             }
         });
     });
