@@ -1,7 +1,7 @@
 package com.softtek.base.action.converter;
 
 import com.softtek.base.domain.AdminUser;
-import com.softtek.base.sugar.web.WebLayerUtil;
+import com.softtek.base.sugar.tools.CommonSugar;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -19,13 +19,11 @@ public class AdminUserConverter {
 		for (AdminUser adminUser : adminUserList) {
 			JSONObject jsonObject = new JSONObject();
 
-			jsonObject.put("adminUserId", WebLayerUtil.getDefaultByNullLong(adminUser.getAdminUserId(), 0L));
-			jsonObject.put("loginName", WebLayerUtil.getDefaultByNullString(adminUser.getLoginName(), ""));
-			jsonObject.put("loginPassword", WebLayerUtil.getDefaultByNullString(adminUser.getLoginPassword(), ""));
-			jsonObject.put("realName", WebLayerUtil.getDefaultByNullString(adminUser.getRealName(), ""));
-			jsonObject.put("email", WebLayerUtil.getDefaultByNullString(adminUser.getEmail(), ""));
-			//jsonObject.put("createDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getCreateDate()), ""));
-			//jsonObject.put("updateDate", WebLayerUtil.getDefaultByNullString(DateTimeUtils.formatDateToStringWithTime(adminUser.getUpdateDate()), ""));
+			jsonObject.put("adminUserId", CommonSugar.getTypedDefault(adminUser.getAdminUserId(), 0L));
+			jsonObject.put("loginName", CommonSugar.getTypedDefault(adminUser.getLoginName(), ""));
+			jsonObject.put("loginPassword", CommonSugar.getTypedDefault(adminUser.getLoginPassword(), ""));
+			jsonObject.put("realName", CommonSugar.getTypedDefault(adminUser.getRealName(), ""));
+			jsonObject.put("email", CommonSugar.getTypedDefault(adminUser.getEmail(), ""));
 
 			jsonArray.add(jsonObject);
 		}

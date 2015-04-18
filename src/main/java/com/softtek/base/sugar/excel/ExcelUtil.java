@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.web.excel;
+package com.softtek.base.sugar.excel;
 
 import com.softtek.base.sugar.tools.StringConverters;
 import jxl.Sheet;

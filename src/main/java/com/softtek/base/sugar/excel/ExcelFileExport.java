@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.web.excel;
+package com.softtek.base.sugar.excel;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
