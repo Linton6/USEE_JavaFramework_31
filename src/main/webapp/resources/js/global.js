@@ -71,7 +71,10 @@ var vEasyUIUtil = {
             collapsible:false,
             minimizable:false,
             maximizable:true,
-            iconCls:'icon-no'
+            iconCls:'icon-no',
+            onClose: function(){
+                $(this).html("");
+            }
         });
         $('#' + winName).html(winContent);
         openWindowOnly('#' + winName);
