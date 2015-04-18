@@ -61,6 +61,22 @@ var vEasyUIUtil = {
         }
     },
 
+    showAjaxError:function(winName, winContent){
+        this.createWindow(winName, {
+            title: '系统错误,请提供以下信息给管理员:',
+            width:'80%',
+            height:vSugar.getMaxWinHeight("mainPanel", 600),
+            modal:true,
+            closed:true,
+            collapsible:false,
+            minimizable:false,
+            maximizable:true,
+            iconCls:'icon-no'
+        });
+        $('#' + winName).html(winContent);
+        openWindowOnly('#' + winName);
+    },
+
     createColumnMenu:function(dgName, menuName, fixedField, ignoreField){
         var dgQueryName = "#" + dgName;
         var cMenu = $('<div id="' + menuName + '"></div>').appendTo('body');
@@ -137,7 +153,7 @@ var vEasyUIUtil = {
         arrayObj[1] = selectFieldsName;
         return arrayObj;
     }
-}
+};
 
 var vSugar = {
     isTargetExistInArray:function(mainArray, target){
@@ -317,9 +333,8 @@ jQuery.ajaxSetup({
                 errContent = "当前网络状况欠佳,请重试或耐心等待.";
                 break;
             case 500:
-                errMsg = "服务器错误";
-                errContent = "系统错误,请提供以下信息给管理员: <div style='height:300px;over-flow:scroll;'>" + xhr.status + xhr.statusText + xhr.responseText + "</div>";
-                break;
+                vEasyUIUtil.showAjaxError("errorWin", xhr.responseText);
+                return true;
             case 502 :
                 errMsg = "网关错误";
                 errContent = "服务器正在重启,或您的网络,网关未能联网.";
@@ -333,7 +348,7 @@ jQuery.ajaxSetup({
                 errContent = "发生了一些未知错误,请联系管理员.并提供以下信息: errorCode:" + xhr.status + ",状态文本" + xhr.statusText;
                 break;
         }
-        $.messager.alert(errMsg, errContent);
+        $.messager.alert(errMsg, errContent, 'error');
         return false;
     }
 });
