@@ -226,6 +226,16 @@
             <version>3.0.1</version>
             <!--<scope>provided</scope>-->
         </dependency>
+
+        <!--引用一个maven库不存在的jar包，注意需要在『ReadMe』和『WEB-INF』中各放一份jar包-->
+        <!--<dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>wlb</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/ReadMe/Lib/taobao-sdk-java-auto_1428075515147-20150404.jar</systemPath>
+        </dependency>-->
+
     </dependencies>
 
 </project>
