@@ -16,7 +16,7 @@
         <properties>
             <!-- 这一段启用Tomcat时注释掉 { -->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/base_project"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/base_project?useUnicode=yes&amp;characterEncoding=UTF-8"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value="123123"/>
             <!-- } -->
