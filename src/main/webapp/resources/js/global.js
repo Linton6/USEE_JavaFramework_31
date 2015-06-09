@@ -8,6 +8,22 @@
  * @param winName 窗口ID
  * @param refreshUrl 需要加载的页面内容来源，例如:http://www.baidu.com
  */
+function openIFrameWindow(winName, frameURL, title){
+
+    var content = '<iframe src="' + frameURL + '" class="span12" style="height:100%; width:100%; border:none; margin-bottom:-3px;" name="mainframe" id="mainframe"></iframe>'
+
+    var reSizeHeight = vSugar.getMaxWinHeight("mainPanel", 600) - 26;
+    var targetEasyDom = $(winName);
+    if(title){
+        targetEasyDom.panel('setTitle', title);
+    }
+    targetEasyDom.panel('resize',{height:reSizeHeight});
+    targetEasyDom.window('center');
+    targetEasyDom.window("body").html(content);
+    targetEasyDom.window('open');
+    targetEasyDom.window('refresh', '');
+}
+
 function openWindow(winName, refreshUrl, title){
     var reSizeHeight = vSugar.getMaxWinHeight("mainPanel", 600) - 26;
     var targetEasyDom = $(winName);
