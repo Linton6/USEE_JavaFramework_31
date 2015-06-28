@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.config;
+package com.softtek.base.config;
 
 /**
  * Author: 居泽平  Date: 13-11-23, 下午7:43

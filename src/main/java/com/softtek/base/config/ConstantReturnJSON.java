@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.config;
+package com.softtek.base.config;
 
 import net.sf.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.config;
+package com.softtek.base.config;
 
 /**
  * Created by 陈梨春 on 11/4/2014.

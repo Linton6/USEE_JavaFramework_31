@@ -1,6 +1,6 @@
 package com.softtek.base.sugar.web;
 
-import com.softtek.base.sugar.config.ConstantFilePath;
+import com.softtek.base.config.ConstantFilePath;
 import com.softtek.base.sugar.tools.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
