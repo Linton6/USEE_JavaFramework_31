@@ -23,7 +23,7 @@ body{
 .table-container .item-value select{width:200px; }
 .table-container .item-more{width:120px; vertical-align:top; padding:5px 20px 0 0; text-align:right; }
 
-.easyui-layout .window, .window-shadow{-webkit-border-radius:0;border-radius:0;}
+.easyui-layout .textbox, .easyui-layout .window, .easyui-layout .window-shadow{-webkit-border-radius:0;border-radius:0;}
 
 .clear{clear:both;}
 
