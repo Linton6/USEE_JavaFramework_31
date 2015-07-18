@@ -18,9 +18,9 @@ body{
 .table-container .table-row{height:38px; }
 .table-container .item-name{padding-right:4px; text-align:right; width:168px; line-height:28px; }
 .table-container .item-value{}
-.table-container .item-value input[type="text"]{padding-left:5px; width:200px; }
-.table-container .item-value input[type="password"]{padding-left:5px; width:200px; }
-.table-container .item-value select{width:200px; }
+.table-container .item-value input[type="text"],
+.table-container .item-value input[type="password"]{padding-left:5px; width:64%; border:1px solid #BFBFBF; height:22px;}
+.table-container .item-value select{width:200px; font-size:16px;}
 .table-container .item-more{width:120px; vertical-align:top; padding:5px 20px 0 0; text-align:right; }
 
 .easyui-layout .textbox, .easyui-layout .window, .easyui-layout .window-shadow{-webkit-border-radius:0;border-radius:0;}

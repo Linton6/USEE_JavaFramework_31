@@ -96,6 +96,21 @@ var vEasyUIUtil = {
         openWindowOnly('#' + winName);
     },
 
+    showMsg:function(msg){
+        $.messager.show({
+            title:'信息',
+            msg:msg,
+            timeout:2000,
+            showType:'slide',
+            style:{
+                left:'',
+                right:20,
+                top:document.body.scrollTop+document.documentElement.scrollTop+20,
+                bottom:''
+            }
+        });
+    },
+
     createColumnMenu:function(dgName, menuName, fixedField, ignoreField){
         var dgQueryName = "#" + dgName;
         var cMenu = $('<div id="' + menuName + '"></div>').appendTo('body');
