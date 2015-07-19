@@ -40,8 +40,11 @@ public final class QueryUtils {
 				String key = entry.getKey();
 				Object conditionValue = entry.getValue();
 				if (conditionValue != null && !"".equals(conditionValue) && key != null) {
+					key = key.trim();
 					key = key.replace("{paramIndex}", String.valueOf(i++));
-					query.append(" and ");
+					if (!key.startsWith("and") && !key.startsWith("or")) {
+						query.append(" and ");
+					}
 					query.append(key);
 					query.append(" ");
 				}
