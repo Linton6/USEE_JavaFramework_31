@@ -97,6 +97,10 @@
             $("#sub").click();
         }
     });
+
+    if (self != top){
+        window.top.location = window.location;
+    }
 </script>
 
 </body>
