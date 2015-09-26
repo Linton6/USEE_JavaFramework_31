@@ -19,10 +19,21 @@
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
+
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>pages/index.jsp</welcome-file>
     </welcome-file-list>
+
+    <!-- 业务层和持久层的 Spring 配置文件，这些配置文件被父 Spring 容器所使用 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring-biz.xml
+        </param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <!-- 默认加载web-inf下XXX-servlet.xml文件 -->
     <servlet>
@@ -43,14 +54,4 @@
         <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:spring-biz.xml
-        </param-value>
-    </context-param>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
 </web-app>
