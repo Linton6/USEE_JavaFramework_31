@@ -1,8 +1,8 @@
-package com.softtek.base.action.dashboard;
+package com.vt1314.security.action.dashboard;
 
-import com.softtek.base.action.converter.AdminUserConverter;
-import com.softtek.base.business.biz.AdminUserBiz;
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.action.converter.AdminUserConverter;
+import com.vt1314.security.business.biz.AdminUserBiz;
+import com.vt1314.security.domain.AdminUser;
 import com.softtek.base.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

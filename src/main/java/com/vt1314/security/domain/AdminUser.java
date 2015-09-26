@@ -1,4 +1,4 @@
-package com.softtek.base.domain;
+package com.vt1314.security.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 

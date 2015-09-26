@@ -1,6 +1,6 @@
-package com.softtek.base.action.converter;
+package com.vt1314.security.action.converter;
 
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.domain.AdminUser;
 import com.softtek.base.sugar.tools.CommonSugar;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

@@ -1,6 +1,6 @@
-package com.softtek.base.business.biz;
+package com.vt1314.security.business.biz;
 
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.domain.AdminUser;
 
 import java.util.List;
 import java.util.Map;

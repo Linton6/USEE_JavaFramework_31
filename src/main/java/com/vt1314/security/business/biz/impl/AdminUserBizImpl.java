@@ -1,8 +1,8 @@
-package com.softtek.base.business.biz.impl;
+package com.vt1314.security.business.biz.impl;
 
-import com.softtek.base.business.biz.AdminUserBiz;
-import com.softtek.base.business.dao.AdminUserDao;
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.business.biz.AdminUserBiz;
+import com.vt1314.security.business.dao.AdminUserDao;
+import com.vt1314.security.domain.AdminUser;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

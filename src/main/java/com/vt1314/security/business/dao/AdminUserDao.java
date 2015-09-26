@@ -1,6 +1,6 @@
-package com.softtek.base.business.dao;
+package com.vt1314.security.business.dao;
 
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.domain.AdminUser;
 
 import java.util.List;
 import java.util.Map;

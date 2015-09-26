@@ -1,7 +1,7 @@
-package com.softtek.base.business.dao.impl;
+package com.vt1314.security.business.dao.impl;
 
-import com.softtek.base.business.dao.AdminUserDao;
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.business.dao.AdminUserDao;
+import com.vt1314.security.domain.AdminUser;
 import com.softtek.base.sugar.tools.QueryUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.softtek.base.interceptor;
 
-import com.softtek.base.domain.AdminUser;
+import com.vt1314.security.domain.AdminUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
