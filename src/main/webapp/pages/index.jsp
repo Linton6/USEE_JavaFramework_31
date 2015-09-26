@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title>罗氏诊断 - 企业微信管理</title>
+    <title>BaseProject</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
 <%
     Object agent = request.getSession().getAttribute(SessionKey.WEB_USER_INFO_KEY);
     if(agent == null){
-        response.sendRedirect(request.getContextPath());
+        response.sendRedirect(request.getContextPath() + "/security/login.jsp");
     }
 %>
 
@@ -41,11 +41,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="color:#cecece;">罗氏诊断 - 微信企业号管理</a>
+            <a class="navbar-brand" href="#" style="color:#cecece;">BaseProject</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<c:url value="/web/login/logout.action"/>">退出</a></li>
+                <li><a href="<c:url value="/auth/logout.action"/>">退出</a></li>
             </ul>
         </div>
 
@@ -71,58 +71,11 @@
             <div class="panel-group" id="accordion">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">
-                        <span class="glyphicon glyphicon-book pull-left"></span>
-                        <h4 class="panel-title">&nbsp;知识库管理</h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <ul class="nav nav-sidebar">
-                                <li><a class="link_url" data-url="<c:url value="/web/admin/knowledgeBase/getKnowledgeBaseListPage.action"/>">知识库</a></li>
-                                <li><a class="link_url" data-url="<c:url value="/web/admin/knowledgeBaseHistory/getKnowledgeBaseHistoryListPage.action"/>">知识库查询历史</a></li>
-                                <li><a class="link_url" data-url="<c:url value="/web/admin/unknown/question/getUnknownQuestionListPage.action"/>">未知问题</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
-                        <span class="glyphicon glyphicon-cloud pull-left"></span>
-                        <h4 class="panel-title">&nbsp;推送消息管理</h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <ul class="nav nav-sidebar">
-                                <li><a class="link_url" data-url="">推送消息</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
-						<span class="glyphicon glyphicon-user pull-left"></span>
-						<h4 class="panel-title">&nbsp;基础数据管理</h4>
-					</div>
-					<div id="collapse3" class="panel-collapse collapse">
-						<div class="panel-body">
-							<ul class="nav nav-sidebar">
-								<li><a class="link_url" data-url="<c:url value="/web/admin/wx/user/getWxUserListPage.action"/>">用户数据</a></li>
-								<li><a class="link_url" data-url="<c:url value="/web/admin/wx/user/getWxUserSynchronousListPage.action"/>">待同步用户</a></li>
-								<li><a class="link_url" data-url="<c:url value="/web/admin/wx/department/getWxDepartmentListPage.action"/>">部门管理</a></li>
-								<li><a class="link_url" data-url="<c:url value="/web/admin/wx/tag/getWxTagListPage.action"/>">标签管理</a></li>                            </ul>
-						</div>
-					</div>
-				</div>
-
-                <!-- } collapse5 -->
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse4">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-auth">
                         <span class="glyphicon glyphicon-asterisk pull-left"></span>
                         <h4 class="panel-title">&nbsp;管理员用户管理</h4>
                     </div>
-                    <div id="collapse4" class="panel-collapse collapse">
+                    <div id="collapse-auth" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul class="nav nav-sidebar">
                                 <li><a class="link_url" data-url="<c:url value="/web/admin/adminUser/getAdminUserListPage.action"/>">用户管理</a></li>

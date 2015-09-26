@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * Author: 陈梨春  Date: 14-11-5
  */
 @Controller
-@RequestMapping("/web/login")
+@RequestMapping("/auth")
 public class LoginAction {
 
 	private final static Logger logger = LoggerFactory.getLogger(LoginAction.class);
@@ -72,6 +72,6 @@ public class LoginAction {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("loginAgent");
-		return "pages/login";
+		return "security/login";
 	}
 }

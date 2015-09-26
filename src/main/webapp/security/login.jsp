@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>罗氏诊断 - 企业微信管理登录</title>
+    <title>BaseProject</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,16 +41,16 @@
             </div>
             <div class="pull-right" style="width:320px;">
                 <div style="margin:28px 10px;">
-                    <img src="<c:url value="/resources/images/login/logo1120.png" />" title="" />
+                    <img src="<c:url value="/resources/images/login/logo1120.png" />" style="width:320px;margin-left:-30px;" title="" />
                 </div>
                 <form role="form">
                     <div class="form-group">
                         <label for="agentName">用户名：</label>
-                        <input type="text" class="form-control" id="agentName" placeholder="请输入用户名">
+                        <input type="text" class="form-control" id="agentName" placeholder="请输入用户名" value="admin">
                     </div>
                     <div class="form-group">
                         <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                        <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                        <input type="password" class="form-control" id="password" placeholder="请输入密码" value="admin">
                     </div>
                     <%--<div class="checkbox">
                         <label>
@@ -72,7 +72,7 @@
     $("#sub").on('click', function () {
         $.ajax({
             type: 'post',
-            url: "<c:url value="/web/login/login.action" />",
+            url: "<c:url value="/auth/login.action" />",
             data: {"agentName": $("#agentName").val(), "password": $("#password").val()},
             dataType: 'json',
             async: false,
