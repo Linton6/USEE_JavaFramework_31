@@ -1,4 +1,4 @@
-package com.softtek.base.interceptor;
+package com.vt1314.security.interceptor;
 
 import com.vt1314.security.domain.AdminUser;
 import org.slf4j.Logger;
