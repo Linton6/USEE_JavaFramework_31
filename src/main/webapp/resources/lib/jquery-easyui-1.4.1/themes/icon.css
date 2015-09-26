@@ -84,9 +84,11 @@
 }
 .icon-large-shapes{
 	background:url('icons/large_shapes.png') no-repeat center center;
+    background-size:100%;
 }
 .icon-large-smartart{
 	background:url('icons/large_smartart.png') no-repeat center center;
+    background-size:100%;
 }
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;

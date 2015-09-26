@@ -12,7 +12,8 @@ function openIFrameWindow(winName, frameURL, title){
 
     var content = '<iframe src="' + frameURL + '" class="span12" style="height:100%; width:100%; border:none; margin-bottom:-3px;" name="mainframe" id="mainframe"></iframe>'
 
-    var reSizeHeight = vSugar.getMaxWinHeight("mainPanel", 600) - 26;
+    //var reSizeHeight = vSugar.getMaxWinHeight("mainPanel", 600) - 26;
+    var reSizeHeight = vSugar.getMaxWinHeight("mainPanel", 11600) - 80;
     var targetEasyDom = $(winName);
     if(title){
         targetEasyDom.panel('setTitle', title);
@@ -47,6 +48,16 @@ function openWindowFixed(winName, refreshUrl, fixWinName, fixHeight){
 
 function openWindowWithoutResize(winName, refreshUrl){
     var targetEasyDom = $(winName);
+    targetEasyDom.window('center');
+    targetEasyDom.window('open');
+    targetEasyDom.window('refresh', refreshUrl);
+}
+
+function openWindowWithoutResize2(winName, refreshUrl, title){
+    var targetEasyDom = $(winName);
+    if(title){
+        targetEasyDom.panel('setTitle', title);
+    }
     targetEasyDom.window('center');
     targetEasyDom.window('open');
     targetEasyDom.window('refresh', refreshUrl);
@@ -97,18 +108,59 @@ var vEasyUIUtil = {
     },
 
     showMsg:function(msg){
+        msg = ""+//"<img src='http://q.qlogo.cn/qqapp/100224785/366E4173050DF0110B4779356FFEEE82/100' style='height:50px' />" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;<div style='font-size:18px;'>" + msg +
+            "</div>";
         $.messager.show({
             title:'信息',
             msg:msg,
             timeout:2000,
-            showType:'slide',
+            showType:'fade',
             style:{
-                left:'',
+                top:document.body.scrollTop+document.documentElement.scrollTop + 160
+                /*left:'',
                 right:20,
                 top:document.body.scrollTop+document.documentElement.scrollTop+20,
-                bottom:''
+                bottom:''*/
             }
         });
+    },
+
+    ajaxHandle:function (param){
+        $.messager.confirm('Confirm','确认提交?',function(r){
+            if (r){
+                vEasyUIUtil.ajaxHandleNoConfirm(param);
+            }
+        });
+    },
+
+    ajaxHandleNoConfirm:function (param) {
+
+        $.messager.progress({
+            title: '操作中',
+            msg: '正在操作。。。'
+        });
+
+        $.ajax({
+            url: param.v_url,
+            data:param.v_data,
+            complete: function (xhr, textStatus) {
+                $.messager.progress('close');
+                if (textStatus == "error") {
+                    vEasyUIUtil.showAjaxError("errorWin", xhr.responseText);
+                    return;
+                }
+
+                if (xhr.responseText == 1) {
+                    param.v_callback();
+                } else {
+                    $.messager.alert("信息", xhr.responseText, "info");
+                }
+            }
+        });
+        /*if (!confirm("确认提交")) {
+            return;
+        }*/
     },
 
     createColumnMenu:function(dgName, menuName, fixedField, ignoreField){
@@ -237,8 +289,8 @@ function formatPagination(dataGridId){
         beforePageText:' 第 ',
         afterPageText:'  / {pages} 页 ',
         displayMsg:'当前显示第 {from} - {to} 条记录 | 共 {total} 条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
-        pageSize : 20,
-        pageList : [10,20,50]
+        //pageSize : 100,
+        pageList : [20,50,100,200]
     });
 }
 
