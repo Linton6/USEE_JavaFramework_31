@@ -1,6 +1,6 @@
 package com.softtek.base.sugar.web;
 
-import com.softtek.base.config.ConstantFilePath;
+import com.vt1314.config.ConstantKeyFilePath;
 import com.softtek.base.sugar.tools.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class FileUtils {
 
 		if (uploadFile != null && !uploadFile.isEmpty()) {
 			//从配置文件获取图片上传物理根路径
-			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantFilePath.FILE_UPLOAD_ROOT_KEY);
+			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
 
 			if (fileUploadRootPath == null) {
 				logger.error("获取文件保存根路径异常。");
@@ -83,7 +83,7 @@ public class FileUtils {
 
 		if (filePath != null && !"".equals(filePath)) {
 			// 从配置文件获取【文件目录绝对根路径】
-			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantFilePath.FILE_UPLOAD_ROOT_KEY);
+			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
 			if (fileUploadRootPath == null) {
 				logger.error("获取文件保存根路径异常。");
 				return false;

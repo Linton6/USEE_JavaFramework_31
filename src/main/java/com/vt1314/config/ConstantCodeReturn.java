@@ -1,9 +1,9 @@
-package com.softtek.base.config;
+package com.vt1314.config;
 
 /**
- * Created by 陈梨春 on 11/4/2014.
+ * Created by 居泽平 on 11/4/2014.
  */
-public class ConstantResult {
+public class ConstantCodeReturn {
 
 	public static final int CODE_SUCCESS = 1000;
 

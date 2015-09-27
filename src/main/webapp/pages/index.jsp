@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.softtek.base.config.SessionKey" %>
+<%@ page import="com.vt1314.config.ConstantKeySession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -25,7 +25,7 @@
 <body>
 
 <%
-    Object agent = request.getSession().getAttribute(SessionKey.WEB_USER_INFO_KEY);
+    Object agent = request.getSession().getAttribute(ConstantKeySession.WEB_USER_INFO_KEY);
     if(agent == null){
         response.sendRedirect(request.getContextPath() + "/security/login.jsp");
     }

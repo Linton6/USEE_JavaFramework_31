@@ -1,7 +1,7 @@
 package com.vt1314.security.action.dashboard;
 
+import com.vt1314.config.ConstantKeySession;
 import com.vt1314.security.business.biz.AdminUserBiz;
-import com.softtek.base.config.SessionKey;
 import com.vt1314.security.domain.AdminUser;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -56,7 +56,7 @@ public class LoginAction {
 		logger.debug("登录成功，登录信息是：" + loginUser);
 
 		//登陆成功，保存用户【Session】
-		request.getSession().setAttribute(SessionKey.WEB_USER_INFO_KEY, loginUser);
+		request.getSession().setAttribute(ConstantKeySession.WEB_USER_INFO_KEY, loginUser);
 
 		result.put("success", Boolean.TRUE);
 		result.put("msg", "登录成功");
