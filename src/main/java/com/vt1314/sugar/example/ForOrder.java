@@ -1,7 +1,9 @@
-package com.softtek.base.sugar.reference;
+package com.vt1314.sugar.example;
 
 /**
  * Author: 居泽平  Date: 14-6-19, 9:29
+ *
+ * 这是一个排序方法的示例
  */
 public class ForOrder implements Comparable {
 
