@@ -12,6 +12,7 @@ import java.util.Properties;
 /**
  * Author: 居泽平
  */
+@SuppressWarnings("unused")
 public class Configuration {
 
 	private static final Logger logger = LoggerFactory.getLogger(Configuration.class);

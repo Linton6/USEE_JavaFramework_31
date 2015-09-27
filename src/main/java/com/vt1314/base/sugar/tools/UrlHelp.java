@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Author: 居泽平  Date: 13-7-2, 下午4:33
  */
+@SuppressWarnings("unused")
 public class UrlHelp {
 
 	/**

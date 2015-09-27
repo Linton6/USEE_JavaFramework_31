@@ -33,7 +33,7 @@ public class AdminUserDaoImpl implements AdminUserDao {
 
 	public Map<String, Object> getSearchCondition(Map<String, String> queryHash) {
 
-		Map<String, Object> conditionHash = new HashMap<String, Object>();
+		Map<String, Object> conditionHash = new HashMap<>();
 		if (queryHash == null) {
 			return conditionHash;
 		}

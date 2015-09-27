@@ -5,6 +5,7 @@ package com.vt1314.base.sugar.example;
  *
  * 这是一个排序方法的示例
  */
+@SuppressWarnings("unused")
 public class ForOrder implements Comparable {
 
 	private Object object;

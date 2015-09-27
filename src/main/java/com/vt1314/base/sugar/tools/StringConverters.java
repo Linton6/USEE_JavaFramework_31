@@ -10,6 +10,7 @@ import java.util.Date;
 /**
  * Author: 居泽平  Date: 13-7-6, 上午9:33
  */
+@SuppressWarnings("unused")
 public class StringConverters {
 
 	private final static Logger logger = LoggerFactory.getLogger(StringConverters.class);

@@ -32,7 +32,7 @@ public class AdminUserBizImpl implements AdminUserBiz {
 			return null;
 		}
 
-		Map<String, String> queryHash = new HashMap<String, String>();
+		Map<String, String> queryHash = new HashMap<>();
 		queryHash.put("loginName", loginName);
 		queryHash.put("loginPassword", loginPassword);
 

@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/web/admin/adminUser")
+@SuppressWarnings("unused")
 public class AdminUserAction {
 
 	private final static Logger logger = LoggerFactory.getLogger(AdminUserAction.class);

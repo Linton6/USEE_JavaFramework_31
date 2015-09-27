@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * Author: val.jzp
  */
+@SuppressWarnings("unused")
 public interface AdminUserBiz {
 
 	/**

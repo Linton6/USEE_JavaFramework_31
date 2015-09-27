@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * Author: wangmin  Date: 13-6-21, 上午15:10
  */
+@SuppressWarnings("unused")
 public final class DateTimeUtils {
 
 	private static final GregorianCalendar CALENDAR = new GregorianCalendar();
