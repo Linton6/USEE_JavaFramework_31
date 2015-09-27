@@ -6,13 +6,14 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 14-3-3, 上午9:29
  */
+@SuppressWarnings("unused")
 public class ExcelImportParam {
 
-	private Map<Integer, String> cellPropertyMap = new HashMap<Integer, String>();
+	private Map<Integer, String> cellPropertyMap = new HashMap<>();
 
-	private Map<String, String> extraParameterMap = new HashMap<String, String>();
+	private Map<String, String> extraParameterMap = new HashMap<>();
 
-	private Map<String, String> dateConvertTypeMap = new HashMap<String, String>();
+	private Map<String, String> dateConvertTypeMap = new HashMap<>();
 
 	public Map<Integer, String> getCellPropertyMap() {
 		return cellPropertyMap;

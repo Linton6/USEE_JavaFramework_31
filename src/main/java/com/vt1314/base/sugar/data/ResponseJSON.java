@@ -5,6 +5,7 @@ import net.sf.json.JSONObject;
 /**
  * Author: 张霄鹏  Date: 14-2-10 14:55
  */
+@SuppressWarnings("unused")
 public class ResponseJSON {
 
 	/**

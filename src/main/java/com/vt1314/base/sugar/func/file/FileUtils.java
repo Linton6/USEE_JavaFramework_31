@@ -15,6 +15,7 @@ import java.util.Random;
 /**
  * Author: 居泽平  Date: 13-7-5, 下午1:54
  */
+@SuppressWarnings("unused")
 public class FileUtils {
 
 	private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);

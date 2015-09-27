@@ -16,6 +16,7 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 13-9-4, 上午9:26
  */
+@SuppressWarnings("unused")
 public class ExcelExport {
 
 	/**

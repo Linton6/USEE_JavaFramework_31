@@ -14,7 +14,7 @@ public class ExcelExportStyle {
 
 	public static Map<String, CellStyle> getPredefinedCellStyle(Workbook wb) {
 
-		Map<String, CellStyle> styleMap = new HashMap<String, CellStyle>();
+		Map<String, CellStyle> styleMap = new HashMap<>();
 
 		// ==================== 设置 head 的 style ============================
 		Font fontHead = wb.createFont();

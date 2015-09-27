@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage;
  * java mail邮件发送实现类
  * Author: 叶利平  Date: 13-6-18, 下午1:49
  */
+@SuppressWarnings("unused")
 public class Email {
 	private JavaMailSender mailSender;
 	private SimpleMailMessage simpleMailMessage;

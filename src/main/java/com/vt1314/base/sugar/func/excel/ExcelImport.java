@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+@SuppressWarnings("unused")
 public class ExcelImport {
 
 	private final static Logger logger = LoggerFactory.getLogger(ExcelImport.class);

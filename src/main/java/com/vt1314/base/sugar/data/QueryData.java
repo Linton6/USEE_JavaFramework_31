@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Author: 居泽平  Date: 14/12/10, 09:53
  */
+@SuppressWarnings("unused")
 public class QueryData<T> {
 
 	private Long totalNum;
@@ -22,7 +23,7 @@ public class QueryData<T> {
 	public QueryData(List<T> dataList, Long totalNum) {
 
 		if (dataList == null) {
-			dataList = new ArrayList<T>();
+			dataList = new ArrayList<>();
 		}
 		if (totalNum == null) {
 			totalNum = 0L;
