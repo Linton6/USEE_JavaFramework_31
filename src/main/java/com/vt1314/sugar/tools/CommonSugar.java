@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.tools;
+package com.vt1314.sugar.tools;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

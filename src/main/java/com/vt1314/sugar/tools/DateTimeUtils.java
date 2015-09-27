@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.tools;
+package com.vt1314.sugar.tools;
 
 import java.text.DateFormat;
 import java.text.ParseException;

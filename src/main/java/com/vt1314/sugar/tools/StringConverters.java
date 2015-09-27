@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.tools;
+package com.vt1314.sugar.tools;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

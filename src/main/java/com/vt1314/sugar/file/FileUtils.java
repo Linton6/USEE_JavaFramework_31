@@ -1,7 +1,7 @@
 package com.vt1314.sugar.file;
 
 import com.vt1314.config.ConstantKeyFilePath;
-import com.softtek.base.sugar.tools.Configuration;
+import com.vt1314.sugar.tools.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;

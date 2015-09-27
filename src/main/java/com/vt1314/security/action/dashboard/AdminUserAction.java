@@ -3,7 +3,7 @@ package com.vt1314.security.action.dashboard;
 import com.vt1314.security.action.converter.AdminUserConverter;
 import com.vt1314.security.business.biz.AdminUserBiz;
 import com.vt1314.security.domain.AdminUser;
-import com.softtek.base.sugar.tools.StringConverters;
+import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
