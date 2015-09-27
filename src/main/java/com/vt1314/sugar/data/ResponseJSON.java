@@ -1,11 +1,11 @@
-package com.softtek.base.config;
+package com.vt1314.sugar.data;
 
 import net.sf.json.JSONObject;
 
 /**
  * Author: 张霄鹏  Date: 14-2-10 14:55
  */
-public class ConstantReturnJSON {
+public class ResponseJSON {
 
 	/**
 	 * 返回错误信息

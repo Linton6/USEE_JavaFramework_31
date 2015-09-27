@@ -1,4 +1,4 @@
-package com.softtek.base.sugar.web;
+package com.softtek.base.sugar.tools;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +35,8 @@ public class UrlHelp {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(request.getRequestURL().toString());
 		if (request.getQueryString() != null) {
-			stringBuilder.append("?" + request.getQueryString());
+			stringBuilder.append("?");
+			stringBuilder.append(request.getQueryString());
 		}
 		return stringBuilder.toString();
 	}
