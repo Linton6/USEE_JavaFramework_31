@@ -2,7 +2,7 @@ package com.vt1314.security.business.dao.impl;
 
 import com.vt1314.security.business.dao.AdminUserDao;
 import com.vt1314.security.domain.AdminUser;
-import com.softtek.base.sugar.tools.QueryUtils;
+import com.vt1314.sugar.data.QueryUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
