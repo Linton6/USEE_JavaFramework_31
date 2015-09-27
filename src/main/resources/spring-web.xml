@@ -32,4 +32,7 @@
             <bean class="com.vt1314.security.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 当Spring容器启动完成后执行下面的这个Bean -->
+    <bean class="com.vt1314.sugar.start.InstantiationTracingBeanPostProcessor"/>
 </beans>
