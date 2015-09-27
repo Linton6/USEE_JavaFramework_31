@@ -24,13 +24,13 @@
                 pagination:true,
                 pageSize: 20,
                 columns:[[
-                    {field:'adminUserId',title:'编号',width:8,align:'center'},
-                    {field:'loginName',title:'用户名',width:8,align:'center'},
-                    {field:'loginPassword',title:'密码',width:8,align:'center'},
-                    {field:'realName',title:'姓名',width:8,align:'center'},
-                    {field:'email',title:'邮箱',width:8,align:'center'},
-                    {field:'createDate',title:'创建日期',width:8,align:'center'},
-                    {field:'updateDate',title:'更新日期',width:8,align:'center'},
+                    {field:'adminUserId',title:'编号',align:'center'},
+                    {field:'loginName',title:'用户名',width:80,align:'center'},
+                    //{field:'loginPassword',title:'密码',width:80,align:'center'},
+                    {field:'realName',title:'姓名',width:80,align:'center'},
+                    {field:'email',title:'邮箱',width:160,align:'center'},
+                    {field:'createDate',title:'创建日期',width:80,align:'center'},
+                    {field:'updateDate',title:'更新日期',width:80,align:'center'},
                     {field:'edit',title:'Edit',align:'center',formatter:function(val,row){
                         if(row.adminUserId < 0) { return ''; }
                         var viewUrl = "<c:url value="/web/admin/adminUser/getAdminUserViewPage.action?adminUserId=" />" + row.adminUserId;
