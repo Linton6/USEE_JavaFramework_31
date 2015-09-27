@@ -1,4 +1,4 @@
-package com.vt1314.sugar.excel;
+package com.vt1314.sugar.func.excel;
 
 import com.vt1314.sugar.tools.StringConverters;
 import jxl.CellType;

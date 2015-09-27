@@ -1,4 +1,4 @@
-package com.vt1314.sugar.excel;
+package com.vt1314.sugar.func.excel;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;

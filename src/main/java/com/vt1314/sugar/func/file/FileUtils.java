@@ -1,4 +1,4 @@
-package com.vt1314.sugar.file;
+package com.vt1314.sugar.func.file;
 
 import com.vt1314.config.ConstantKeyFilePath;
 import com.vt1314.sugar.tools.Configuration;
