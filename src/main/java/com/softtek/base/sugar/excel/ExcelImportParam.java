@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 14-3-3, 上午9:29
  */
-public class ExcelImportConfig {
+public class ExcelImportParam {
 
 	private Map<Integer, String> cellPropertyMap = new HashMap<Integer, String>();
 

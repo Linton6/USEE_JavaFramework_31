@@ -1,6 +1,8 @@
 package com.softtek.base.sugar.excel;
 
 import com.softtek.base.sugar.tools.StringConverters;
+import jxl.CellType;
+import jxl.DateCell;
 import jxl.Sheet;
 import jxl.Workbook;
 import org.slf4j.Logger;
@@ -8,40 +10,41 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class ExcelUtil {
+public class ExcelImport {
 
-	private final static Logger logger = LoggerFactory.getLogger(ExcelUtil.class);
+	private final static Logger logger = LoggerFactory.getLogger(ExcelImport.class);
 
-	public static <T> List<T> readExcel(String filePath, Class<T> clazz, ExcelImportConfig excelImportConfig) {
+	public static <T> List<T> readExcel(String filePath, Class<T> clazz, ExcelImportParam excelImportParam) {
 
-		Workbook wb = ExcelUtil.getExcelWorkbook(filePath);
+		Workbook wb = ExcelImport.getExcelWorkbook(filePath);
 		if (wb == null) {
 			logger.error("创建Workbook对象未成功");
 			return null;
 		}
 
-		Sheet sheet = ExcelUtil.getSheetByNum(wb, 0);
+		Sheet sheet = ExcelImport.getSheetByNum(wb, 0);
 		if (sheet == null) {
 			logger.error("创建Sheet对象未成功");
 			return null;
 		}
 
-		if (excelImportConfig == null) {
+		if (excelImportParam == null) {
 			logger.error("传入的配置对象为空");
 			return null;
 		}
 
-		Map<Integer, String> cellPropertyMap = excelImportConfig.getCellPropertyMap();
-		Map<String, String> extraParameter = excelImportConfig.getExtraParameterMap();
-		Map<String, String> dateConvertTypeMap = excelImportConfig.getDateConvertTypeMap();
+		Map<Integer, String> cellPropertyMap = excelImportParam.getCellPropertyMap();
+		Map<String, String> extraParameter = excelImportParam.getExtraParameterMap();
+		Map<String, String> dateConvertTypeMap = excelImportParam.getDateConvertTypeMap();
 
-		List<T> tList = new ArrayList<T>();
+		List<T> tList = new ArrayList<>();
 
 		for (int i = 1; i < sheet.getRows(); i++) {
 
@@ -60,6 +63,13 @@ public class ExcelUtil {
 					Field nameFld = clazz.getDeclaredField(fieldName);
 					nameFld.setAccessible(true);
 					nameFld.set(t, convertByType(nameFld.getType(), fieldName, sheet.getCell(key, i).getContents(), dateConvertTypeMap));
+
+					if (sheet.getCell(key, i).getType() == CellType.DATE) {
+						DateCell dc = (DateCell) sheet.getCell(key, i);
+						Date date = dc.getDate();
+						SimpleDateFormat ds = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						nameFld.set(t, ds.format(date));
+					}
 				} catch (Exception e) {
 					logger.error("没有找到对应的字段[" + fieldName + "]", e);
 				}
@@ -87,7 +97,7 @@ public class ExcelUtil {
 	public static <T> Object convertByType(Class<T> clazz, String fieldName, String fieldValue, Map<String, String> dateConvertTypeMap) {
 
 		if (clazz.equals(String.class)) {
-			return fieldValue;
+			return fieldValue.trim();
 		}
 		if (clazz.equals(Long.class)) {
 			return StringConverters.ToLong(fieldValue);

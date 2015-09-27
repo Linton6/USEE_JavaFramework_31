@@ -1,10 +1,11 @@
 package com.softtek.base.sugar.excel;
 
+import com.softtek.base.sugar.tools.CommonSugar;
+import com.softtek.base.sugar.tools.StringConverters;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 13-9-4, 上午9:26
  */
-public class ExcelFileExport {
+public class ExcelExport {
 
 	/**
 	 * 导出Excel文件
@@ -60,20 +61,20 @@ public class ExcelFileExport {
 		//创建工作簿
 		Sheet sheet1 = wb.createSheet("new sheet");
 		//合并第一行单元格
-		sheet1.addMergedRegion(new CellRangeAddress(0, 0, 0, selectFieldsName.length - 1));
+		//sheet1.addMergedRegion(new CellRangeAddress(0, 0, 0, selectFieldsName.length - 1));
 
 		//获取预先定义的样式
-		Map<String, CellStyle> styleMap = ExcelCellStyle.getPredefinedCellStyle(wb);
+		Map<String, CellStyle> styleMap = ExcelExportStyle.getPredefinedCellStyle(wb);
 		CellStyle cellStyleHead = styleMap.get("cellStyleHead");
 		CellStyle cellStyleMain = styleMap.get("cellStyleMain");
 
-		Row searchRow = sheet1.createRow(0);
+		/*Row searchRow = sheet1.createRow(0);
 		searchRow.setHeight((short) 340);
 		Cell searchCell = searchRow.createCell(0);
-		searchCell.setCellValue(""); //搜索条件：无
+		searchCell.setCellValue(""); //搜索条件：无*/
 
-		Row headRow = sheet1.createRow(1);
-		headRow.setHeight((short) 340);
+		Row headRow = sheet1.createRow(0);
+		headRow.setHeight((short) 640);
 		for (int i = 0; i < selectFieldsName.length; i++) {
 			Cell cell = headRow.createCell(i);
 			cell.setCellValue(selectFieldsName[i]);
@@ -82,13 +83,13 @@ public class ExcelFileExport {
 		}
 
 		//外层数据行遍历
-		int i = 2;
+		int i = 1;
 		Iterator<JSONObject> iterator = agentJSONArray.iterator();
 		while (iterator.hasNext()) {
 
 			//初始化 Excel Row
 			Row row = sheet1.createRow(i);
-			row.setHeight((short) 300);
+			row.setHeight((short) 540);
 
 			//遍历的数据行元数据
 			JSONObject jsonObject = iterator.next();
@@ -103,9 +104,20 @@ public class ExcelFileExport {
 
 				//判断如果当前字段名称在jsonObject中，则进行赋值操作
 				if (jsonObject.keySet().toString().indexOf(selectField) > 0) {
-					cell.setCellValue(jsonObject.getString(selectField));
+					//处理该字段的值
+					String selectValue = jsonObject.getString(selectField);
+					Double selectValueDouble = StringConverters.ToDouble(selectValue);
+					//如果纯数字，那么设置为数字格式
+					if (selectValue != null && selectValue.length() < 8 && selectValueDouble != null) {
+						cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+						cell.setCellValue(selectValueDouble);
+					} else {
+						cell.setCellValue(selectValue);
+					}
+					//根据内容设定单元格宽度
+					int unitWidth = CommonSugar.isContainChinese(selectValue) ? 680 : 300;
 					int oldWidth = sheet1.getColumnWidth(j);
-					int newWidth = jsonObject.getString(selectField).length() * 720;
+					int newWidth = selectValue.length() * unitWidth;
 					if (newWidth > oldWidth) {
 						newWidth = newWidth > 14000 ? 14000 : newWidth;
 						sheet1.setColumnWidth(j, newWidth);

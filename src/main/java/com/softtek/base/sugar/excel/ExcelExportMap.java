@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 13-11-24, 下午11:20
  */
-public class ExcelMapExport {
+public class ExcelExportMap {
 
 	public static Map<String, String> CUSTOMER_EXPORT_MAP(String selectFields) {
 

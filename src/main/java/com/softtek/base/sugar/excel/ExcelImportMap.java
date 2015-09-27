@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Author: 居泽平  Date: 13-11-24, 下午11:20
  */
-public class ExcelMapImport {
+public class ExcelImportMap {
 
 	public static Map<Integer, String> KNOWLEDGE_BASE_ENTER_IMPORT_MAP() {
 
