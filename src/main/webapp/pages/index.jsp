@@ -75,7 +75,7 @@
                         <span class="glyphicon glyphicon-asterisk pull-left"></span>
                         <h4 class="panel-title">&nbsp;管理员用户管理</h4>
                     </div>
-                    <div id="collapse-auth" class="panel-collapse collapse">
+                    <div id="collapse-auth" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-sidebar">
                                 <li><a class="link_url" data-url="<c:url value="/web/admin/adminUser/getAdminUserListPage.action"/>">用户管理</a></li>

@@ -12,7 +12,7 @@
 <script type="text/javascript" src="<c:url value="/resources/framework/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" />"></script>--%>
 <script type="text/javascript" src="<c:url value="/resources/lib/jquery/jquery-1.11.0.min.js" />"></script>
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/lib/jquery-easyui-1.4.1/themes/metro/easyui.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/lib/jquery-easyui-1.4.1/themes/gray/easyui.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/lib/jquery-easyui-1.4.1/themes/icon.css" />" />
 <script type="text/javascript" src="<c:url value="/resources/lib/jquery-easyui-1.4.1/jquery.easyui.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/lib/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js" />"></script>

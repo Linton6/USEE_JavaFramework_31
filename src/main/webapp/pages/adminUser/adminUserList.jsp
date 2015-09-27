@@ -15,6 +15,7 @@
         $(document).ready(function(){
             $('#dgAdminUser').datagrid({
                 url:'<c:url value="/web/admin/adminUser/getAdminUserListJSON.json" />',
+                title:'管理员列表',
                 singleSelect:true,
                 fit:true,
                 fitColumns:true,
