@@ -163,6 +163,33 @@ var vEasyUIUtil = {
         }*/
     },
 
+    ajaxHandleJSON:function (param) {
+
+        $.messager.progress({
+            title: '操作中',
+            msg: '正在操作。。。'
+        });
+
+        $.ajax({
+            url: param.v_url,
+            data:param.v_data,
+            complete: function (xhr, textStatus) {
+                $.messager.progress('close');
+                if (textStatus == "error") {
+                    vEasyUIUtil.showAjaxError("errorWin", xhr.responseText);
+                    return;
+                }
+
+                var result = $.parseJSON(xhr.responseText);
+                if(result.code == 1){
+                    param.v_callback();
+                } else {
+                    $.messager.alert("信息", result.desc, "info");
+                }
+            }
+        });
+    },
+
     createColumnMenu:function(dgName, menuName, fixedField, ignoreField){
         var dgQueryName = "#" + dgName;
         var cMenu = $('<div id="' + menuName + '"></div>').appendTo('body');
