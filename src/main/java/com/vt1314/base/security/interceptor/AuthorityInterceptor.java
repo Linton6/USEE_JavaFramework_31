@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
+	/**
+	 * Tomcat webapps的路径
+	 */
+	private static final String tomcatWebappsAddress=System.getProperty("user.dir").replace("bin", "webapps");
+
 	private static final Logger logger = LoggerFactory.getLogger(AuthorityInterceptor.class);
 
 	/**
@@ -34,7 +39,7 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 		//登录页面放行
 		String url = request.getRequestURI();
 		logger.info("get request URI:[" + url + "]");
-
+		logger.info("当前tomcat路径:[" + tomcatWebappsAddress + "]");
 		AdminUser adminUser = (AdminUser) request.getSession().getAttribute("loginAgent");
 		if (adminUser != null) {
 			logger.info("[" + adminUser.getLoginName() + "]帐号已登录，放行！！");
