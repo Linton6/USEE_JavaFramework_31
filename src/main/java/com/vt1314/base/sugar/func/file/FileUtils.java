@@ -1,11 +1,10 @@
 package com.vt1314.base.sugar.func.file;
 
-import com.vt1314.base.config.ConstantKeyFilePath;
-import com.vt1314.base.sugar.tools.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,20 +19,20 @@ public class FileUtils {
 
 	private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
-	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath) {
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath, String oldFilePath) {
 
-		String fileName = fileUpload(uploadFile, configFileDirName, configFileFixName);
+		String fileName = fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
 		if (fileName != null && !"".equals(fileName)) {
-			FileUtils.moveFile(configFileDirName, oldFilePath);
+			FileUtils.moveFile(configFileDirName, oldFilePath, fileUploadRootPath);
 		}
 		return fileName;
 	}
 
-	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName) {
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath) {
 
 		if (uploadFile != null && !uploadFile.isEmpty()) {
 			//从配置文件获取图片上传物理根路径
-			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
+			//String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
 
 			if (fileUploadRootPath == null) {
 				logger.error("获取文件保存根路径异常。");
@@ -80,11 +79,11 @@ public class FileUtils {
 	 * @param filePath          现有的文件相对路径
 	 * @return 移动结果
 	 */
-	public static boolean moveFile(String configFileDirName, String filePath) {
+	public static boolean moveFile(String configFileDirName, String filePath, String fileUploadRootPath) {
 
 		if (filePath != null && !"".equals(filePath)) {
 			// 从配置文件获取【文件目录绝对根路径】
-			String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
+			//String fileUploadRootPath = Configuration.getConfigurationByName(ConstantKeyFilePath.FILE_UPLOAD_ROOT_KEY);
 			if (fileUploadRootPath == null) {
 				logger.error("获取文件保存根路径异常。");
 				return false;

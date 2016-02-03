@@ -9,7 +9,6 @@ public class ConstantKeyFilePath {
 	/**
 	 * 文件保存的根目录
 	 */
-	public static final String FILE_UPLOAD_ROOT_KEY = "fileSaveRootPath";
 	public static final String FILE_UPLOAD_ROOT_PATH = "exampleUploads/";
 
 	/**
