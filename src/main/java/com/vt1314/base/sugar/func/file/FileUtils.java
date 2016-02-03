@@ -19,13 +19,34 @@ public class FileUtils {
 
 	private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
-	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath, String oldFilePath) {
+	public static String getContextRootPath(HttpServletRequest request) {
+
+		String contextPath = request.getServletContext().getRealPath("/");
+		contextPath = contextPath.substring(0, contextPath.lastIndexOf("/"));
+		logger.info("获取得到Context根目录为:[{}]", contextPath);
+
+		return contextPath;
+	}
+
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath, HttpServletRequest request) {
+
+		String fileUploadRootPath = getContextRootPath(request);
+		return fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath, oldFilePath);
+	}
+
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath, String fileUploadRootPath) {
 
 		String fileName = fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
 		if (fileName != null && !"".equals(fileName)) {
 			FileUtils.moveFile(configFileDirName, oldFilePath, fileUploadRootPath);
 		}
 		return fileName;
+	}
+
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, HttpServletRequest request) {
+
+		String fileUploadRootPath = getContextRootPath(request);
+		return fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
 	}
 
 	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath) {
