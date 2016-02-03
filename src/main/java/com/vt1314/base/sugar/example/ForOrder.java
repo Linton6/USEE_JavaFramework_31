@@ -2,7 +2,7 @@ package com.vt1314.base.sugar.example;
 
 /**
  * Author: 居泽平  Date: 14-6-19, 9:29
- *
+ * <p/>
  * 这是一个排序方法的示例
  */
 @SuppressWarnings("unused")

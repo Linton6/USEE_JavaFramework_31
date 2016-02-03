@@ -861,15 +861,15 @@ public final class DateTimeUtils {
 		return sdf.format(date);
 	}
 
-    public static final String formatDateToString(Date date) {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        sdf.setLenient(false);
-        if (date == null) {
-            return null;
-        }
-        return sdf.format(date);
-    }
+	public static final String formatDateToString(Date date) {
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		sdf.setLenient(false);
+		if (date == null) {
+			return null;
+		}
+		return sdf.format(date);
+	}
 
 	public static final Integer getBirthdayYearByAge(Integer age) {
 
