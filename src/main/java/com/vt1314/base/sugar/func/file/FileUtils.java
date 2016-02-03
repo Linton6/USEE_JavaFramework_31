@@ -22,7 +22,12 @@ public class FileUtils {
 	public static String getContextRootPath(HttpServletRequest request) {
 
 		String contextPath = request.getServletContext().getRealPath("/");
-		contextPath = contextPath.substring(0, contextPath.lastIndexOf("/"));
+		File file = new File(contextPath);
+		if (!file.isAbsolute()) {
+			file = new File(file.getAbsolutePath());
+		}
+		contextPath = file.getParent();
+		contextPath += contextPath.endsWith("/") ? "" : "/";
 		logger.info("获取得到Context根目录为:[{}]", contextPath);
 
 		return contextPath;
