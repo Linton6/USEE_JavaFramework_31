@@ -23,6 +23,7 @@ public class FileUtils {
 
 		String contextPath = request.getServletContext().getRealPath("/");
 		logger.info("获取得到Context原始根目录为:[{}]", contextPath);
+		contextPath = contextPath.replace( "\\", "/" );
 		File file = new File(contextPath);
 		if (!file.isAbsolute()) {
 			file = new File(file.getAbsolutePath());
