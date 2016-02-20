@@ -78,7 +78,7 @@
                     <div id="collapse-auth" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-sidebar">
-                                <li><a class="link_url" data-url="<c:url value="/web/admin/adminUser/getAdminUserListPage.action"/>">用户管理</a></li>
+                                <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/adminUser/getAdminUserListPage.action"/>">用户管理</a></li>
                             </ul>
                         </div>
                     </div>
@@ -102,10 +102,11 @@
         $link_url.on("click", function () {
             $link_url.parent("li").removeClass("active");
             $(this).parent("li").addClass("active");
-            window.top.window.document.getElementById('mainframe').src = $(this).attr("data-url");
-            return false;
+            return true;
         });
     });
+
+    //window.top.window.document.getElementById('mainframe').src = $(this).attr("data-url");
 </script>
 
 </body>
