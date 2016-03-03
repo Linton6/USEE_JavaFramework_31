@@ -135,6 +135,40 @@ public class StringConverters {
 	}
 
 	/**
+	 * 将传入的参数转换为Float类型并返回
+	 *
+	 * @param convertString 需要转换的参数
+	 * @return Converted Float Object.
+	 */
+	public static Float ToFloat(String convertString) {
+		return ToFloat(convertString, "字符串");
+	}
+
+	/**
+	 * 将传入的参数转换为Float类型并返回
+	 *
+	 * @param convertString 需要转换的参数
+	 * @param paramDesc     需要转换的参数说明(作为日志补充)
+	 * @return Converted Float Object.
+	 */
+	public static Float ToFloat(String convertString, String paramDesc) {
+
+		Float result = null;
+		if (!StringUtils.isEmpty(convertString)) {
+			try {
+				result = Float.parseFloat(convertString);
+				logger.debug("转换成功[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
+			} catch (Exception ex) {
+				logger.error("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
+			}
+		} else {
+			logger.warn("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
+		}
+
+		return result;
+	}
+
+	/**
 	 * 将传入的参数转换为Double类型并返回
 	 *
 	 * @param convertString 需要转换的参数

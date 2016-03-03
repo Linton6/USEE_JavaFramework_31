@@ -103,11 +103,17 @@ public class ExcelImport {
 		if (clazz.equals(Long.class)) {
 			return StringConverters.ToLong(fieldValue);
 		}
+		if (clazz.equals(Float.class)) {
+			return StringConverters.ToFloat(fieldValue);
+		}
 		if (clazz.equals(Double.class)) {
 			return StringConverters.ToDouble(fieldValue);
 		}
 		if (clazz.equals(Integer.class)) {
 			return StringConverters.ToInteger(fieldValue);
+		}
+		if (clazz.equals(boolean.class)) {
+			return StringConverters.ToInteger(fieldValue) > 0;
 		}
 		if (clazz.equals(Date.class)) {
 			for (Entry<String, String> entry : dateConvertTypeMap.entrySet()) {
