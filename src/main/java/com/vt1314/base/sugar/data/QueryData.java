@@ -2,6 +2,8 @@ package com.vt1314.base.sugar.data;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public class QueryData<T> {
+
+	private final static Logger logger = LoggerFactory.getLogger(QueryData.class);
 
 	private Long totalNum;
 	private List<T> dataList;
@@ -42,13 +46,11 @@ public class QueryData<T> {
 		JSONArray jsonArray = new JSONArray();
 
 		for (T t : this.dataList) {
-			Class<? extends Object> clazz = t.getClass();
 			try {
-				Method method = clazz.getDeclaredMethod(methodName);
+				Method method = t.getClass().getDeclaredMethod(methodName);
 				jsonArray.add(method.invoke(t));
-				System.out.println("");
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				logger.error("遍历Object转换JSONObject异常,异常原因:[{}]", ex.getMessage(), ex);
 			}
 		}
 
