@@ -1,5 +1,9 @@
 package com.vt1314.base.sugar.data;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +35,26 @@ public class QueryData<T> {
 
 		this.totalNum = totalNum;
 		this.dataList = dataList;
+	}
+
+	public JSONObject toJSONObject(String methodName) {
+		JSONObject result = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+
+		for (T t : this.dataList) {
+			Class<? extends Object> clazz = t.getClass();
+			try {
+				Method method = clazz.getDeclaredMethod(methodName);
+				jsonArray.add(method.invoke(t));
+				System.out.println("");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		result.put("total", totalNum);
+		result.put("rows", jsonArray);
+
+		return result;
 	}
 }

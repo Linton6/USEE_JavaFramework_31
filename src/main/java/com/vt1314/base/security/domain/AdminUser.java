@@ -1,5 +1,8 @@
 package com.vt1314.base.security.domain;
 
+import com.vt1314.base.sugar.tools.CommonSugar;
+import com.vt1314.base.sugar.tools.DateTimeUtils;
+import net.sf.json.JSONObject;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,6 +24,7 @@ import java.util.Date;
 				@org.hibernate.annotations.Parameter(name = "optimizer", value = "pooled-lo")
 		}
 )
+@SuppressWarnings("unused")
 public class AdminUser {
 
 	/**
@@ -123,5 +127,20 @@ public class AdminUser {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public JSONObject toJSONObject() {
+
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("adminUserId", CommonSugar.getTypedDefault(this.getAdminUserId(), 0L));
+		jsonObject.put("loginName", CommonSugar.getTypedDefault(this.getLoginName(), ""));
+		jsonObject.put("loginPassword", CommonSugar.getTypedDefault(this.getLoginPassword(), ""));
+		jsonObject.put("realName", CommonSugar.getTypedDefault(this.getRealName(), ""));
+		jsonObject.put("email", CommonSugar.getTypedDefault(this.getEmail(), ""));
+		jsonObject.put("createDate", CommonSugar.getTypedDefault(DateTimeUtils.formatDateToString(this.getCreateDate()), ""));
+		jsonObject.put("updateDate", CommonSugar.getTypedDefault(DateTimeUtils.formatDateToString(this.getUpdateDate()), ""));
+
+		return jsonObject;
 	}
 }

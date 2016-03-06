@@ -1,8 +1,8 @@
 package com.vt1314.base.security.action.dashboard;
 
-import com.vt1314.base.security.action.converter.AdminUserConverter;
 import com.vt1314.base.security.business.biz.AdminUserBiz;
 import com.vt1314.base.security.domain.AdminUser;
+import com.vt1314.base.sugar.data.QueryData;
 import com.vt1314.base.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -65,7 +65,8 @@ public class AdminUserAction {
 		List<AdminUser> adminUserList = adminUserBiz.findList(pageNow, pageSize);
 		Long totalNum = adminUserBiz.totalRecord();
 
-		return AdminUserConverter.getJson(adminUserList, totalNum);
+		QueryData queryData = new QueryData<>(adminUserList, totalNum);
+		return queryData.toJSONObject("toJSONObject");
 	}
 
 	/**
