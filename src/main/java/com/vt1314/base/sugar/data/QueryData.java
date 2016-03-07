@@ -54,6 +54,8 @@ public class QueryData<T> {
 			}
 		}
 
+		result.put("errcode", 0);
+		result.put("errmsg", "ok");
 		result.put("total", totalNum);
 		result.put("rows", jsonArray);
 
