@@ -23,7 +23,7 @@ public class FileUtils {
 
 		String contextPath = request.getServletContext().getRealPath("/");
 		logger.info("获取得到Context原始根目录为:[{}]", contextPath);
-		contextPath = contextPath.replace( "\\", "/" );
+		contextPath = contextPath.replace("\\", "/");
 		File file = new File(contextPath);
 		if (!file.isAbsolute()) {
 			file = new File(file.getAbsolutePath());
@@ -35,12 +35,32 @@ public class FileUtils {
 		return contextPath;
 	}
 
+	/**
+	 * 上传文件，根据Context获得根目录，移动就文件
+	 *
+	 * @param uploadFile        上传文件
+	 * @param configFileDirName 配置的文件夹名称
+	 * @param configFileFixName 配置的文件名称
+	 * @param oldFilePath       旧的文件路径
+	 * @param request           HttpServletRequest
+	 * @return 上传以后的文件名称
+	 */
 	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath, HttpServletRequest request) {
 
 		String fileUploadRootPath = getContextRootPath(request);
 		return fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath, oldFilePath);
 	}
 
+	/**
+	 * 上传文件，根据param获得根目录，移动就文件
+	 *
+	 * @param uploadFile         上传文件
+	 * @param configFileDirName  配置的文件夹名称
+	 * @param configFileFixName  配置的文件名称
+	 * @param oldFilePath        旧的文件路径
+	 * @param fileUploadRootPath 文件上传的根目录
+	 * @return 上传以后的文件名称
+	 */
 	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath, String fileUploadRootPath) {
 
 		String fileName = fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
@@ -50,12 +70,30 @@ public class FileUtils {
 		return fileName;
 	}
 
+	/**
+	 * 上传文件，根据Context获得根目录，不移动旧文件
+	 *
+	 * @param uploadFile        上传文件
+	 * @param configFileDirName 配置的文件夹名称
+	 * @param configFileFixName 配置的文件名称
+	 * @param request           HttpServletRequest
+	 * @return 上传以后的文件名称
+	 */
 	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, HttpServletRequest request) {
 
 		String fileUploadRootPath = getContextRootPath(request);
 		return fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
 	}
 
+	/**
+	 * 上传文件，根据param获得根目录，不移动旧文件
+	 *
+	 * @param uploadFile         上传文件
+	 * @param configFileDirName  配置的文件夹名称
+	 * @param configFileFixName  配置的文件名称
+	 * @param fileUploadRootPath 文件上传的根目录
+	 * @return 上传以后的文件名称
+	 */
 	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath) {
 
 		if (uploadFile != null && !uploadFile.isEmpty()) {
