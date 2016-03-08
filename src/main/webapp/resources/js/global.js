@@ -465,6 +465,8 @@ jQuery.ajaxSetup({
         return false;
     }
 });
+//BasicAuth验证方式
+//jQuery.ajaxSetup({headers:{"Authorization":'Basic dGVzdDoxMjMxMjM='}});
 
 /**
  * 日期控件内日期格式化方法，初始化时调用
