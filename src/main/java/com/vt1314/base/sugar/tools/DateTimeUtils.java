@@ -907,4 +907,29 @@ public final class DateTimeUtils {
 		}
 		return betweenDays;
 	}
+
+	public static Date getBeginOfDay(Date date) {
+
+		Calendar cursorCal = Calendar.getInstance();
+		cursorCal.setTime(date);
+
+		cursorCal.set(Calendar.HOUR, 0);
+		cursorCal.set(Calendar.MINUTE, 0);
+		cursorCal.set(Calendar.SECOND, 0);
+
+		return cursorCal.getTime();
+	}
+
+
+	public static Date getEndOfDay(Date date) {
+
+		Calendar cursorCal = Calendar.getInstance();
+		cursorCal.setTime(date);
+
+		cursorCal.set(Calendar.HOUR, 23);
+		cursorCal.set(Calendar.MINUTE, 59);
+		cursorCal.set(Calendar.SECOND, 59);
+
+		return cursorCal.getTime();
+	}
 }

@@ -1,5 +1,6 @@
 package com.vt1314.base.sugar.data;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -36,4 +37,16 @@ public class ResponseJSON {
 		return getSimpleReturn(code + "", desc);
 	}
 
+	public static JSONObject getImportResultJson(String resultDesc, JSONArray jsonArray) {
+
+		Integer total = jsonArray == null ? 0 : jsonArray.size();
+
+		JSONObject result = new JSONObject();
+
+		result.put("resultDesc", resultDesc);
+		result.put("total", total);
+		result.put("rows", jsonArray);
+
+		return result;
+	}
 }

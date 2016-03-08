@@ -1,6 +1,8 @@
 package com.vt1314.base.sugar.tools;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Author: 居泽平  Date: 15/11/5, 16:19
@@ -8,8 +10,35 @@ import java.security.MessageDigest;
 public class MD5Util {
 	/**
 	 * MD5加码 生成32位md5码
+	 * buf.toString()//32位的加密
+	 * buf.toString().substring(8,24)//16位的加密
 	 */
-	public static String string2MD5(String inStr) {
+	public static String string2MD5(String plainText) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(plainText.getBytes("utf-8"));
+			byte md5Bytes[] = md.digest();
+			int i;
+
+			StringBuilder buf = new StringBuilder("");
+			for (byte b : md5Bytes) {
+				i = b;
+				if (i < 0) i += 256;
+				if (i < 16) {
+					buf.append("0");
+				}
+				buf.append(Integer.toHexString(i));
+			}
+			return buf.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	public static String string2MD52(String inStr) {
 
 		MessageDigest md5;
 		try {
@@ -34,7 +63,32 @@ public class MD5Util {
 			hexValue.append(Integer.toHexString(val));
 		}
 		return hexValue.toString();
+	}
 
+	public static String string2MD53(String s) {
+		char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+		try {
+			byte[] btInput = s.getBytes();
+			// 获得MD5摘要算法的 MessageDigest 对象
+			MessageDigest mdInst = MessageDigest.getInstance("MD5");
+			// 使用指定的字节更新摘要
+			mdInst.update(btInput);
+			// 获得密文
+			byte[] md = mdInst.digest();
+			// 把密文转换成十六进制的字符串形式
+			int j = md.length;
+			char str[] = new char[j * 2];
+			int k = 0;
+			for (int i = 0; i < j; i++) {
+				byte byte0 = md[i];
+				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+				str[k++] = hexDigits[byte0 & 0xf];
+			}
+			return new String(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
@@ -53,13 +107,5 @@ public class MD5Util {
 
 	// 测试主函数
 	public static void main(String args[]) {
-		String s = "c5680910aaff4d07a8f421df3b2cfc20fieldcodemethodsto.trades.searchpage_no1page_size10timestamp2015-11-05 16:27:18WMSID95683821358WMSSIGNc5680910aaff4d07a8f421df3b2cfc20";
-		System.out.println("原始：" + s);
-		System.out.println("MD5后：" + string2MD5(s));
-		System.out.println("MD5后：" + string2MD5(s).toUpperCase());
-		System.out.println("MD5后：" + "AD62BB3027443ED00D6A621FCA668B28".equals(string2MD5(s).toUpperCase()));
-		System.out.println("加密的：" + convertMD5(s));
-		System.out.println("解密的：" + convertMD5(convertMD5(s)));
-
 	}
 }

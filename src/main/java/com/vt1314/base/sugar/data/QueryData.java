@@ -28,6 +28,14 @@ public class QueryData<T> {
 		return dataList;
 	}
 
+	public QueryData(Long totalNum) {
+		this.totalNum = totalNum;
+	}
+
+	public QueryData(List<T> dataList) {
+		this.dataList = dataList;
+	}
+
 	public QueryData(List<T> dataList, Long totalNum) {
 
 		if (dataList == null) {

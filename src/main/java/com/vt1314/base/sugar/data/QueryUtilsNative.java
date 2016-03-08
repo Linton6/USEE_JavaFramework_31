@@ -4,16 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
+import javax.persistence.SqlResultSetMapping;
 import java.util.Map;
 import java.util.Map.Entry;
 
 /**
  * Author: 居泽平  Date: 13-8-23, 下午5:33
  */
-public final class QueryUtils {
+@SqlResultSetMapping(
+		name = "OrderWaybillStatistics"
 
-	private final static Logger logger = LoggerFactory.getLogger(QueryUtils.class);
+)
+public final class QueryUtilsNative {
+
+	private final static Logger logger = LoggerFactory.getLogger(QueryUtilsNative.class);
 
 	/**
 	 * 通过传入相应的参数，获取TypedQuery对象以进行下一步的数据查询
@@ -23,11 +28,9 @@ public final class QueryUtils {
 	 * @param condition     JPQL条件语句hash列表
 	 * @param orderInfo     JPQL排序语句
 	 * @param entityManager EntityManager Object.
-	 * @param resultClass   T.class
-	 * @param <T>           T
-	 * @return TypedQuery Object.
+	 * @return Query Object.
 	 */
-	public static <T> TypedQuery<T> getTypedQueryByCondition(String selectInfo, Map<String, Object> condition, String orderInfo, EntityManager entityManager, Class<T> resultClass) {
+	public static Query getTypedQueryByCondition(String selectInfo, Map<String, Object> condition, String orderInfo, EntityManager entityManager, boolean isCount) {
 
 		logger.info("---------------------------------------");
 
@@ -54,23 +57,30 @@ public final class QueryUtils {
 		}
 
 		query.append(orderInfo);
-		logger.info("拼接完成的sql语句为：[" + query.toString() + "]");
 
-		TypedQuery<T> typedQuery = entityManager.createQuery(query.toString(), resultClass);
+		String sql = query.toString();
+
+		if (isCount) {
+			sql = String.format("select count(*) from (%s) as rsc", sql);
+		}
+
+		logger.info("拼接完成的sql语句为：[" + sql + "]");
+
+		Query nativeQuery = entityManager.createNativeQuery(sql);
 
 		if (condition != null) {
 			i = 1;
 			for (Entry<String, Object> entry : condition.entrySet()) {
 				Object conditionValue = entry.getValue();
 				if (conditionValue != null && !"".equals(conditionValue)) {
-					typedQuery.setParameter(i, conditionValue);
+					nativeQuery.setParameter(i, conditionValue);
 					logger.info("为拼接完成的JPQL第[" + i++ + "]个参数赋值:[" + conditionValue + "]");
 				}
 			}
 		}
 
-		logger.info("---------------------------------------\r\n");
+		logger.info("---------------------------------------");
 
-		return typedQuery;
+		return nativeQuery;
 	}
 }
