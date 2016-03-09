@@ -122,7 +122,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 		List<T> basicChannelList = findList(pageNow, pageSize, queryHash);
 		Long totalNum = totalRecord(queryHash);
 
-		return new QueryData<T>(basicChannelList, totalNum);
+		return new QueryData<>(basicChannelList, totalNum);
 	}
 
 	/**

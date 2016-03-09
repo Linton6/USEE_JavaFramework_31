@@ -62,11 +62,7 @@ public class AdminUserAction {
 			pageSize = DEFAULT_PAGE_LIST_NUM;
 		}
 
-		List<AdminUser> adminUserList = adminUserService.findList(pageNow, pageSize);
-		Long totalNum = adminUserService.totalRecord();
-
-		QueryData queryData = new QueryData<>(adminUserList, totalNum);
-		return queryData.toJSONObject("toJSONObject");
+		return adminUserService.findJSONList(pageNow, pageSize, "toJSONObject");
 	}
 
 	/**
