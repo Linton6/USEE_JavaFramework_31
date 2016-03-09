@@ -237,6 +237,13 @@
             <!--<scope>provided</scope>-->
         </dependency>
 
+        <!-- 文档地址『http://hutool.mydoc.io/』 -->
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
         <!--引用一个maven库不存在的jar包，注意需要在『ReadMe』和『WEB-INF』中各放一份jar包-->
         <!--<dependency>
             <groupId>com.taobao</groupId>

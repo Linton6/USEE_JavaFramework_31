@@ -21,3 +21,5 @@
     具体参数的含义参见：
     1. http://commons.apache.org/proper/commons-dbcp/configuration.html
     2. http://www.iteye.com/topic/134698
+
+3. 工具类库文档地址:http://hutool.mydoc.io/
