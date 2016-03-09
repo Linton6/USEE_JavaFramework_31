@@ -3,8 +3,6 @@
  */
 package com.vt1314.sugar.extend.persistence;
 
-import com.company.example.sys.entity.AdminUser;
-
 import java.util.List;
 import java.util.Map;
 

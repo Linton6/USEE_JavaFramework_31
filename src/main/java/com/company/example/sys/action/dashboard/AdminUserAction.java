@@ -1,7 +1,7 @@
 package com.company.example.sys.action.dashboard;
 
-import com.company.example.sys.useless.business.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
+import com.company.example.sys.service.AdminUserService;
 import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
@@ -28,7 +28,7 @@ public class AdminUserAction {
 	private final static Integer DEFAULT_PAGE_LIST_NUM = 20;
 
 	@Autowired
-	private AdminUserBiz adminUserBiz;
+	private AdminUserService adminUserService;
 
 	// ******************************************************************************
 	// ********************************* CRUD START *********************************
@@ -62,8 +62,8 @@ public class AdminUserAction {
 			pageSize = DEFAULT_PAGE_LIST_NUM;
 		}
 
-		List<AdminUser> adminUserList = adminUserBiz.findList(pageNow, pageSize);
-		Long totalNum = adminUserBiz.totalRecord();
+		List<AdminUser> adminUserList = adminUserService.findList(pageNow, pageSize);
+		Long totalNum = adminUserService.totalRecord();
 
 		QueryData queryData = new QueryData<>(adminUserList, totalNum);
 		return queryData.toJSONObject("toJSONObject");
@@ -79,7 +79,7 @@ public class AdminUserAction {
 
 		AdminUser adminUser = null;
 		if (adminUserId != null) {
-			adminUser = adminUserBiz.findModel(adminUserId);
+			adminUser = adminUserService.findModel(adminUserId);
 		}
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -98,7 +98,7 @@ public class AdminUserAction {
 
 		AdminUser adminUser = null;
 		if (adminUserId != null) {
-			adminUser = adminUserBiz.findModel(adminUserId);
+			adminUser = adminUserService.findModel(adminUserId);
 		}
 
 		ModelAndView modelAndView = new ModelAndView();
@@ -114,7 +114,7 @@ public class AdminUserAction {
 	@ResponseBody
 	public String executeAdminUserEdit(AdminUser adminUser) {
 
-		adminUserBiz.addOrUpdate(adminUser);
+		adminUserService.addOrUpdate(adminUser);
 		return "1";
 	}
 
@@ -128,7 +128,7 @@ public class AdminUserAction {
 
 		Long adminUserId = StringConverters.ToLong(adminUserIdParam);
 
-		adminUserBiz.delete(adminUserId);
+		adminUserService.delete(adminUserId);
 
 		return "1";
 	}

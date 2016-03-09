@@ -1,7 +1,7 @@
 package com.vt1314.sugar.start;
 
-import com.company.example.sys.useless.business.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
+import com.company.example.sys.service.AdminUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
 	private ServletContext servletContext;
 
 	@Autowired
-	private AdminUserBiz adminUserBiz;
+	private AdminUserService adminUserService;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -47,8 +47,8 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
 		adminUser.setLoginPassword("admin");
 		adminUser.setRealName("超级管理员");
 		adminUser.setEmail("if404@vt1314.com");
-		if (adminUserBiz.totalRecord() < 1) {
-			adminUserBiz.addOrUpdate(adminUser);
+		if (adminUserService.totalRecord() < 1) {
+			adminUserService.addOrUpdate(adminUser);
 		}
 
 		logger.info("我在刚启动时执行-3");

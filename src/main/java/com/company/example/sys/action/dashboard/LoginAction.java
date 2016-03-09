@@ -1,8 +1,8 @@
 package com.company.example.sys.action.dashboard;
 
-import com.vt1314.sugar.config.ConstantKeySession;
-import com.company.example.sys.useless.business.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
+import com.company.example.sys.service.AdminUserService;
+import com.vt1314.sugar.config.ConstantKeySession;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class LoginAction {
 	private final static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
 	@Autowired
-	private AdminUserBiz adminUserBiz;
+	private AdminUserService adminUserService;
 
 	/**
 	 * 登录
@@ -46,7 +46,7 @@ public class LoginAction {
 		JSONObject result = new JSONObject();
 
 		//调用【用户名】、【密码】比对方法进行登陆判断
-		AdminUser loginUser = adminUserBiz.login(agentName, password);
+		AdminUser loginUser = adminUserService.login(agentName, password);
 		if (null == loginUser) {
 			logger.error("用户名或密码错误");
 			result.put("success", Boolean.FALSE);
