@@ -1,7 +1,7 @@
-package com.vt1314.sugar.security.action.dashboard;
+package com.company.example.sys.action.dashboard;
 
-import com.vt1314.sugar.security.business.biz.AdminUserBiz;
-import com.vt1314.sugar.security.domain.AdminUser;
+import com.company.example.sys.useless.business.biz.AdminUserBiz;
+import com.company.example.sys.entity.AdminUser;
 import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;

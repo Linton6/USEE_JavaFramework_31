@@ -1,6 +1,6 @@
-package com.vt1314.sugar.security.interceptor;
+package com.company.example.sys.useless.interceptor;
 
-import com.vt1314.sugar.security.domain.AdminUser;
+import com.company.example.sys.entity.AdminUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

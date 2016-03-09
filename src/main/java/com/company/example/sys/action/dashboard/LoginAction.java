@@ -1,8 +1,8 @@
-package com.vt1314.sugar.security.action.dashboard;
+package com.company.example.sys.action.dashboard;
 
 import com.vt1314.sugar.config.ConstantKeySession;
-import com.vt1314.sugar.security.business.biz.AdminUserBiz;
-import com.vt1314.sugar.security.domain.AdminUser;
+import com.company.example.sys.useless.business.biz.AdminUserBiz;
+import com.company.example.sys.entity.AdminUser;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,6 @@
-package com.vt1314.sugar.security.domain;
+package com.company.example.sys.entity;
 
+import com.vt1314.sugar.extend.entity.DataEntity;
 import com.vt1314.sugar.tools.CommonSugar;
 import com.vt1314.sugar.tools.DateTimeUtils;
 import net.sf.json.JSONObject;
@@ -25,7 +26,7 @@ import java.util.Date;
 		}
 )
 @SuppressWarnings("unused")
-public class AdminUser {
+public class AdminUser extends DataEntity<AdminUser> {
 
 	/**
 	 * 主键

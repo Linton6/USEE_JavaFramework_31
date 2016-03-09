@@ -1,8 +1,8 @@
-package com.vt1314.sugar.security.business.dao.impl;
+package com.company.example.sys.dao;
 
-import com.vt1314.sugar.security.business.dao.AdminUserDao;
-import com.vt1314.sugar.security.domain.AdminUser;
+import com.company.example.sys.entity.AdminUser;
 import com.vt1314.sugar.data.QueryUtils;
+import com.vt1314.sugar.extend.persistence.CrudDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -20,9 +20,9 @@ import java.util.Map;
  * Author: val.jzp
  */
 @Repository("adminUserDao")
-public class AdminUserDaoImpl implements AdminUserDao {
+public class AdminUserDao implements CrudDao<AdminUser> {
 
-	private final static Logger logger = LoggerFactory.getLogger(AdminUserDaoImpl.class);
+	private final static Logger logger = LoggerFactory.getLogger(AdminUserDao.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
