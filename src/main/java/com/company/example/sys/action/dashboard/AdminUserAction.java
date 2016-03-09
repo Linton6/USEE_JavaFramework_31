@@ -2,7 +2,6 @@ package com.company.example.sys.action.dashboard;
 
 import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.service.AdminUserService;
-import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 /**
  * Author: val.jzp
