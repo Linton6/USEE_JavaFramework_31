@@ -2,7 +2,7 @@ package com.company.example.sys.dao;
 
 import com.company.example.sys.entity.AdminUser;
 import com.vt1314.sugar.data.QueryUtils;
-import com.vt1314.sugar.extend.persistence.CrudDao;
+import com.vt1314.sugar.extend.dao.CrudDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

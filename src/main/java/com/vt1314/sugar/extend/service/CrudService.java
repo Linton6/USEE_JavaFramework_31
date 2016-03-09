@@ -4,7 +4,7 @@
 package com.vt1314.sugar.extend.service;
 
 import com.vt1314.sugar.extend.entity.DataEntity;
-import com.vt1314.sugar.extend.persistence.CrudDao;
+import com.vt1314.sugar.extend.dao.CrudDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.vt1314.sugar.extend.persistence;
+package com.vt1314.sugar.extend.dao;
 
 /**
  * DAO支持类实现
