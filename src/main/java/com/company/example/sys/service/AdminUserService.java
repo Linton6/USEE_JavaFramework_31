@@ -20,8 +20,6 @@ import java.util.Map;
 @Transactional(readOnly = true)
 public class AdminUserService extends CrudService<AdminUserDao, AdminUser> {
 
-	private Logger logger = LoggerFactory.getLogger(AdminUserService.class);
-
 	public AdminUser login(String loginName, String loginPassword) {
 
 		if (StringUtils.isEmpty(loginName) || StringUtils.isEmpty(loginPassword)) {
