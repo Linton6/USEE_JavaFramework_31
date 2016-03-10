@@ -1,7 +1,7 @@
 package com.company.example.sys.action.page;
 
-import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.biz.AdminUserBiz;
+import com.company.example.sys.entity.AdminUser;
 import com.vt1314.sugar.config.ConstantKeySession;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

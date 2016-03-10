@@ -5,8 +5,6 @@ import com.vt1314.sugar.config.ConstantKeyGlobal;
 import com.vt1314.sugar.tools.CommonSugar;
 import com.vt1314.sugar.tools.StringConverters;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -71,27 +69,5 @@ public class QueryParam {
 
 	public void setSqlMap(Map<String, String> sqlMap) {
 		this.sqlMap = sqlMap;
-	}
-
-	/**
-	 * HttpServlet对象
-	 */
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-
-	public HttpServletRequest getRequest() {
-		return request;
-	}
-
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
-	}
-
-	public HttpServletResponse getResponse() {
-		return response;
-	}
-
-	public void setResponse(HttpServletResponse response) {
-		this.response = response;
 	}
 }

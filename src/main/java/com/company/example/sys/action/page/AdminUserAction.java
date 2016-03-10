@@ -1,7 +1,7 @@
 package com.company.example.sys.action.page;
 
-import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.biz.AdminUserBiz;
+import com.company.example.sys.entity.AdminUser;
 import com.vt1314.sugar.extend.action.BaseAction;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
@@ -44,7 +44,9 @@ public class AdminUserAction extends BaseAction {
 	 */
 	@RequestMapping("/getAdminUserListJSON")
 	@ResponseBody
-	public JSONObject getAdminUserListJSON() {
+	public JSONObject getAdminUserListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
+	                                       @RequestParam(value = "rows", required = false) String pageSizeParam) {
+
 		return adminUserService.findJSONList(queryParam.getPageNow(), queryParam.getPageSize());
 	}
 

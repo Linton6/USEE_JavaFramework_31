@@ -1,7 +1,7 @@
 package com.vt1314.sugar.start;
 
-import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.biz.AdminUserBiz;
+import com.company.example.sys.entity.AdminUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,12 +26,9 @@ public abstract class BaseAction {
 	/**
 	 * 初始化数据绑定
 	 * 1. 将所有传递进来的String进行HTML编码，防止XSS攻击
-	 * 2. 将字段中Date类型转换为String类型
 	 */
 	@InitBinder
-	protected void initBinder(@RequestParam(value = "page", required = false) String pageNowParam,
-	                          @RequestParam(value = "rows", required = false) String pageSizeParam,
-	                          HttpServletRequest request,
+	protected void initBinder(HttpServletRequest request,
 	                          HttpServletResponse response,
 	                          WebDataBinder binder) {
 
@@ -49,10 +45,5 @@ public abstract class BaseAction {
 				return value != null ? value.toString() : "";
 			}
 		});
-
-		queryParam.setPageNow(pageNowParam);
-		queryParam.setPageSize(pageSizeParam);
-		queryParam.setRequest(request);
-		queryParam.setResponse(response);
 	}
 }
