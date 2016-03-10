@@ -1,7 +1,7 @@
 package com.vt1314.sugar.start;
 
 import com.company.example.sys.entity.AdminUser;
-import com.company.example.sys.service.AdminUserService;
+import com.company.example.sys.biz.AdminUserBiz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
 	private ServletContext servletContext;
 
 	@Autowired
-	private AdminUserService adminUserService;
+	private AdminUserBiz adminUserService;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {

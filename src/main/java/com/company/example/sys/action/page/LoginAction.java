@@ -1,7 +1,7 @@
 package com.company.example.sys.action.page;
 
 import com.company.example.sys.entity.AdminUser;
-import com.company.example.sys.service.AdminUserService;
+import com.company.example.sys.biz.AdminUserBiz;
 import com.vt1314.sugar.config.ConstantKeySession;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class LoginAction {
 	private final static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
 	@Autowired
-	private AdminUserService adminUserService;
+	private AdminUserBiz adminUserService;
 
 	/**
 	 * 登录

@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.vt1314.sugar.extend.service;
+package com.vt1314.sugar.extend.biz;
 
 import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.extend.dao.CrudDao;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Transactional(readOnly = true)
 @SuppressWarnings("unused")
-public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>> extends BaseService {
+public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> extends BaseBiz {
 
 	/**
 	 * 持久层对象

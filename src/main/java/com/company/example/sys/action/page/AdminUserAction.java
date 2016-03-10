@@ -1,7 +1,7 @@
 package com.company.example.sys.action.page;
 
 import com.company.example.sys.entity.AdminUser;
-import com.company.example.sys.service.AdminUserService;
+import com.company.example.sys.biz.AdminUserBiz;
 import com.vt1314.sugar.extend.action.BaseAction;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminUserAction extends BaseAction {
 
 	@Autowired
-	private AdminUserService adminUserService;
+	private AdminUserBiz adminUserService;
 
 	// ******************************************************************************
 	// ********************************* CRUD START *********************************

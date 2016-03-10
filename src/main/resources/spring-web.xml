@@ -29,7 +29,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/web/admin/**"/>
-            <bean class="com.company.example.sys.useless.interceptor.AuthorityInterceptor"/>
+            <bean class="com.company.example.sys.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

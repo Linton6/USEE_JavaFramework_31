@@ -1,4 +1,4 @@
-package com.company.example.sys.useless.interceptor;
+package com.company.example.sys.interceptor;
 
 import com.company.example.sys.entity.AdminUser;
 import org.slf4j.Logger;
