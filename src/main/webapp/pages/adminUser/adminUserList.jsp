@@ -26,7 +26,7 @@
                 columns:[[
                     {field:'id',title:'编号',align:'center'},
                     {field:'loginName',title:'用户名',width:80,align:'center'},
-                    //{field:'loginPassword',title:'密码',width:80,align:'center'},
+                    {field:'loginPassword',title:'密码',width:80,align:'center'},
                     {field:'realName',title:'姓名',width:80,align:'center'},
                     {field:'email',title:'邮箱',width:160,align:'center'},
                     {field:'createDate',title:'创建日期',width:80,align:'center'},
@@ -50,7 +50,7 @@
 
             vEasyUIUtil.createWindow("wAdminUser", {
                 title: '新增/编辑',
-                width:640,
+                width:'80%',
                 height:vSugar.getMaxWinHeight("mainPanel", 600),
                 modal:true,
                 closed:true,
@@ -64,17 +64,16 @@
         /******************************* 数据操作 *******************************/
 
         function submitRemove(id, isFakeDelete){
-            if (!confirm("确认删除")){
-                return;
-            }
-            // isFakeDelete=1表示假删除
-            $.post("<c:url value="/web/admin/adminUser/logicRemoveAdminUser.action" />", {id: id, isFakeDelete: isFakeDelete},
-                function(result){
-                    if(result == 1){
-                        $('#dgAdminUser').datagrid('reload');
-                    }
+            vEasyUIUtil.ajaxHandle({
+                v_url:"<c:url value="/web/admin/adminUser/logicRemoveAdminUser.action" />",
+                v_data:{
+                    id: id,
+                    isFakeDelete: isFakeDelete //isFakeDelete=1表示假删除
+                },
+                v_callback:function(){
+                    $('#dgAdminUser').datagrid('reload');
                 }
-            );
+            });
         }
 
         function submitSearch(){        
