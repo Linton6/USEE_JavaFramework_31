@@ -24,7 +24,7 @@
                 pagination:true,
                 pageSize: 20,
                 columns:[[
-                    {field:'adminUserId',title:'编号',align:'center'},
+                    {field:'id',title:'编号',align:'center'},
                     {field:'loginName',title:'用户名',width:80,align:'center'},
                     //{field:'loginPassword',title:'密码',width:80,align:'center'},
                     {field:'realName',title:'姓名',width:80,align:'center'},
@@ -32,15 +32,15 @@
                     {field:'createDate',title:'创建日期',width:80,align:'center'},
                     {field:'updateDate',title:'更新日期',width:80,align:'center'},
                     {field:'edit',title:'Edit',align:'center',formatter:function(val,row){
-                        if(row.adminUserId < 0) { return ''; }
-                        var viewUrl = "<c:url value="/web/admin/adminUser/getAdminUserViewPage.action?adminUserId=" />" + row.adminUserId;
-                        var editUrl = "<c:url value="/web/admin/adminUser/getAdminUserEditPage.action?adminUserId=" />" + row.adminUserId;
+                        if(row.id < 0) { return ''; }
+                        var viewUrl = "<c:url value="/web/admin/adminUser/getAdminUserViewPage.action?id=" />" + row.id;
+                        var editUrl = "<c:url value="/web/admin/adminUser/getAdminUserEditPage.action?id=" />" + row.id;
                         return '&nbsp;' +
                                '<a href="javascript:void(0)" onclick="openWindow(\'#wAdminUser\', \'' + viewUrl + '\')">详情</a>' +
                                '&nbsp;|&nbsp;' +
                                '<a href="javascript:void(0)" onclick="openWindow(\'#wAdminUser\', \'' + editUrl + '\')">编辑</a>' +
                                '&nbsp;|&nbsp;' +
-                               '<a href="javascript:void(0)" onclick="submitRemove(\'' + row.adminUserId + '\', \'1\')">删除</a>' +
+                               '<a href="javascript:void(0)" onclick="submitRemove(\'' + row.id + '\', \'1\')">删除</a>' +
                                '&nbsp;';                                
                     }}
                 ]]
@@ -63,12 +63,12 @@
 
         /******************************* 数据操作 *******************************/
 
-        function submitRemove(adminUserId, isFakeDelete){
+        function submitRemove(id, isFakeDelete){
             if (!confirm("确认删除")){
                 return;
             }
             // isFakeDelete=1表示假删除
-            $.post("logicRemoveAdminUser.action", {adminUserId: adminUserId, isFakeDelete: isFakeDelete},
+            $.post("<c:url value="/web/admin/adminUser/logicRemoveAdminUser.action" />", {id: id, isFakeDelete: isFakeDelete},
                 function(result){
                     if(result == 1){
                         $('#dgAdminUser').datagrid('reload');

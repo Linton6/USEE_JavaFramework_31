@@ -32,7 +32,7 @@ public interface CrudDao<T> extends BaseDao {
 	/**
 	 * id获取记录
 	 */
-	public T findModel(Long adminUserId);
+	public T findModel(Long id);
 
 	/**
 	 * 增加记录
@@ -47,7 +47,7 @@ public interface CrudDao<T> extends BaseDao {
 	/**
 	 * 删除记录
 	 */
-	public Integer delete(Long adminUserId);
+	public Integer delete(Long id);
 
 	// ******************************************************************************
 	// ********************************** CRUD END **********************************

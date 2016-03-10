@@ -93,8 +93,8 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 	}
 
 	@Override
-	public AdminUser findModel(Long adminUserId) {
-		return entityManager.find(AdminUser.class, adminUserId);
+	public AdminUser findModel(Long id) {
+		return entityManager.find(AdminUser.class, id);
 	}
 
 	@Override
@@ -117,8 +117,8 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 	}
 
 	@Override
-	public Integer delete(Long adminUserId) {
-		AdminUser existAdminUser = entityManager.find(AdminUser.class, adminUserId);
+	public Integer delete(Long id) {
+		AdminUser existAdminUser = entityManager.find(AdminUser.class, id);
 		entityManager.remove(existAdminUser);
 		return 1;
 	}

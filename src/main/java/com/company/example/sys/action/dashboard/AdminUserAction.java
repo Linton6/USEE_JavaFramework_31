@@ -66,14 +66,10 @@ public class AdminUserAction {
 	 * 获取详情页面
 	 */
 	@RequestMapping("/getAdminUserViewPage")
-	public ModelAndView getAdminUserViewPage(@RequestParam(value = "adminUserId", required = false) String adminUserIdParam) {
+	public ModelAndView getAdminUserViewPage(@RequestParam(value = "id", required = false) String idParam) {
 
-		Long adminUserId = StringConverters.ToLong(adminUserIdParam);
-
-		AdminUser adminUser = null;
-		if (adminUserId != null) {
-			adminUser = adminUserService.findModel(adminUserId);
-		}
+		Long id = StringConverters.ToLong(idParam);
+		AdminUser adminUser = adminUserService.findModel(id);
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("pages/adminUser/adminUserViewPart");
@@ -85,14 +81,10 @@ public class AdminUserAction {
 	 * 获取编辑页面
 	 */
 	@RequestMapping("/getAdminUserEditPage")
-	public ModelAndView getAdminUserEditPage(@RequestParam(value = "adminUserId", required = false) String adminUserIdParam) {
+	public ModelAndView getAdminUserEditPage(@RequestParam(value = "id", required = false) String idParam) {
 
-		Long adminUserId = StringConverters.ToLong(adminUserIdParam);
-
-		AdminUser adminUser = null;
-		if (adminUserId != null) {
-			adminUser = adminUserService.findModel(adminUserId);
-		}
+		Long id = StringConverters.ToLong(idParam);
+		AdminUser adminUser = adminUserService.findModel(id);
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("pages/adminUser/adminUserEditPart");
@@ -116,12 +108,11 @@ public class AdminUserAction {
 	 */
 	@RequestMapping("/logicRemoveAdminUser")
 	@ResponseBody
-	public String logicRemoveAdminUser(@RequestParam(value = "adminUserId", required = false) String adminUserIdParam,
+	public String logicRemoveAdminUser(@RequestParam(value = "id", required = false) String idParam,
 	                                   @RequestParam(value = "isFakeDelete", required = false) String isFakeDelete) {
 
-		Long adminUserId = StringConverters.ToLong(adminUserIdParam);
-
-		adminUserService.delete(adminUserId);
+		Long id = StringConverters.ToLong(idParam);
+		adminUserService.delete(id);
 
 		return "1";
 	}

@@ -136,7 +136,7 @@ public class AdminUser extends DataEntity<AdminUser> {
 
 		JSONObject jsonObject = new JSONObject();
 
-		jsonObject.put("adminUserId", CommonSugar.getTypedDefault(this.getId(), 0L));
+		jsonObject.put("id", CommonSugar.getTypedDefault(this.getId(), 0L));
 		jsonObject.put("loginName", CommonSugar.getTypedDefault(this.getLoginName(), ""));
 		jsonObject.put("loginPassword", CommonSugar.getTypedDefault(this.getLoginPassword(), ""));
 		jsonObject.put("realName", CommonSugar.getTypedDefault(this.getRealName(), ""));

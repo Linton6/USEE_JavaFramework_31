@@ -40,7 +40,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList() {
-		return findNumList(0, 0, null).toJSONObject(null);
+		return findJSONList(0, 0, null);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(String jsonConverterName) {
-		return findNumList(0, 0, null).toJSONObject(jsonConverterName);
+		return findJSONList(0, 0, null, null);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
-		return findNumList(pageNow, pageSize, null).toJSONObject(null);
+		return findJSONList(pageNow, pageSize, null, null);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(Map<String, String> queryHash, String jsonConverterName) {
-		return findNumList(0, 0, queryHash).toJSONObject(jsonConverterName);
+		return findJSONList(0, 0, queryHash, jsonConverterName);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize, String jsonConverterName) {
-		return findNumList(pageNow, pageSize, null).toJSONObject(jsonConverterName);
+		return findJSONList(pageNow, pageSize, null, jsonConverterName);
 	}
 
 	/**
@@ -228,6 +228,10 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return Model.
 	 */
 	public T findModel(Long id) {
+		if (id == null) {
+			return null;
+		}
+
 		return dao.findModel(id);
 	}
 
