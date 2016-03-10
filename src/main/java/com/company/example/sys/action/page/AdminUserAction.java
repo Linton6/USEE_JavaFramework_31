@@ -2,10 +2,9 @@ package com.company.example.sys.action.page;
 
 import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.service.AdminUserService;
+import com.vt1314.sugar.extend.action.BaseAction;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/web/admin/adminUser")
 @SuppressWarnings("unused")
-public class AdminUserAction {
-
-	private final static Logger logger = LoggerFactory.getLogger(AdminUserAction.class);
-	private final static Integer DEFAULT_PAGE_LIST_NUM = 20;
+public class AdminUserAction extends BaseAction {
 
 	@Autowired
 	private AdminUserService adminUserService;
@@ -48,18 +44,8 @@ public class AdminUserAction {
 	 */
 	@RequestMapping("/getAdminUserListJSON")
 	@ResponseBody
-	public JSONObject getAdminUserListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
-	                                       @RequestParam(value = "rows", required = false) String pageSizeParam) {
-
-		Integer pageNow = StringConverters.ToInteger(pageNowParam);
-		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
-
-		if (pageNow == null || pageSize == null) {
-			pageNow = 1;
-			pageSize = DEFAULT_PAGE_LIST_NUM;
-		}
-
-		return adminUserService.findJSONList(pageNow, pageSize);
+	public JSONObject getAdminUserListJSON() {
+		return adminUserService.findJSONList(queryParam.getPageNow(), queryParam.getPageSize());
 	}
 
 	/**
