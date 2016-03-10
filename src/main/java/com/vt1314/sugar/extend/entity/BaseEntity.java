@@ -3,6 +3,8 @@
  */
 package com.vt1314.sugar.extend.entity;
 
+import net.sf.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -11,6 +13,10 @@ import java.io.Serializable;
  * @author 居泽平
  * @version 2016-03-10
  */
+@SuppressWarnings("unused")
 public abstract class BaseEntity<T> implements Serializable {
 
+	public abstract Long getId();
+
+	public abstract JSONObject toJSONObject();
 }

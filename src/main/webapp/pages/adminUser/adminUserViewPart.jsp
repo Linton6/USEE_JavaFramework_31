@@ -17,8 +17,8 @@
         <tr>
             <td class="item-name">编号：</td>
             <td class="item-value">
-                <p>${adminUser.adminUserId}</p>
-                <input type="hidden" name="adminUserId" value="${adminUser.adminUserId}" />
+                <p>${adminUser.id}</p>
+                <input type="hidden" name="adminUserId" value="${adminUser.id}" />
             </td>
         </tr>
         </c:if>

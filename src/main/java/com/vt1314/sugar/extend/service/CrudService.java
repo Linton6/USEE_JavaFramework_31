@@ -216,13 +216,13 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 */
 	@Transactional(readOnly = false)
 	public void addOrUpdate(T model) {
-		/*if (model.getAdminUserId() != null && model.getAdminUserId() > 0) {
-			logger.info("当前需修改的AdminUser对象admin_user_id为[" + model.getAdminUserId() + "]");
+		if (model.getId() != null && model.getId() > 0) {
+			logger.info("当前需修改的[{}]对象id为[{}]", model.getClass(), model.getId());
 			dao.update(model);
 		} else {
-			logger.info("AdminUserBizImpl添加adminUser！");
+			logger.info("添加[{}]!", model.getClass());
 			dao.add(model);
-		}*/
+		}
 	}
 
 	/**

@@ -31,7 +31,7 @@ public class AdminUser extends DataEntity<AdminUser> {
 	/**
 	 * 主键
 	 */
-	private Long adminUserId;
+	private Long id;
 
 	/**
 	 * 用户名
@@ -63,15 +63,16 @@ public class AdminUser extends DataEntity<AdminUser> {
 	 */
 	private Date updateDate;
 
+
 	@Id
 	@GeneratedValue(generator = "BASE_ADMIN_USER_GEN")
 	@Column(name = "admin_user_id")
-	public Long getAdminUserId() {
-		return adminUserId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setAdminUserId(Long adminUserId) {
-		this.adminUserId = adminUserId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Column(name = "login_name")
@@ -130,11 +131,12 @@ public class AdminUser extends DataEntity<AdminUser> {
 		this.updateDate = updateDate;
 	}
 
+	@Override
 	public JSONObject toJSONObject() {
 
 		JSONObject jsonObject = new JSONObject();
 
-		jsonObject.put("adminUserId", CommonSugar.getTypedDefault(this.getAdminUserId(), 0L));
+		jsonObject.put("adminUserId", CommonSugar.getTypedDefault(this.getId(), 0L));
 		jsonObject.put("loginName", CommonSugar.getTypedDefault(this.getLoginName(), ""));
 		jsonObject.put("loginPassword", CommonSugar.getTypedDefault(this.getLoginPassword(), ""));
 		jsonObject.put("realName", CommonSugar.getTypedDefault(this.getRealName(), ""));

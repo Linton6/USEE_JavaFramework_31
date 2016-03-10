@@ -76,7 +76,7 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 	public List<AdminUser> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash) {
 
 		if (StringUtils.isEmpty(sqlOrder)) {
-			sqlOrder = "order by a.adminUserId desc ";
+			sqlOrder = "order by a.id desc ";
 		}
 
 		Map<String, Object> conditions = getSearchCondition(queryHash);
@@ -107,7 +107,7 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 
 	@Override
 	public Integer update(AdminUser adminUser) {
-		AdminUser existAdminUser = entityManager.find(AdminUser.class, adminUser.getAdminUserId());
+		AdminUser existAdminUser = entityManager.find(AdminUser.class, adminUser.getId());
 		existAdminUser.setLoginName(adminUser.getLoginName());
 		existAdminUser.setLoginPassword(adminUser.getLoginPassword());
 		existAdminUser.setRealName(adminUser.getRealName());
