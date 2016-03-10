@@ -59,7 +59,7 @@ public class AdminUserAction {
 			pageSize = DEFAULT_PAGE_LIST_NUM;
 		}
 
-		return adminUserService.findJSONList(pageNow, pageSize, "toJSONObject");
+		return adminUserService.findJSONList(pageNow, pageSize);
 	}
 
 	/**

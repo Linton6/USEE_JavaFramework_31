@@ -6,6 +6,7 @@ package com.vt1314.sugar.extend.service;
 import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.extend.dao.CrudDao;
 import com.vt1314.sugar.extend.entity.DataEntity;
+import com.vt1314.sugar.tools.CommonSugar;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,11 +37,31 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	/**
 	 * 获得列表JSON
 	 *
+	 * @return JSONObject.
+	 */
+	public JSONObject findJSONList() {
+		return findNumList(0, 0, null).toJSONObject(null);
+	}
+
+	/**
+	 * 获得列表JSON
+	 *
 	 * @param jsonConverterName 对应的JSON转换方法名称
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(String jsonConverterName) {
 		return findNumList(0, 0, null).toJSONObject(jsonConverterName);
+	}
+
+	/**
+	 * 获得列表JSON
+	 *
+	 * @param pageNow  当前页
+	 * @param pageSize 每页数据量
+	 * @return JSONObject.
+	 */
+	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
+		return findNumList(pageNow, pageSize, null).toJSONObject(null);
 	}
 
 	/**
@@ -76,6 +97,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize, Map<String, String> queryHash, String jsonConverterName) {
+		jsonConverterName = CommonSugar.getTypedDefault(jsonConverterName, "toJSONObject");
 		return findNumList(pageNow, pageSize, queryHash).toJSONObject(jsonConverterName);
 	}
 
