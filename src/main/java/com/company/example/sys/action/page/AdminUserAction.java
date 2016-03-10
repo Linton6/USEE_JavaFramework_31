@@ -1,4 +1,4 @@
-package com.company.example.sys.action.dashboard;
+package com.company.example.sys.action.page;
 
 import com.company.example.sys.entity.AdminUser;
 import com.company.example.sys.service.AdminUserService;
