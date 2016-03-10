@@ -49,4 +49,48 @@ public class ResponseJSON {
 
 		return result;
 	}
+
+	/**
+	 * 返回错误信息
+	 *
+	 * @return JSONObject json对象
+	 */
+	public static JSONObject getUserInfoMismatchError() {
+		JSONObject errorJson = new JSONObject();
+
+		errorJson.put("stat", -1);
+		errorJson.put("msg", "登录信息不正确，登录失败。");
+
+		return errorJson;
+	}
+
+
+	/**
+	 * 返回成功信息
+	 *
+	 * @return JSONObject json对象
+	 */
+	public static JSONObject genReturnStatus(int stat, String description, JSONObject jsonObject) {
+
+		JSONObject success = new JSONObject();
+
+		success.put("stat", stat);
+		success.put("msg", description);
+		success.put("data", jsonObject);
+
+		return success;
+	}
+
+
+	/**
+	 * 返回错误信息
+	 *
+	 * @return JSONObject json对象
+	 */
+	public static JSONObject getErrorMsg(String msg) {
+		JSONObject resultObject = new JSONObject();
+		resultObject.put("stat", -1);
+		resultObject.put("msg", msg);
+		return resultObject;
+	}
 }
