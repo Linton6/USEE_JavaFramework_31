@@ -59,24 +59,11 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param pageSize 每页数据量
 	 * @return JSONObject.
 	 */
-	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
+	public JSONObject findJSONList(String pageNow, String pageSize) {
 		return findJSONList(pageNow, pageSize, null, null);
 	}
 
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param pageNowParam  当前页
-	 * @param pageSizeParam 每页数据量
-	 * @return JSONObject.
-	 */
-	public JSONObject findJSONList(String pageNowParam, String pageSizeParam) {
-		Integer pageNow = StringConverters.ToInteger(pageNowParam);
-		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
-
-		pageNow = CommonSugar.getTypedDefault(pageNow, 1);
-		pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
-
+	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
 		return findJSONList(pageNow, pageSize, null, null);
 	}
 
@@ -99,6 +86,10 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param jsonConverterName JSON转换的方法名
 	 * @return JSONObject.
 	 */
+	public JSONObject findJSONList(String pageNow, String pageSize, String jsonConverterName) {
+		return findJSONList(pageNow, pageSize, null, jsonConverterName);
+	}
+
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize, String jsonConverterName) {
 		return findJSONList(pageNow, pageSize, null, jsonConverterName);
 	}
@@ -112,6 +103,17 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param jsonConverterName JSON转换的方法名
 	 * @return JSONObject.
 	 */
+	public JSONObject findJSONList(String pageNow, String pageSize, Map<String, String> queryHash, String jsonConverterName) {
+
+		Integer pageNowInt = StringConverters.ToInteger(pageNow);
+		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
+
+		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
+		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+
+		return findJSONList(pageNowInt, pageSizeInt, queryHash, jsonConverterName);
+	}
+
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize, Map<String, String> queryHash, String jsonConverterName) {
 		jsonConverterName = CommonSugar.getTypedDefault(jsonConverterName, "toJSONObject");
 		return findNumList(pageNow, pageSize, queryHash).toJSONObject(jsonConverterName);
@@ -143,6 +145,10 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param pageSize 每页数据量
 	 * @return QueryData.
 	 */
+	public QueryData<T> findNumList(String pageNow, String pageSize) {
+		return this.findNumList(pageNow, pageSize, null);
+	}
+
 	public QueryData<T> findNumList(Integer pageNow, Integer pageSize) {
 		return this.findNumList(pageNow, pageSize, null);
 	}
@@ -155,12 +161,23 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param queryHash 查询参数
 	 * @return QueryData.
 	 */
+	public QueryData<T> findNumList(String pageNow, String pageSize, Map<String, String> queryHash) {
+
+		Integer pageNowInt = StringConverters.ToInteger(pageNow);
+		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
+
+		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
+		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+
+		return findNumList(pageNowInt, pageSizeInt, queryHash);
+	}
+
 	public QueryData<T> findNumList(Integer pageNow, Integer pageSize, Map<String, String> queryHash) {
 
-		List<T> basicChannelList = findList(pageNow, pageSize, queryHash);
+		List<T> basicList = findList(pageNow, pageSize, queryHash);
 		Long totalNum = totalRecord(queryHash);
 
-		return new QueryData<>(basicChannelList, totalNum);
+		return new QueryData<>(basicList, totalNum);
 	}
 
 	/**
@@ -189,6 +206,10 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param pageSize 每页数据量
 	 * @return 数据列表.
 	 */
+	public List<T> findList(String pageNow, String pageSize) {
+		return this.findList(pageNow, pageSize, null);
+	}
+
 	public List<T> findList(Integer pageNow, Integer pageSize) {
 		return this.findList(pageNow, pageSize, null);
 	}
@@ -201,6 +222,10 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param queryHash 查询参数
 	 * @return 数据列表.
 	 */
+	public List<T> findList(String pageNow, String pageSize, Map<String, String> queryHash) {
+		return this.findList(pageNow, pageSize, "", queryHash);
+	}
+
 	public List<T> findList(Integer pageNow, Integer pageSize, Map<String, String> queryHash) {
 		return this.findList(pageNow, pageSize, "", queryHash);
 	}
@@ -214,6 +239,17 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @param queryHash 查询参数
 	 * @return 数据列表.
 	 */
+	public List<T> findList(String pageNow, String pageSize, String sqlOrder, Map<String, String> queryHash) {
+
+		Integer pageNowInt = StringConverters.ToInteger(pageNow);
+		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
+
+		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
+		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+
+		return this.findList(pageNowInt, pageSizeInt, sqlOrder, queryHash);
+	}
+
 	public List<T> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash) {
 		return dao.findList(pageNow, pageSize, sqlOrder, queryHash);
 	}
