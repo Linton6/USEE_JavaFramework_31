@@ -1,12 +1,11 @@
-/**
- * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.vt1314.sugar.extend.biz;
 
+import com.vt1314.sugar.config.ConstantKeyGlobal;
 import com.vt1314.sugar.data.QueryData;
 import com.vt1314.sugar.extend.dao.CrudDao;
 import com.vt1314.sugar.extend.entity.DataEntity;
 import com.vt1314.sugar.tools.CommonSugar;
+import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +60,23 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
+		return findJSONList(pageNow, pageSize, null, null);
+	}
+
+	/**
+	 * 获得列表JSON
+	 *
+	 * @param pageNowParam  当前页
+	 * @param pageSizeParam 每页数据量
+	 * @return JSONObject.
+	 */
+	public JSONObject findJSONList(String pageNowParam, String pageSizeParam) {
+		Integer pageNow = StringConverters.ToInteger(pageNowParam);
+		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
+
+		pageNow = CommonSugar.getTypedDefault(pageNow, 1);
+		pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+
 		return findJSONList(pageNow, pageSize, null, null);
 	}
 
@@ -148,25 +164,6 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	}
 
 	/**
-	 * 获得总记录数
-	 *
-	 * @return 记录数.
-	 */
-	public Long totalRecord() {
-		return this.totalRecord(null);
-	}
-
-	/**
-	 * 获得总记录数
-	 *
-	 * @param queryHash 查询参数
-	 * @return 记录数.
-	 */
-	public Long totalRecord(Map<String, String> queryHash) {
-		return dao.totalRecord(queryHash);
-	}
-
-	/**
 	 * 获得数据列表
 	 *
 	 * @return 数据列表.
@@ -219,6 +216,25 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 */
 	public List<T> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash) {
 		return dao.findList(pageNow, pageSize, sqlOrder, queryHash);
+	}
+
+	/**
+	 * 获得总记录数
+	 *
+	 * @return 记录数.
+	 */
+	public Long totalRecord() {
+		return this.totalRecord(null);
+	}
+
+	/**
+	 * 获得总记录数
+	 *
+	 * @param queryHash 查询参数
+	 * @return 记录数.
+	 */
+	public Long totalRecord(Map<String, String> queryHash) {
+		return dao.totalRecord(queryHash);
 	}
 
 	/**

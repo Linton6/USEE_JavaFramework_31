@@ -2,7 +2,6 @@ package com.company.example.sys.action.page;
 
 import com.company.example.sys.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
-import com.vt1314.sugar.data.ResponseJSON;
 import com.vt1314.sugar.extend.action.BaseAction;
 import com.vt1314.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
@@ -48,12 +47,7 @@ public class AdminUserAction extends BaseAction {
 	public JSONObject getAdminUserListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                       @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		try {
-			return adminUserService.findJSONList(queryParam.getPageNow(), queryParam.getPageSize());
-		} catch (Exception ex) {
-			logger.error("获取AdminUserList异常，原因为[{}]", ex.getMessage(), ex);
-			return ResponseJSON.getErrorMsg(ex.toString());
-		}
+		return adminUserService.findJSONList(pageNowParam, pageSizeParam);
 	}
 
 	/**

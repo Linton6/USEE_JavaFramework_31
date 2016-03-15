@@ -1,14 +1,11 @@
 package com.vt1314.sugar.extend.action;
 
-import com.vt1314.sugar.data.QueryParam;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyEditorSupport;
 
 /**
@@ -21,16 +18,12 @@ public abstract class BaseAction {
 	 */
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
-	protected QueryParam queryParam = new QueryParam();
-
 	/**
 	 * 初始化数据绑定
 	 * 1. 将所有传递进来的String进行HTML编码，防止XSS攻击
 	 */
 	@InitBinder
-	protected void initBinder(HttpServletRequest request,
-	                          HttpServletResponse response,
-	                          WebDataBinder binder) {
+	protected void initBinder(WebDataBinder binder) {
 
 		// String类型转换，将所有传递进来的String进行HTML编码，防止XSS攻击
 		binder.registerCustomEditor(String.class, new PropertyEditorSupport() {

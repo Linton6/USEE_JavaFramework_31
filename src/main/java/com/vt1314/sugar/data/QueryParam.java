@@ -12,6 +12,39 @@ import java.util.Map;
  */
 public class QueryParam {
 
+	public QueryParam() {
+	}
+
+	public QueryParam(Integer pageNow, Integer pageSize) {
+		this.pageNow = pageNow;
+		this.pageSize = pageSize;
+	}
+
+	public QueryParam(AdminUser currentUser, Integer pageNow, Integer pageSize, Map<String, String> sqlMap) {
+		this.currentUser = currentUser;
+		this.pageNow = pageNow;
+		this.pageSize = pageSize;
+		this.sqlMap = sqlMap;
+	}
+
+	public QueryParam(String pageNowParam, String pageSizeParam) {
+		Integer pageNow = StringConverters.ToInteger(pageNowParam);
+		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
+
+		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
+		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+	}
+
+	public QueryParam(AdminUser currentUser, String pageNowParam, String pageSizeParam, Map<String, String> sqlMap) {
+		Integer pageNow = StringConverters.ToInteger(pageNowParam);
+		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
+
+		this.currentUser = currentUser;
+		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
+		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+		this.sqlMap = sqlMap;
+	}
+
 	/**
 	 * 当前用户
 	 */
