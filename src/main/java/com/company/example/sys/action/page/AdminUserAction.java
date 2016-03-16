@@ -2,8 +2,8 @@ package com.company.example.sys.action.page;
 
 import com.company.example.sys.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
-import com.vt1314.sugar.extend.action.BaseAction;
-import com.vt1314.sugar.tools.StringConverters;
+import com.vt1314.base.extend.action.BaseAction;
+import com.vt1314.base.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

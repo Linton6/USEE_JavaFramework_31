@@ -34,5 +34,5 @@
     </mvc:interceptors>
 
     <!-- 当Spring容器启动完成后执行下面的这个Bean -->
-    <bean class="com.vt1314.sugar.start.InstantiationTracingBeanPostProcessor"/>
+    <bean class="com.vt1314.base.sugar.start.InstantiationTracingBeanPostProcessor"/>
 </beans>

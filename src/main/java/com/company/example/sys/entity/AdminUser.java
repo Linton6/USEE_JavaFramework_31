@@ -1,8 +1,8 @@
 package com.company.example.sys.entity;
 
-import com.vt1314.sugar.extend.entity.DataEntity;
-import com.vt1314.sugar.tools.CommonSugar;
-import com.vt1314.sugar.tools.DateTimeUtils;
+import com.vt1314.base.extend.entity.DataEntity;
+import com.vt1314.base.sugar.tools.CommonSugar;
+import com.vt1314.base.sugar.tools.DateTimeUtils;
 import net.sf.json.JSONObject;
 import org.hibernate.annotations.GenericGenerator;
 

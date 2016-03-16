@@ -2,7 +2,7 @@ package com.company.example.sys.biz;
 
 import com.company.example.sys.dao.AdminUserDao;
 import com.company.example.sys.entity.AdminUser;
-import com.vt1314.sugar.extend.biz.CrudBiz;
+import com.vt1314.base.extend.biz.CrudBiz;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
