@@ -4,6 +4,7 @@ import com.company.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.dao.CrudDao;
 import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.data.QueryUtils;
+import com.vt1314.base.sugar.tools.StringConverters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -53,11 +54,11 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 		if (!StringUtils.isEmpty(String)) {
 			conditionHash.put("String like ?{paramIndex} ", "%" + String + "%");
 		}
-		Integer Integer = TypeConvertUtils.StringToInteger(queryHash.get("Integer"));
+		Integer Integer = StringConverters.ToInteger(queryHash.get("Integer"));
 		if (Integer != null && Integer > -1) {
 			conditionHash.put("Integer = ?{paramIndex} ", Integer);
 		}
-		Date Date = TypeConvertUtils.StringToDate(queryHash.get("Date"));
+		Date Date = StringConverters.ToDate(queryHash.get("Date"));
 		if (Date != null) {
 			conditionHash.put("Date >= ?{paramIndex} ", Date);
 		}*/
