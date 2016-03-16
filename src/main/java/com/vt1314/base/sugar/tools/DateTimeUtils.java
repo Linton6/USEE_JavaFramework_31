@@ -913,7 +913,7 @@ public final class DateTimeUtils {
 		Calendar cursorCal = Calendar.getInstance();
 		cursorCal.setTime(date);
 
-		cursorCal.set(Calendar.HOUR, 0);
+		cursorCal.set(Calendar.HOUR_OF_DAY, 0);
 		cursorCal.set(Calendar.MINUTE, 0);
 		cursorCal.set(Calendar.SECOND, 0);
 
