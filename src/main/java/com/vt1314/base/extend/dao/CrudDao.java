@@ -3,6 +3,8 @@
  */
 package com.vt1314.base.extend.dao;
 
+import com.vt1314.base.sugar.data.QueryParam;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ public interface CrudDao<T> extends BaseDao {
 	/**
 	 * 分页列表
 	 */
-	public List<T> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash);
+	public List<T> findList(QueryParam queryParam);
 
 	/**
 	 * id获取记录

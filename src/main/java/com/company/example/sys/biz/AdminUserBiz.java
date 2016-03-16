@@ -3,13 +3,12 @@ package com.company.example.sys.biz;
 import com.company.example.sys.dao.AdminUserDao;
 import com.company.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.biz.CrudBiz;
+import com.vt1314.base.sugar.data.QueryParam;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Author: val.jzp
@@ -24,11 +23,11 @@ public class AdminUserBiz extends CrudBiz<AdminUserDao, AdminUser> {
 			return null;
 		}
 
-		Map<String, String> queryHash = new HashMap<>();
-		queryHash.put("loginName", loginName);
-		queryHash.put("loginPassword", loginPassword);
+		QueryParam queryParam = new QueryParam();
+		queryParam.getSqlMap().put("loginName", loginName);
+		queryParam.getSqlMap().put("loginPassword", loginPassword);
 
-		List<AdminUser> adminUserList = findList(queryHash);
+		List<AdminUser> adminUserList = findList(queryParam);
 		if (adminUserList != null && adminUserList.size() > 0) {
 			return adminUserList.get(0);
 		} else {

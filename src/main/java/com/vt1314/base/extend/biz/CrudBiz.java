@@ -1,11 +1,10 @@
 package com.vt1314.base.extend.biz;
 
-import com.vt1314.base.config.ConstantKeyGlobal;
-import com.vt1314.base.sugar.data.QueryData;
 import com.vt1314.base.extend.dao.CrudDao;
 import com.vt1314.base.extend.entity.DataEntity;
+import com.vt1314.base.sugar.data.QueryData;
+import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.tools.CommonSugar;
-import com.vt1314.base.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,240 +34,58 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 
 	/**
 	 * 获得列表JSON
-	 *
-	 * @return JSONObject.
 	 */
 	public JSONObject findJSONList() {
-		return findJSONList(0, 0, null);
+		return this.findJSONList(null, null);
 	}
 
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param jsonConverterName 对应的JSON转换方法名称
-	 * @return JSONObject.
-	 */
+	public JSONObject findJSONList(QueryParam queryParam) {
+		return this.findJSONList(queryParam, null);
+	}
+
 	public JSONObject findJSONList(String jsonConverterName) {
-		return findJSONList(0, 0, null, null);
+		return this.findJSONList(null, jsonConverterName);
 	}
 
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param pageNow  当前页
-	 * @param pageSize 每页数据量
-	 * @return JSONObject.
-	 */
-	public JSONObject findJSONList(String pageNow, String pageSize) {
-		return findJSONList(pageNow, pageSize, null, null);
-	}
-
-	public JSONObject findJSONList(Integer pageNow, Integer pageSize) {
-		return findJSONList(pageNow, pageSize, null, null);
-	}
-
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param queryHash         查询参数
-	 * @param jsonConverterName JSON转换的方法名
-	 * @return JSONObject.
-	 */
-	public JSONObject findJSONList(Map<String, String> queryHash, String jsonConverterName) {
-		return findJSONList(0, 0, queryHash, jsonConverterName);
-	}
-
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param pageNow           当前页
-	 * @param pageSize          每页数据量
-	 * @param jsonConverterName JSON转换的方法名
-	 * @return JSONObject.
-	 */
-	public JSONObject findJSONList(String pageNow, String pageSize, String jsonConverterName) {
-		return findJSONList(pageNow, pageSize, null, jsonConverterName);
-	}
-
-	public JSONObject findJSONList(Integer pageNow, Integer pageSize, String jsonConverterName) {
-		return findJSONList(pageNow, pageSize, null, jsonConverterName);
-	}
-
-	/**
-	 * 获得列表JSON
-	 *
-	 * @param pageNow           当前页
-	 * @param pageSize          每页数据量
-	 * @param queryHash         查询参数
-	 * @param jsonConverterName JSON转换的方法名
-	 * @return JSONObject.
-	 */
-	public JSONObject findJSONList(String pageNow, String pageSize, Map<String, String> queryHash, String jsonConverterName) {
-
-		Integer pageNowInt = StringConverters.ToInteger(pageNow);
-		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
-
-		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
-		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
-
-		return findJSONList(pageNowInt, pageSizeInt, queryHash, jsonConverterName);
-	}
-
-	public JSONObject findJSONList(Integer pageNow, Integer pageSize, Map<String, String> queryHash, String jsonConverterName) {
+	public JSONObject findJSONList(QueryParam queryParam, String jsonConverterName) {
 		jsonConverterName = CommonSugar.getTypedDefault(jsonConverterName, "toJSONObject");
-		return findNumList(pageNow, pageSize, queryHash).toJSONObject(jsonConverterName);
+		return this.findNumList(queryParam).toJSONObject(jsonConverterName);
 	}
 
 	/**
 	 * 分页获得数据列表并且带有总记录数
-	 *
-	 * @return QueryData.
 	 */
 	public QueryData<T> findNumList() {
-		return this.findNumList(0, 0, null);
+		return this.findNumList(null);
 	}
 
-	/**
-	 * 分页获得数据列表并且带有总记录数
-	 *
-	 * @param queryHash 查询参数
-	 * @return QueryData.
-	 */
-	public QueryData<T> findNumList(Map<String, String> queryHash) {
-		return this.findNumList(0, 0, queryHash);
-	}
+	public QueryData<T> findNumList(QueryParam queryParam) {
 
-	/**
-	 * 分页获得数据列表并且带有总记录数
-	 *
-	 * @param pageNow  当前页
-	 * @param pageSize 每页数据量
-	 * @return QueryData.
-	 */
-	public QueryData<T> findNumList(String pageNow, String pageSize) {
-		return this.findNumList(pageNow, pageSize, null);
-	}
+		List<T> list = this.findList(queryParam);
+		Long totalNum = this.totalRecord(queryParam.getSqlMap());
 
-	public QueryData<T> findNumList(Integer pageNow, Integer pageSize) {
-		return this.findNumList(pageNow, pageSize, null);
-	}
-
-	/**
-	 * 分页获得数据列表并且带有总记录数
-	 *
-	 * @param pageNow   当前页
-	 * @param pageSize  每页数据量
-	 * @param queryHash 查询参数
-	 * @return QueryData.
-	 */
-	public QueryData<T> findNumList(String pageNow, String pageSize, Map<String, String> queryHash) {
-
-		Integer pageNowInt = StringConverters.ToInteger(pageNow);
-		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
-
-		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
-		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
-
-		return findNumList(pageNowInt, pageSizeInt, queryHash);
-	}
-
-	public QueryData<T> findNumList(Integer pageNow, Integer pageSize, Map<String, String> queryHash) {
-
-		List<T> basicList = findList(pageNow, pageSize, queryHash);
-		Long totalNum = totalRecord(queryHash);
-
-		return new QueryData<>(basicList, totalNum);
+		return new QueryData<>(list, totalNum);
 	}
 
 	/**
 	 * 获得数据列表
-	 *
-	 * @return 数据列表.
 	 */
 	public List<T> findList() {
-		return this.findList(0, 0, null);
+		return this.findList(null);
 	}
 
-	/**
-	 * 获得数据列表
-	 *
-	 * @param queryHash 查询参数
-	 * @return 数据列表.
-	 */
-	public List<T> findList(Map<String, String> queryHash) {
-		return this.findList(0, 0, queryHash);
-	}
-
-	/**
-	 * 获得数据列表
-	 *
-	 * @param pageNow  当前页
-	 * @param pageSize 每页数据量
-	 * @return 数据列表.
-	 */
-	public List<T> findList(String pageNow, String pageSize) {
-		return this.findList(pageNow, pageSize, null);
-	}
-
-	public List<T> findList(Integer pageNow, Integer pageSize) {
-		return this.findList(pageNow, pageSize, null);
-	}
-
-	/**
-	 * 获得数据列表
-	 *
-	 * @param pageNow   当前页
-	 * @param pageSize  每页数据量
-	 * @param queryHash 查询参数
-	 * @return 数据列表.
-	 */
-	public List<T> findList(String pageNow, String pageSize, Map<String, String> queryHash) {
-		return this.findList(pageNow, pageSize, "", queryHash);
-	}
-
-	public List<T> findList(Integer pageNow, Integer pageSize, Map<String, String> queryHash) {
-		return this.findList(pageNow, pageSize, "", queryHash);
-	}
-
-	/**
-	 * 获得数据列表
-	 *
-	 * @param pageNow   当前页
-	 * @param pageSize  每页数据量
-	 * @param sqlOrder  排序
-	 * @param queryHash 查询参数
-	 * @return 数据列表.
-	 */
-	public List<T> findList(String pageNow, String pageSize, String sqlOrder, Map<String, String> queryHash) {
-
-		Integer pageNowInt = StringConverters.ToInteger(pageNow);
-		Integer pageSizeInt = StringConverters.ToInteger(pageSize);
-
-		pageNowInt = CommonSugar.getTypedDefault(pageNowInt, 1);
-		pageSizeInt = CommonSugar.getTypedDefault(pageSizeInt, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
-
-		return this.findList(pageNowInt, pageSizeInt, sqlOrder, queryHash);
-	}
-
-	public List<T> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash) {
-		return dao.findList(pageNow, pageSize, sqlOrder, queryHash);
+	public List<T> findList(QueryParam queryParam) {
+		queryParam = CommonSugar.getTypedDefault(queryParam, new QueryParam());
+		return dao.findList(queryParam);
 	}
 
 	/**
 	 * 获得总记录数
-	 *
-	 * @return 记录数.
 	 */
 	public Long totalRecord() {
 		return this.totalRecord(null);
 	}
 
-	/**
-	 * 获得总记录数
-	 *
-	 * @param queryHash 查询参数
-	 * @return 记录数.
-	 */
 	public Long totalRecord(Map<String, String> queryHash) {
 		return dao.totalRecord(queryHash);
 	}

@@ -1,8 +1,9 @@
 package com.company.example.sys.dao;
 
 import com.company.example.sys.entity.AdminUser;
-import com.vt1314.base.sugar.data.QueryUtils;
 import com.vt1314.base.extend.dao.CrudDao;
+import com.vt1314.base.sugar.data.QueryParam;
+import com.vt1314.base.sugar.data.QueryUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -73,23 +74,17 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 	}
 
 	@Override
-	public List<AdminUser> findList(Integer pageNow, Integer pageSize, String sqlOrder, Map<String, String> queryHash) {
+	public List<AdminUser> findList(QueryParam queryParam) {
 
-		if (StringUtils.isEmpty(sqlOrder)) {
-			sqlOrder = "order by a.id desc ";
+		if (StringUtils.isEmpty(queryParam.getSqlOrder())) {
+			queryParam.setSqlOrder("order by a.id desc ");
 		}
 
-		Map<String, Object> conditions = getSearchCondition(queryHash);
-		TypedQuery<AdminUser> typedQuery = QueryUtils.getTypedQueryByCondition("select a from AdminUser a ", conditions, sqlOrder, entityManager, AdminUser.class);
-		// 判断是否需要分页，并提交分页方法
-		if (pageSize > 0 && pageNow > 0) {
-			logger.debug("提交了分页查询信息，pageNow为[" + pageNow + "]，pageSize为[" + pageSize + "]");
-			int minLimit = pageSize * (pageNow - 1);
-			int maxLimit = pageSize;
-			typedQuery.setFirstResult(minLimit).setMaxResults(maxLimit);
-		}
-		// 返回查询结果
-		return typedQuery.getResultList();
+		Map<String, Object> conditions = getSearchCondition(queryParam.getSqlMap());
+		TypedQuery<AdminUser> typedQuery = QueryUtils.getTypedQueryByCondition("select a from AdminUser a ", conditions, queryParam.getSqlOrder(), entityManager, AdminUser.class);
+
+		//设定分页信息后返回数据
+		return queryParam.setPageAndFindList(typedQuery);
 	}
 
 	@Override

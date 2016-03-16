@@ -3,6 +3,7 @@ package com.company.example.sys.action.page;
 import com.company.example.sys.biz.AdminUserBiz;
 import com.company.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.action.BaseAction;
+import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.tools.StringConverters;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class AdminUserAction extends BaseAction {
 	public JSONObject getAdminUserListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                       @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		return adminUserService.findJSONList(pageNowParam, pageSizeParam);
+		return adminUserService.findJSONList(new QueryParam(pageNowParam, pageSizeParam));
 	}
 
 	/**
