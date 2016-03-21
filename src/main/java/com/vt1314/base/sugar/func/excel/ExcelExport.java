@@ -6,6 +6,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,16 +21,18 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class ExcelExport {
 
+	private static final Logger logger = LoggerFactory.getLogger(ExcelExport.class);
+
 	/**
 	 * 导出Excel文件
 	 *
 	 * @param title           导出Excel的名称
 	 * @param selectFieldMaps 选中需要导出的Field, title名称
-	 * @param agentJSONArray  最终导出数据的JSON对象
+	 * @param jsonArray       最终导出数据的JSON对象
 	 * @param response        HttpResponse Object.
 	 * @throws java.io.IOException
 	 */
-	public static void exportExcelFile(String title, Map<String, String> selectFieldMaps, JSONArray agentJSONArray, HttpServletResponse response) throws IOException {
+	public static void exportExcelFile(String title, Map<String, String> selectFieldMaps, JSONArray jsonArray, HttpServletResponse response) throws IOException {
 
 		String[] selectFields = new String[selectFieldMaps.size()];
 		String[] selectFieldsName = new String[selectFieldMaps.size()];
@@ -85,7 +89,7 @@ public class ExcelExport {
 
 		//外层数据行遍历
 		int i = 1;
-		Iterator<JSONObject> iterator = agentJSONArray.iterator();
+		Iterator iterator = jsonArray.iterator();
 		while (iterator.hasNext()) {
 
 			//初始化 Excel Row
@@ -93,7 +97,7 @@ public class ExcelExport {
 			row.setHeight((short) 540);
 
 			//遍历的数据行元数据
-			JSONObject jsonObject = iterator.next();
+			JSONObject jsonObject = (JSONObject) iterator.next();
 
 			//内层字段遍历
 			for (int j = 0; j < selectFields.length; j++) {
