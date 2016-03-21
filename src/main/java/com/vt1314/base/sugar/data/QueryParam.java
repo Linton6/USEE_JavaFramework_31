@@ -144,6 +144,11 @@ public class QueryParam {
 		}
 
 		// 返回查询结果
-		return typedQuery.getResultList();
+		try {
+			return typedQuery.getResultList();
+		} catch (Exception ex) {
+			logger.error("查询数据集异常", ex.getMessage(), ex);
+			return null;
+		}
 	}
 }
