@@ -36,6 +36,19 @@ public class QueryData<T> {
 		this.dataList = dataList;
 	}
 
+	public QueryData(List<T> dataList, Integer totalNum) {
+
+		if (dataList == null) {
+			dataList = new ArrayList<>();
+		}
+		if (totalNum == null) {
+			totalNum = 0;
+		}
+
+		this.totalNum = Long.valueOf(totalNum);
+		this.dataList = dataList;
+	}
+
 	public QueryData(List<T> dataList, Long totalNum) {
 
 		if (dataList == null) {
@@ -47,6 +60,10 @@ public class QueryData<T> {
 
 		this.totalNum = totalNum;
 		this.dataList = dataList;
+	}
+
+	public JSONObject toJSONObject() {
+		return toJSONObject("toJSONObject");
 	}
 
 	public JSONObject toJSONObject(String methodName) {

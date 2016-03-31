@@ -5,7 +5,7 @@ package com.vt1314.base.config;
  */
 public class ConstantCodeReturn {
 
-	public static final int CODE_SUCCESS = 1000;
+	public static final int CODE_SUCCESS = 200;
 
-	public static final int CODE_FAILED = 1001;
+	public static final int CODE_FAILED = -1;
 }

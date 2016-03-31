@@ -125,7 +125,7 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	 *
 	 * @param id 主键id
 	 */
-	@Transactional
+	@Transactional(readOnly = false)
 	public void delete(Long id) {
 		dao.delete(id);
 	}

@@ -16,7 +16,5 @@ import java.io.Serializable;
 @SuppressWarnings("unused")
 public abstract class BaseEntity<T> implements Serializable {
 
-	public abstract Long getId();
-
 	public abstract JSONObject toJSONObject();
 }

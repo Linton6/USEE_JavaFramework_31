@@ -11,4 +11,5 @@ package com.vt1314.base.extend.entity;
  */
 public abstract class DataEntity<T> extends BaseEntity<T> {
 
+	public abstract Long getId();
 }

@@ -4,7 +4,7 @@ import com.company.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.dao.CrudDao;
 import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.data.QueryUtils;
-import com.vt1314.base.sugar.tools.StringConverters;
+import com.vt1314.base.sugar.tools.CommonSugar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -70,22 +70,21 @@ public class AdminUserDao implements CrudDao<AdminUser> {
 	public Long totalRecord(Map<String, String> queryHash) {
 
 		Map<String, Object> conditions = getSearchCondition(queryHash);
-		TypedQuery<Long> typedQuery = QueryUtils.getTypedQueryByCondition("select count(a) from AdminUser a ", conditions, "", entityManager, Long.class);
+		TypedQuery<Long> typedQuery = QueryUtils.getTypedQueryByCondition("select count(a) from AdminUser a ", conditions, entityManager, Long.class);
 		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public List<AdminUser> findList(QueryParam queryParam) {
 
-		if (StringUtils.isEmpty(queryParam.getSqlOrder())) {
-			queryParam.setSqlOrder("order by a.id desc ");
-		}
+		String sqlOrder = CommonSugar.getStringDefault(queryParam.getSqlOrder(), "order by a.id desc ");
+		String sqlInfo = "select a from AdminUser a " + sqlOrder;
 
 		Map<String, Object> conditions = getSearchCondition(queryParam.getSqlMap());
-		TypedQuery<AdminUser> typedQuery = QueryUtils.getTypedQueryByCondition("select a from AdminUser a ", conditions, queryParam.getSqlOrder(), entityManager, AdminUser.class);
+		TypedQuery<AdminUser> typedQuery = QueryUtils.getTypedQueryByCondition(sqlInfo, conditions, entityManager, AdminUser.class);
 
 		//设定分页信息后返回数据
-		return queryParam.setPageAndFindList(typedQuery);
+		return queryParam.findPageList(typedQuery);
 	}
 
 	@Override

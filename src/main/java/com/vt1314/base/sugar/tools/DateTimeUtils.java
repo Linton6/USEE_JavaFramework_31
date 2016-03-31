@@ -643,7 +643,7 @@ public final class DateTimeUtils {
 		calend.set(Calendar.SECOND, 0);
 		long start = calstart.getTimeInMillis();
 		long end = calend.getTimeInMillis();
-		List<String> date = new ArrayList<String>();
+		List<String> date = new ArrayList<>();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		do {
 			Date time = new Date(start);
@@ -675,7 +675,7 @@ public final class DateTimeUtils {
 		endCal.add(Calendar.SECOND, 1);
 		endDate = endCal.getTime();
 
-		List<String> rangeMonths = new ArrayList<String>();
+		List<String> rangeMonths = new ArrayList<>();
 
 		while (endDate.after(cursorCal.getTime())) {
 			//logger.info(sdf2.format(cursorCal.getTime()));
@@ -818,7 +818,7 @@ public final class DateTimeUtils {
 	}
 
 	public static List<String> getAllMonths(String start, String end) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		String splitSign = "-";
 		String regex = "\\d{4}" + splitSign + "(([0][1-9])|([1][012]))"; // 判断YYYY-MM时间格式的正则表达式
 		if (!start.matches(regex) || !end.matches(regex)) {

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +36,12 @@ public class QueryParam {
 		this.pageNow = pageNow;
 	}
 
+	/*
 	public void setPageNow(String pageNowParam) {
 		Integer pageNow = StringConverters.ToInteger(pageNowParam);
 		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
 	}
+	*/
 
 	public Integer getPageSize() {
 		return CommonSugar.getTypedDefault(pageSize, 0);
@@ -48,10 +51,12 @@ public class QueryParam {
 		this.pageSize = pageSize;
 	}
 
+	/*
 	public void setPageSize(String pageSizeParam) {
 		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
 		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
 	}
+	*/
 
 	/**
 	 * 自定义SQL（SQL标识，SQL内容）
@@ -114,11 +119,26 @@ public class QueryParam {
 	public QueryParam() {
 	}
 
+	public QueryParam(String pageNowParam, String pageSizeParam) {
+
+		Integer pageNow = StringConverters.ToInteger(pageNowParam);
+		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
+
+		if (pageNow == null || pageSize == null) {
+			pageNow = 1;
+			pageSize = ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM;
+		}
+
+		this.pageNow = pageNow;
+		this.pageSize = pageSize;
+	}
+
 	public QueryParam(Integer pageNow, Integer pageSize) {
 		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
 		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
 	}
 
+	/*
 	public QueryParam(String pageNowParam, String pageSizeParam) {
 		Integer pageNow = StringConverters.ToInteger(pageNowParam);
 		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
@@ -126,6 +146,7 @@ public class QueryParam {
 		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
 		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
 	}
+	*/
 
 	/**
 	 * *********************************************************************************
@@ -134,7 +155,7 @@ public class QueryParam {
 	 * *********************************************************************************
 	 * *********************************************************************************
 	 */
-	public <T> List<T> setPageAndFindList(TypedQuery<T> typedQuery) {
+	public <T> List<T> findPageList(TypedQuery<T> typedQuery) {
 		// 判断是否需要分页，并提交分页方法
 		if (this.getPageNow() > 0 && this.getPageSize() > 0) {
 			logger.debug("提交了分页查询信息，pageNow为[" + this.getPageNow() + "]，pageSize为[" + this.getPageSize() + "]");
@@ -148,7 +169,7 @@ public class QueryParam {
 			return typedQuery.getResultList();
 		} catch (Exception ex) {
 			logger.error("查询数据集异常", ex.getMessage(), ex);
-			return null;
+			return new ArrayList<>();
 		}
 	}
 }

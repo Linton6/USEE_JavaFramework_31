@@ -19,17 +19,29 @@ public final class QueryUtils {
 	 * 通过传入相应的参数，获取TypedQuery对象以进行下一步的数据查询
 	 * 注意：当进行模糊查询时需自行判断参数是否为NULL
 	 *
-	 * @param selectInfo    JPQL选择语句
+	 * @param sqlInfo       JPQL语句
 	 * @param condition     JPQL条件语句hash列表
-	 * @param orderInfo     JPQL排序语句
 	 * @param entityManager EntityManager Object.
 	 * @param resultClass   T.class
 	 * @param <T>           T
 	 * @return TypedQuery Object.
 	 */
-	public static <T> TypedQuery<T> getTypedQueryByCondition(String selectInfo, Map<String, Object> condition, String orderInfo, EntityManager entityManager, Class<T> resultClass) {
+	public static <T> TypedQuery<T> getTypedQueryByCondition(String sqlInfo, Map<String, Object> condition, EntityManager entityManager, Class<T> resultClass) {
 
 		logger.info("---------------------------------------");
+
+		String sLowerCase = sqlInfo.toLowerCase();
+		Integer sIndex = sLowerCase.indexOf("order by");
+
+		String selectInfo;
+		String orderInfo;
+		if (sIndex < 0) {
+			selectInfo = sqlInfo;
+			orderInfo = "";
+		} else {
+			selectInfo = sqlInfo.substring(0, sIndex);
+			orderInfo = sqlInfo.substring(sIndex, sqlInfo.length());
+		}
 
 		StringBuilder query = new StringBuilder();
 		query.append(selectInfo);
