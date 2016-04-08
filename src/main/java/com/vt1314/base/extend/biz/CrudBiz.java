@@ -61,6 +61,7 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 
 	public QueryData<T> findNumList(QueryParam queryParam) {
 
+		queryParam = CommonSugar.getTypedDefault(queryParam, new QueryParam());
 		List<T> list = this.findList(queryParam);
 		Long totalNum = this.totalRecord(queryParam.getSqlMap());
 
