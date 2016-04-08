@@ -1,7 +1,7 @@
-package com.company.example.sys.action.page;
+package com.ysotek.example.sys.action;
 
-import com.company.example.sys.biz.AdminUserBiz;
-import com.company.example.sys.entity.AdminUser;
+import com.ysotek.example.sys.biz.AdminUserBiz;
+import com.ysotek.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.action.BaseAction;
 import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.tools.StringConverters;

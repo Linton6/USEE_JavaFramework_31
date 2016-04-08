@@ -1,7 +1,7 @@
-package com.company.example.sys.action.page;
+package com.ysotek.example.sys.action;
 
-import com.company.example.sys.biz.AdminUserBiz;
-import com.company.example.sys.entity.AdminUser;
+import com.ysotek.example.sys.biz.AdminUserBiz;
+import com.ysotek.example.sys.entity.AdminUser;
 import com.vt1314.base.config.ConstantKeySession;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
-package com.company.example.sys.dao;
+package com.ysotek.example.sys.dao;
 
-import com.company.example.sys.entity.AdminUser;
+import com.ysotek.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.dao.CrudDao;
 import com.vt1314.base.sugar.data.QueryParam;
 import com.vt1314.base.sugar.data.QueryUtils;

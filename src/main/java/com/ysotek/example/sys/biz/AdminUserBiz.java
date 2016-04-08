@@ -1,7 +1,7 @@
-package com.company.example.sys.biz;
+package com.ysotek.example.sys.biz;
 
-import com.company.example.sys.dao.AdminUserDao;
-import com.company.example.sys.entity.AdminUser;
+import com.ysotek.example.sys.dao.AdminUserDao;
+import com.ysotek.example.sys.entity.AdminUser;
 import com.vt1314.base.extend.biz.CrudBiz;
 import com.vt1314.base.sugar.data.QueryParam;
 import org.apache.commons.lang.StringUtils;

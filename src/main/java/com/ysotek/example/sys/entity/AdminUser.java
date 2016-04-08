@@ -1,4 +1,4 @@
-package com.company.example.sys.entity;
+package com.ysotek.example.sys.entity;
 
 import com.vt1314.base.extend.entity.DataEntity;
 import com.vt1314.base.sugar.tools.CommonSugar;
