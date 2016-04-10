@@ -21,7 +21,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>pages/index.jsp</welcome-file>
+        <welcome-file>pages/index2.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- 配置处理 Spring Security 过滤 -->
