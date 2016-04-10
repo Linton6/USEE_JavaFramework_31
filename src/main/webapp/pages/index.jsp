@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.vt1314.base.config.ConstantKeySession" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -24,12 +25,14 @@
 </head>
 <body>
 
+<%--
 <%
     Object agent = request.getSession().getAttribute(ConstantKeySession.WEB_USER_INFO_KEY);
     if(agent == null){
         response.sendRedirect(request.getContextPath() + "/security/login.jsp");
     }
 %>
+--%>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
@@ -70,19 +73,31 @@
 
             <div class="panel-group" id="accordion">
 
+                <sec:authorize access="hasAnyAuthority('系统用户','系统角色','系统权限')">
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-auth">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-auth" data-target="#collapse-auth">
                         <span class="glyphicon glyphicon-asterisk pull-left"></span>
-                        <h4 class="panel-title">&nbsp;管理员用户管理</h4>
+                        <h4 class="panel-title">&nbsp;系统设置</h4>
                     </div>
                     <div id="collapse-auth" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-sidebar">
-                                <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/adminUser/getAdminUserListPage.action"/>">用户管理</a></li>
+                                <sec:authorize access="hasAnyAuthority('系统用户')">
+                                    <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/systemUser/getSystemUserListPage.action" />"><span>系统用户</span></a></li>
+                                </sec:authorize>
+
+                                <sec:authorize access="hasAnyAuthority('系统角色')">
+                                    <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/systemRole/getSystemRoleListPage.action" />"><span>系统角色</span></a></li>
+                                </sec:authorize>
+
+                                <sec:authorize access="hasAnyAuthority('系统权限')">
+                                    <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/systemAuthority/getSystemAuthorityListPage.action" />"><span>系统权限</span></a></li>
+                                </sec:authorize>
                             </ul>
                         </div>
                     </div>
                 </div>
+                </sec:authorize>
 
             </div>
         </div>

@@ -1,7 +1,7 @@
 package com.vt1314.base.sugar.start;
 
-import com.ysotek.example.sys.biz.AdminUserBiz;
-import com.ysotek.example.sys.entity.AdminUser;
+import com.ysotek.example.modules.security.biz.SystemUserBiz;
+import com.ysotek.example.modules.security.entity.SystemUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
 	private ServletContext servletContext;
 
 	@Autowired
-	private AdminUserBiz adminUserService;
+	private SystemUserBiz systemUserBiz;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -42,13 +42,9 @@ public class InstantiationTracingBeanPostProcessor implements ApplicationListene
 		}
 
 		//开始用户
-		AdminUser adminUser = new AdminUser();
-		adminUser.setLoginName("admin");
-		adminUser.setLoginPassword("admin");
-		adminUser.setRealName("超级管理员");
-		adminUser.setEmail("if404@vt1314.com");
-		if (adminUserService.totalRecord() < 1) {
-			adminUserService.addOrUpdate(adminUser);
+		SystemUser systemUser = new SystemUser("admin", "admin", "超级管理员");
+		if (!systemUserBiz.existUserAccount(systemUser)) {
+			systemUserBiz.addOrUpdate(systemUser);
 		}
 
 		logger.info("我在刚启动时执行-3");

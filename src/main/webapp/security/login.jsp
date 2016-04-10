@@ -1,3 +1,4 @@
+<%@ page import="com.vt1314.base.config.ConstantKeyGlobal" %>
 <%--
   Created by IntelliJ IDEA.
   User: val
@@ -7,9 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>BaseProject</title>
+    <title>WMS</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +30,9 @@
             margin-left: -429px;
             margin-top: -190px;
         }
+        .form-group{margin-bottom:6px;}
+        form{margin-bottom:0;}
+        label{margin-bottom:2px;}
     </style>
 </head>
 <body style="background:#2E3E4E;">
@@ -40,26 +45,31 @@
                 <img src="<c:url value="/resources/images/login/bg480.jpg" />" title="" style="width:480px;height:350px;" />
             </div>
             <div class="pull-right" style="width:320px;">
-                <div style="margin:28px 10px;">
-                    <img src="<c:url value="/resources/images/login/logo1120.png" />" style="width:320px;margin-left:-30px;" title="" />
+                <div style="margin:0 0 15px;font-size:40px;padding:20px 0 0 10px;"><%----%>
+                    <%--<img src="<c:url value="/resources/images/login/logo1120.png" />" style="width:320px;margin-left:-30px;" title="" />--%>
+                    BaseProject
                 </div>
-                <form role="form">
+                <form action="<c:url value="/j_spring_security_check" />" method="post">
                     <div class="form-group">
                         <label for="agentName">用户名：</label>
-                        <input type="text" class="form-control" id="agentName" placeholder="请输入用户名" value="admin">
+                        <input type="text" class="form-control" name="j_username" id="agentName" placeholder="请输入用户名" value="">
                     </div>
                     <div class="form-group">
                         <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                        <input type="password" class="form-control" id="password" placeholder="请输入密码" value="admin">
+                        <input type="password" class="form-control" name="j_password" id="password" placeholder="请输入密码" value="">
                     </div>
-                    <%--<div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Check me out
-                        </label>
-                    </div>--%>
                     <div class="form-group">
-                        <button type="button" id="sub" class="btn btn-primary" style="width:100%;margin-top:10px;">登录</button>
+                        <label for="warehouse">仓&nbsp;&nbsp;&nbsp;&nbsp;库：</label>
+                        <select id="warehouse" name="warehouse" class="form-control">
+                            <c:forEach items="${warehouseList}" var="warehouse">
+                                <option value="${warehouse.warehouseId}||${warehouse.warehouseName}">${warehouse.warehouseName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <button type="submit" id="sub" class="btn btn-primary" style="width:100%;margin-top:10px;">登录</button>
+                    </div>
+                    <c:if test="${param.error}"><span style="color:red;">用户名密码输入错误,请重新输入！</span></c:if>
                 </form>
             </div>
         </div>
@@ -69,29 +79,6 @@
 <script src="<c:url value="/resources/lib/jquery/jquery-1.11.0.min.js" />"></script>
 <script src="<c:url value="/resources/lib/bootstrap-3.3.1-dist/js/bootstrap.min.js" />"></script>
 <script type="text/javascript">
-    $("#sub").on('click', function () {
-        $.ajax({
-            type: 'post',
-            url: "<c:url value="/auth/login.action" />",
-            data: {"agentName": $("#agentName").val(), "password": $("#password").val()},
-            dataType: 'json',
-            async: false,
-            success: function (data) {
-                if (data) {
-                    if (data.success) {
-                        window.location.href = "<c:url value="/pages/index.jsp" />";
-                    } else {
-                        alert("用户名密码输入错误,请重新输入！");
-                        $("#password").val("");
-                    }
-                }
-            },
-            error: function () {
-                alert("出错了，请联系管理员");
-            }
-        });
-    });
-
     $(document).on("keydown", function(event) {
         if (event.keyCode == 13) {
             $("#sub").click();

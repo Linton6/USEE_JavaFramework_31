@@ -24,11 +24,22 @@
         <welcome-file>pages/index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- 配置处理 Spring Security 过滤 -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 业务层和持久层的 Spring 配置文件，这些配置文件被父 Spring 容器所使用 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:spring-biz.xml
+            classpath:spring-security.xml
         </param-value>
     </context-param>
     <listener>
