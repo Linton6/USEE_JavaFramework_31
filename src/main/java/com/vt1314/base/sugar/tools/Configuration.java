@@ -46,7 +46,7 @@ public class Configuration {
 			logger.error("转换配置文件编码出错");
 		}
 
-		return property;
+		return property.trim();
 	}
 
 	public static String getConfigBaseUrl() {
