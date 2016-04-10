@@ -52,19 +52,11 @@
                 <form action="<c:url value="/j_spring_security_check" />" method="post">
                     <div class="form-group">
                         <label for="agentName">用户名：</label>
-                        <input type="text" class="form-control" name="j_username" id="agentName" placeholder="请输入用户名" value="">
+                        <input type="text" class="form-control" name="j_username" id="agentName" placeholder="请输入用户名" value="admin">
                     </div>
                     <div class="form-group">
                         <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                        <input type="password" class="form-control" name="j_password" id="password" placeholder="请输入密码" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="warehouse">仓&nbsp;&nbsp;&nbsp;&nbsp;库：</label>
-                        <select id="warehouse" name="warehouse" class="form-control">
-                            <c:forEach items="${warehouseList}" var="warehouse">
-                                <option value="${warehouse.warehouseId}||${warehouse.warehouseName}">${warehouse.warehouseName}</option>
-                            </c:forEach>
-                        </select>
+                        <input type="password" class="form-control" name="j_password" id="password" placeholder="请输入密码" value="admin">
                     </div>
                     <div class="form-group">
                         <button type="submit" id="sub" class="btn btn-primary" style="width:100%;margin-top:10px;">登录</button>

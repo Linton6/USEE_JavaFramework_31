@@ -48,7 +48,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<c:url value="/auth/logout.action"/>">退出</a></li>
+                <li><a href="<c:url value="/logout.action"/>">退出</a></li>
             </ul>
         </div>
 
