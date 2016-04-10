@@ -7,6 +7,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 /**
@@ -35,7 +36,17 @@ public class Configuration {
 			return "";
 		}
 		logger.debug("start loading property,name : [" + keyName + "]");
-		return properties.getProperty(keyName);
+		String property = CommonSugar.getStringDefault(properties.getProperty(keyName), "");
+
+		try {
+			if (property.equals(new String(property.getBytes("ISO-8859-1"), "ISO-8859-1"))) {
+				property = new String(property.getBytes("ISO-8859-1"), "UTF-8");
+			}
+		} catch (UnsupportedEncodingException e) {
+			logger.error("转换配置文件编码出错");
+		}
+
+		return property;
 	}
 
 	public static String getConfigBaseUrl() {
