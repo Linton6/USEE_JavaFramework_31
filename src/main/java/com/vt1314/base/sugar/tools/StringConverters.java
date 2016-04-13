@@ -25,7 +25,7 @@ public class StringConverters {
 	 * @return Converted Date Object.
 	 */
 	public static Date ToDate(String convertString) {
-		return ToDate(convertString, DATE_FORMAT_YEAR_MONTH_DAY);
+		return ToDate(convertString, "");
 	}
 
 	/**
@@ -48,6 +48,8 @@ public class StringConverters {
 	 * @return Converted Date Object.
 	 */
 	public static Date ToDate(String convertString, String pattern, String paramDesc) {
+
+		pattern = CommonSugar.getStringDefault(pattern, DATE_FORMAT_FULL);
 
 		Date result = null;
 		if (!StringUtils.isEmpty(convertString)) {
