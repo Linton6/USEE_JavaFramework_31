@@ -13,7 +13,7 @@
 </head>
 
 <body style="background:#F9F9F7;">
-欢迎您，${loginAgent.loginName}！<a href="<c:url value="/auth/logout.action"/> " target="_parent">退出</a>
+欢迎您<%--，${loginAgent.loginName}！<a href="<c:url value="/auth/logout.action"/> " target="_parent">退出</a>--%>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
