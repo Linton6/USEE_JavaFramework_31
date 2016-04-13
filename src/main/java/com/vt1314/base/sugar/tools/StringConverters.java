@@ -60,7 +60,7 @@ public class StringConverters {
 				logger.error("转换失败[String-Date]，输入参数[{}]为[{}]", paramDesc, convertString);
 			}
 		} else {
-			logger.warn("转换失败[String-Date]，输入参数[{}]为[{}]", paramDesc, convertString);
+			logger.debug("转换失败[String-Date]，输入参数[{}]为[{}]", paramDesc, convertString);
 		}
 		return result;
 	}
@@ -94,7 +94,7 @@ public class StringConverters {
 				logger.error("转换失败[String-Integer]，输入参数[{}]为[{}]", paramDesc, convertString);
 			}
 		} else {
-			logger.warn("转换失败[String-Integer]，输入参数[{}]为[{}]", paramDesc, convertString);
+			logger.debug("转换失败[String-Integer]，输入参数[{}]为[{}]", paramDesc, convertString);
 		}
 		return result;
 	}
@@ -128,7 +128,7 @@ public class StringConverters {
 				logger.error("转换失败[String-Long]，输入参数[{}]为[{}]", paramDesc, convertString);
 			}
 		} else {
-			logger.warn("转换失败[String-Long]，输入参数[{}]为[{}]", paramDesc, convertString);
+			logger.debug("转换失败[String-Long]，输入参数[{}]为[{}]", paramDesc, convertString);
 		}
 
 		return result;
@@ -162,7 +162,7 @@ public class StringConverters {
 				logger.error("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
 			}
 		} else {
-			logger.warn("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
+			logger.debug("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
 		}
 
 		return result;
@@ -196,7 +196,7 @@ public class StringConverters {
 				logger.error("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
 			}
 		} else {
-			logger.warn("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
+			logger.debug("转换失败[String-Double]，输入参数[{}]为[{}]", paramDesc, convertString);
 		}
 
 		return result;
