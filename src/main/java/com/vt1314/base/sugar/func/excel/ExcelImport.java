@@ -118,7 +118,7 @@ public class ExcelImport {
 		if (clazz.equals(Date.class)) {
 			for (Entry<String, String> entry : dateConvertTypeMap.entrySet()) {
 				if (fieldName.equals(entry.getKey())) {
-					return StringConverters.ToDate(fieldValue, entry.getValue(), "excel导入参数");
+					return StringConverters.ToDatePattern(fieldValue, entry.getValue(), "excel导入参数");
 				}
 			}
 		}

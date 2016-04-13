@@ -24,8 +24,12 @@ public class StringConverters {
 	 * @param convertString 需要转换的参数
 	 * @return Converted Date Object.
 	 */
-	public static Date ToDate(String convertString) {
-		return ToDate(convertString, "");
+	public static Date ToDateOnly(String convertString) {
+		return ToDatePattern(convertString, DATE_FORMAT_YEAR_MONTH_DAY, "");
+	}
+
+	public static Date ToDateTime(String convertString) {
+		return ToDatePattern(convertString, DATE_FORMAT_FULL, "");
 	}
 
 	/**
@@ -35,8 +39,8 @@ public class StringConverters {
 	 * @param pattern       日期转换格式匹配
 	 * @return Converted Date Object.
 	 */
-	public static Date ToDate(String convertString, String pattern) {
-		return ToDate(convertString, pattern, "");
+	public static Date ToDatePattern(String convertString, String pattern) {
+		return ToDatePattern(convertString, pattern, "");
 	}
 
 	/**
@@ -47,7 +51,7 @@ public class StringConverters {
 	 * @param paramDesc     需要转换的参数说明(作为日志补充)
 	 * @return Converted Date Object.
 	 */
-	public static Date ToDate(String convertString, String pattern, String paramDesc) {
+	public static Date ToDatePattern(String convertString, String pattern, String paramDesc) {
 
 		pattern = CommonSugar.getStringDefault(pattern, DATE_FORMAT_FULL);
 
