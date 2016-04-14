@@ -31,7 +31,11 @@ public final class QueryUtils {
 		logger.info("---------------------------------------");
 
 		String sLowerCase = sqlInfo.toLowerCase();
-		Integer sIndex = sLowerCase.indexOf("order by");
+
+		Integer sIndex = sLowerCase.indexOf("group by");
+		if (sIndex < 0) {
+			sIndex = sLowerCase.indexOf("order by");
+		}
 
 		String selectInfo;
 		String orderInfo;
