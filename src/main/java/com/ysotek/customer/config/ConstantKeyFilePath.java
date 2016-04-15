@@ -1,4 +1,4 @@
-package com.vt1314.base.config;
+package com.ysotek.customer.config;
 
 /**
  * Author: 居泽平  Date: 13-11-23, 下午7:43

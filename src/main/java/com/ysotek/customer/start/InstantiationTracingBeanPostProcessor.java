@@ -1,4 +1,4 @@
-package com.vt1314.base.sugar.start;
+package com.ysotek.customer.start;
 
 import com.ysotek.customer.modules.security.biz.SystemUserBiz;
 import com.ysotek.customer.modules.security.entity.SystemUser;

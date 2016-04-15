@@ -1,6 +1,6 @@
 package com.vt1314.base.sugar.data;
 
-import com.vt1314.base.config.ConstantKeyGlobal;
+import com.ysotek.customer.config.ConstantKeyGlobal;
 import com.vt1314.base.sugar.tools.CommonSugar;
 import com.vt1314.base.sugar.tools.StringConverters;
 import org.slf4j.Logger;

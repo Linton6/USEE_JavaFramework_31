@@ -1,4 +1,4 @@
-package com.vt1314.base.config;
+package com.ysotek.customer.config;
 
 /**
  * Author: 陈梨春  Date: 14-11-5

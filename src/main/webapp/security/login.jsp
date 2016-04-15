@@ -1,4 +1,4 @@
-<%@ page import="com.vt1314.base.config.ConstantKeyGlobal" %>
+<%@ page import="com.ysotek.customer.config.ConstantKeyGlobal" %>
 <%--
   Created by IntelliJ IDEA.
   User: val
