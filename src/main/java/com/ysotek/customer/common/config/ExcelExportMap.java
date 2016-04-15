@@ -1,4 +1,4 @@
-package com.ysotek.customer.config;
+package com.ysotek.customer.common.config;
 
 import org.apache.commons.lang.StringUtils;
 

@@ -1,4 +1,4 @@
-package com.ysotek.customer.config;
+package com.ysotek.customer.common.config;
 
 import java.util.HashMap;
 import java.util.Map;

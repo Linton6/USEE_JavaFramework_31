@@ -1,4 +1,4 @@
-package com.ysotek.customer.start;
+package com.ysotek.customer.common.start;
 
 import com.ysotek.customer.modules.security.biz.SystemUserBiz;
 import com.ysotek.customer.modules.security.entity.SystemUser;

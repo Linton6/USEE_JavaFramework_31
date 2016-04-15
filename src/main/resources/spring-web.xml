@@ -34,5 +34,5 @@
     </mvc:interceptors>-->
 
     <!-- 当Spring容器启动完成后执行下面的这个Bean -->
-    <bean class="com.ysotek.customer.start.InstantiationTracingBeanPostProcessor"/>
+    <bean class="com.ysotek.customer.common.start.InstantiationTracingBeanPostProcessor"/>
 </beans>

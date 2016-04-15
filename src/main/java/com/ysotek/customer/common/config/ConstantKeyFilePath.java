@@ -1,4 +1,4 @@
-package com.ysotek.customer.config;
+package com.ysotek.customer.common.config;
 
 /**
  * Author: 居泽平  Date: 13-11-23, 下午7:43
