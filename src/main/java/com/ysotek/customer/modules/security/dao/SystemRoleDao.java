@@ -1,8 +1,8 @@
 package com.ysotek.customer.modules.security.dao;
 
-import com.vt1314.base.extend.dao.CrudDao;
-import com.vt1314.base.sugar.data.QueryParam;
-import com.vt1314.base.sugar.data.QueryUtils;
+import com.vt1314.framework.extend.dao.CrudDao;
+import com.vt1314.framework.sugar.data.QueryParam;
+import com.vt1314.framework.sugar.data.QueryUtils;
 import com.ysotek.customer.modules.security.entity.SystemRole;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

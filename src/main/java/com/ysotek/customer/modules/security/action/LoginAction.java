@@ -1,6 +1,6 @@
 package com.ysotek.customer.modules.security.action;
 
-import com.vt1314.base.extend.action.BaseAction;
+import com.vt1314.framework.extend.action.BaseAction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;

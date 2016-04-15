@@ -1,6 +1,6 @@
 package com.ysotek.customer.modules.security.extend;
 
-import com.vt1314.base.sugar.tools.CommonSugar;
+import com.vt1314.framework.sugar.tools.CommonSugar;
 import com.ysotek.customer.modules.security.biz.SystemAuthorityBiz;
 import com.ysotek.customer.modules.security.biz.SystemUserBiz;
 import com.ysotek.customer.modules.security.entity.SystemAuthority;

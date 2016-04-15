@@ -1,8 +1,8 @@
 package com.ysotek.customer.modules.security.action;
 
-import com.vt1314.base.extend.action.BaseAction;
-import com.vt1314.base.sugar.data.QueryParam;
-import com.vt1314.base.sugar.tools.StringConverters;
+import com.vt1314.framework.extend.action.BaseAction;
+import com.vt1314.framework.sugar.data.QueryParam;
+import com.vt1314.framework.sugar.tools.StringConverters;
 import com.ysotek.customer.modules.security.biz.SystemAuthorityBiz;
 import com.ysotek.customer.modules.security.biz.SystemRoleBiz;
 import com.ysotek.customer.modules.security.biz.SystemUserBiz;

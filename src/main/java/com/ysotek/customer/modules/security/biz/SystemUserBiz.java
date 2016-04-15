@@ -1,7 +1,7 @@
 package com.ysotek.customer.modules.security.biz;
 
-import com.vt1314.base.extend.biz.CrudBiz;
-import com.vt1314.base.sugar.data.QueryParam;
+import com.vt1314.framework.extend.biz.CrudBiz;
+import com.vt1314.framework.sugar.data.QueryParam;
 import com.ysotek.customer.modules.security.dao.SystemUserDao;
 import com.ysotek.customer.modules.security.entity.SystemUser;
 import org.apache.commons.collections.CollectionUtils;

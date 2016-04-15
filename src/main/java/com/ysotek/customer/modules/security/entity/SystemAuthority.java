@@ -1,7 +1,7 @@
 package com.ysotek.customer.modules.security.entity;
 
-import com.vt1314.base.extend.entity.DataEntity;
-import com.vt1314.base.sugar.tools.CommonSugar;
+import com.vt1314.framework.extend.entity.DataEntity;
+import com.vt1314.framework.sugar.tools.CommonSugar;
 import net.sf.json.JSONObject;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
