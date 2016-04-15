@@ -1,7 +1,7 @@
 package com.vt1314.base.sugar.start;
 
-import com.ysotek.example.modules.security.biz.SystemUserBiz;
-import com.ysotek.example.modules.security.entity.SystemUser;
+import com.ysotek.customer.modules.security.biz.SystemUserBiz;
+import com.ysotek.customer.modules.security.entity.SystemUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
