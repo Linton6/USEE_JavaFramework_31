@@ -1,7 +1,7 @@
 package com.vt1314.base.sugar.data;
 
-import com.ysotek.customer.config.ConstantKeyGlobal;
 import com.vt1314.base.sugar.tools.CommonSugar;
+import com.vt1314.base.sugar.tools.Configuration;
 import com.vt1314.base.sugar.tools.StringConverters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,8 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class QueryParam {
 
-	private final static Logger logger = LoggerFactory.getLogger(QueryParam.class);
+	private static final Logger logger = LoggerFactory.getLogger(QueryParam.class);
+	private static final Integer defaultPageSize = CommonSugar.getTypedDefault(StringConverters.ToInteger(Configuration.getConfigurationByName("DEFAULT_PAGE_LIST_NUM")), 20);
 
 	/**
 	 * 分页参数
@@ -126,7 +127,7 @@ public class QueryParam {
 
 		if (pageNow == null || pageSize == null) {
 			pageNow = 1;
-			pageSize = ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM;
+			pageSize = defaultPageSize;
 		}
 
 		this.pageNow = pageNow;
@@ -135,7 +136,7 @@ public class QueryParam {
 
 	public QueryParam(Integer pageNow, Integer pageSize) {
 		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
-		this.pageSize = CommonSugar.getTypedDefault(pageSize, ConstantKeyGlobal.DEFAULT_PAGE_LIST_NUM);
+		this.pageSize = CommonSugar.getTypedDefault(pageSize, defaultPageSize);
 	}
 
 	/*
