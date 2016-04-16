@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
  * Author: Liping Ye  Date: 13-6-17, 下午6:10
  */
 public class DecodePassword {
+
 	private static final Logger logger = LoggerFactory.getLogger(DecodePassword.class);
 
 	/**

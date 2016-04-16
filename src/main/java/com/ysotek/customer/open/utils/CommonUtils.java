@@ -99,16 +99,16 @@ public final class CommonUtils {
 	}
 
 	public static void main(String[] args) {
-//        String encode = getBASE64("haixinkewangmin");
-//          System.out.println(encode);
-//        System.out.println(getFromBASE64(encode));
-//        String email = "hai3343x_4545in@1dfd3.com";
-//        System.out.println(verifyEmail(email));
+		//String encode = getBASE64("haixinkewangmin");
+		//System.out.println(encode);
+		//System.out.println(getFromBASE64(encode));
+		//String email = "hai3343x_4545in@1dfd3.com";
+		//System.out.println(verifyEmail(email));
 		logger.debug("Basic " + getBASE64("haixinke:123"));
-//        logger.debug("Basic "+getFromBASE64(getBASE64("haixinke")));
-//		logger.debug(getFromBASE64("MTAwMDAwOTUxOjI2OjExMTExMg=="));
-//        logger.debug(Integer.valueOf("09").toString());
-//        (?:0[1-9]|1[0-9]|2[0-8])
+		//logger.debug("Basic "+getFromBASE64(getBASE64("haixinke")));
+		//logger.debug(getFromBASE64("MTAwMDAwOTUxOjI2OjExMTExMg=="));
+		//logger.debug(Integer.valueOf("09").toString());
+		//(?:0[1-9]|1[0-9]|2[0-8])
 		String aa = "^(?:[0-1][0-9]|2[0-3]):(?:[0-5][0-9])$";
 		logger.debug("23:59".matches(aa) + "");
 
