@@ -7,6 +7,7 @@
 
     <!--后台管理的包-->
     <context:component-scan base-package="com.ysotek.customer.modules.security.action"/>
+    <context:component-scan base-package="com.ysotek.customer.open.action"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -25,14 +26,18 @@
         <property name="maxUploadSize" value="104857600"/>
     </bean>
 
-    <!-- 拦截器 - 简单登录验证 -->
-    <!--<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/web/admin/**"/>
-            <bean class="com.ysotek.example.sys.interceptor.AuthorityInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>-->
-
     <!-- 当Spring容器启动完成后执行下面的这个Bean -->
     <bean class="com.ysotek.customer.common.start.InstantiationTracingBeanPostProcessor"/>
+
+    <!-- 拦截器 - 简单登录验证 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/api/**"/>
+            <bean class="com.ysotek.customer.open.interceptor.AuthorityInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/api/**"/>
+            <bean class="com.ysotek.customer.open.interceptor.VisitInfoInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

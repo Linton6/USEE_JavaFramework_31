@@ -6,4 +6,9 @@ package com.ysotek.customer.common.config;
 public class ConstantKeySession {
 
 	public static final String WEB_USER_INFO_KEY = "loginAgent";
+
+	/**
+	 * Customer在HttpServletRequest中的Attribute的Key
+	 */
+	public static final String HTTP_CUSTOMER_ATTRIBUTE_KEY = "SystemUser";
 }
