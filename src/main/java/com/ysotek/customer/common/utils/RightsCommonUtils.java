@@ -1,4 +1,4 @@
-package com.ysotek.customer.open.utils;
+package com.ysotek.customer.common.utils;
 
 import com.ysotek.customer.modules.security.vo.UsernamePasswordVO;
 import org.slf4j.Logger;

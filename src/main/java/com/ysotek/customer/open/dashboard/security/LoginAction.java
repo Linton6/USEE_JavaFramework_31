@@ -1,4 +1,4 @@
-package com.ysotek.customer.modules.security.action;
+package com.ysotek.customer.open.dashboard.security;
 
 import com.vt1314.framework.extend.action.BaseAction;
 import org.springframework.stereotype.Controller;

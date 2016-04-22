@@ -1,4 +1,4 @@
-package com.ysotek.customer.open.utils;
+package com.ysotek.customer.common.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

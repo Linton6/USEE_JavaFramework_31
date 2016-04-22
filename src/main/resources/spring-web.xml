@@ -6,8 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--后台管理的包-->
-    <context:component-scan base-package="com.ysotek.customer.modules.security.action"/>
-    <context:component-scan base-package="com.ysotek.customer.open.action"/>
+    <context:component-scan base-package="com.ysotek.customer.open"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -33,11 +32,11 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
-            <bean class="com.ysotek.customer.open.interceptor.AuthorityInterceptor"/>
+            <bean class="com.ysotek.customer.common.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
-            <bean class="com.ysotek.customer.open.interceptor.VisitInfoInterceptor"/>
+            <bean class="com.ysotek.customer.common.interceptor.VisitInfoInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

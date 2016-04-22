@@ -1,8 +1,8 @@
-package com.ysotek.customer.open.action;
+package com.ysotek.customer.open.api;
 
 import com.vt1314.framework.sugar.data.ResponseJSON;
 import com.ysotek.customer.modules.security.entity.SystemUser;
-import com.ysotek.customer.open.utils.UserUtils;
+import com.ysotek.customer.common.utils.UserUtils;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

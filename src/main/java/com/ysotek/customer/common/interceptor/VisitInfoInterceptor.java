@@ -1,4 +1,4 @@
-package com.ysotek.customer.open.interceptor;
+package com.ysotek.customer.common.interceptor;
 
 /**
  * Created by Yso on 2016/1/11.
@@ -9,7 +9,7 @@ import com.ysotek.customer.modules.security.entity.SystemUser;
 import com.ysotek.customer.modules.security.vo.UsernamePasswordVO;
 import com.ysotek.customer.modules.logging.biz.VisitInfoBiz;
 import com.ysotek.customer.modules.logging.entity.VisitInfo;
-import com.ysotek.customer.open.utils.RightsCommonUtils;
+import com.ysotek.customer.common.utils.RightsCommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
