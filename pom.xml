@@ -273,15 +273,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/ReadMe/Lib/taobao-sdk-java-auto_1428075515147-20150404.jar</systemPath>
         </dependency>-->
-
-        <dependency>
-            <groupId>com.yuntongxun</groupId>
-            <artifactId>sms</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/ReadMe/Lib/CCP_REST_SMS_SDK_JAVA_v2.6.3r.jar</systemPath>
-        </dependency>
-
     </dependencies>
 
 </project>
