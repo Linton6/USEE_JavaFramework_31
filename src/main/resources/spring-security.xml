@@ -55,6 +55,12 @@
                 <beans:property name="defaultFailureUrl" value="/security/login.action?error=true"/>
             </beans:bean>
         </beans:property>
+        <beans:property name="AuthenticationSuccessHandler">
+            <beans:bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+                <beans:property name="defaultTargetUrl" value="/pages/index2.jsp"/>
+                <beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
+            </beans:bean>
+        </beans:property>
     </beans:bean>
 
     <!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
