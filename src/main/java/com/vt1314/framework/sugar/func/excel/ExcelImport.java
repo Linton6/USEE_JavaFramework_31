@@ -63,7 +63,7 @@ public class ExcelImport {
 				try {
 					Field nameFld = clazz.getDeclaredField(fieldName);
 					nameFld.setAccessible(true);
-					nameFld.set(t, convertByType(nameFld.getType(), fieldName, sheet.getCell(key, i).getContents(), dateConvertTypeMap));
+					nameFld.set(t, convertByType(nameFld.getType(), fieldName, sheet.getCell(key, i).getContents().replace((char)12288,' ').trim(), dateConvertTypeMap));
 
 					if (sheet.getCell(key, i).getType() == CellType.DATE) {
 						DateCell dc = (DateCell) sheet.getCell(key, i);
