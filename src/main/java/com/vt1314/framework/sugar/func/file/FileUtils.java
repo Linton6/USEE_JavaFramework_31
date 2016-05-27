@@ -61,7 +61,7 @@ public class FileUtils {
 	 * @param fileUploadRootPath 文件上传的根目录
 	 * @return 上传以后的文件名称
 	 */
-	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String oldFilePath, String fileUploadRootPath) {
+	public static String fileUpload(MultipartFile uploadFile, String configFileDirName, String configFileFixName, String fileUploadRootPath, String oldFilePath) {
 
 		String fileName = fileUpload(uploadFile, configFileDirName, configFileFixName, fileUploadRootPath);
 		if (fileName != null && !"".equals(fileName)) {
