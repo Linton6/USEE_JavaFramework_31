@@ -5,6 +5,7 @@ body{
     font-family:"微软雅黑",Helvetica,Arial,sans-serif;
     margin:0;
     padding:0;
+    background:#FFF;
 }
 .easyui-layout .mainPanel{}
 .toolBarPadding{padding:5px 5px 3px;}
