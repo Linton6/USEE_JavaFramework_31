@@ -88,7 +88,7 @@
 </head>
 <body class="easyui-layout">
 
-    <div data-options="region:'center',border:false" class="mainPanel">
+    <div data-options="region:'center',border:false,style:{padding:'4px'}" class="mainPanel">
         <div id="tbSystemResource" class="toolBarPadding">
             <div style="float:left;">
                 <a href="javascript:void(0)" class="easyui-linkbutton v-align-middle" data-options="iconCls:'icon-add',plain:true"
