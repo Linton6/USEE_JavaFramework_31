@@ -38,16 +38,17 @@ public class SystemAuthorityDao implements CrudDao<SystemAuthority> {
 		if (queryHash == null) {
 			return conditionHash;
 		}
+
 		String authorityName = queryHash.get("authorityName");
 		if (!StringUtils.isEmpty(authorityName)) {
 			conditionHash.put("authorityName = ?{paramIndex} ", authorityName);
 		}
 
-
 		Long existsRoleId = StringConverters.ToLong(queryHash.get("existsRoleId"));
 		if (existsRoleId != null && existsRoleId > -1) {
 			conditionHash.put("exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", existsRoleId);
 		}
+
 		Long notExistsRoleId = StringConverters.ToLong(queryHash.get("notExistsRoleId"));
 		if (notExistsRoleId != null && notExistsRoleId > -1) {
 			conditionHash.put("not exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", notExistsRoleId);

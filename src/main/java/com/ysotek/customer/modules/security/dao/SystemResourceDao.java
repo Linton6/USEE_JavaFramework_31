@@ -42,6 +42,7 @@ public class SystemResourceDao implements CrudDao<SystemResource> {
 		if (existsAuthId != null && existsAuthId > -1) {
 			conditionHash.put("exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", existsAuthId);
 		}
+
 		Long notExistsAuthId = StringConverters.ToLong(queryHash.get("notExistsAuthId"));
 		if (notExistsAuthId != null && notExistsAuthId > -1) {
 			conditionHash.put("not exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", notExistsAuthId);
