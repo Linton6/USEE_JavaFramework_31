@@ -55,7 +55,7 @@ public class SystemUserDao implements CrudDao<SystemUser> {
 	public Map<String, Object> getSearchCondition(Map<String, String> queryHash) {
 
 		Map<String, Object> conditionHash = new HashMap<>();
-		if (queryHash == null) {
+		if (queryHash == null || queryHash.size() == 0) {
 			return conditionHash;
 		}
 
