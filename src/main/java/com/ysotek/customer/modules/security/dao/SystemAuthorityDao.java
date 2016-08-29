@@ -39,33 +39,36 @@ public class SystemAuthorityDao implements CrudDao<SystemAuthority> {
 			return conditionHash;
 		}
 
-		String authorityName = queryHash.get("authorityName");
-		if (!StringUtils.isEmpty(authorityName)) {
-			conditionHash.put("authorityName = ?{paramIndex} ", authorityName);
-		}
+		for (String queryKey : queryHash.keySet()) {
+			String queryValue = queryHash.get(queryKey);
 
-		Long existsRoleId = StringConverters.ToLong(queryHash.get("existsRoleId"));
-		if (existsRoleId != null && existsRoleId > -1) {
-			conditionHash.put("exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", existsRoleId);
-		}
+			if (StringUtils.isEmpty(queryKey)) {
+				continue;
+			}
 
-		Long notExistsRoleId = StringConverters.ToLong(queryHash.get("notExistsRoleId"));
-		if (notExistsRoleId != null && notExistsRoleId > -1) {
-			conditionHash.put("not exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", notExistsRoleId);
-		}
+			switch (queryKey) {
+				case "authorityName":
+					conditionHash.put("authorityName = ?{paramIndex} ", queryValue);
+					continue;
 
-        /*String String = queryHash.get("String");
-		if (!StringUtils.isEmpty(String)) {
-			conditionHash.put("String like ?{paramIndex} ", "%" + String + "%");
+				case "existsRoleId":
+					Long existsRoleId = StringConverters.ToLong(queryValue);
+					if (existsRoleId != null) {
+						conditionHash.put("exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", existsRoleId);
+						continue;
+					}
+
+				case "notExistsRoleId":
+					Long notExistsRoleId = StringConverters.ToLong(queryValue);
+					if (notExistsRoleId != null) {
+						conditionHash.put("not exists (select role from s.roleSet role where role.roleId = ?{paramIndex}) ", notExistsRoleId);
+						continue;
+					}
+			}
+
+			conditionHash.put("authorityId < ?{paramIndex}", 0L);
+			break;
 		}
-		Integer Integer = TypeConvertUtils.StringToInteger(queryHash.get("Integer"));
-		if (Integer != null && Integer > -1) {
-			conditionHash.put("Integer = ?{paramIndex} ", Integer);
-		}
-		Date Date = TypeConvertUtils.StringToDate(queryHash.get("Date"));
-		if (Date != null) {
-			conditionHash.put("Date >= ?{paramIndex} ", Date);
-		}*/
 
 		return conditionHash;
 	}
