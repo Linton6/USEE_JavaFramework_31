@@ -5,7 +5,6 @@ import com.vt1314.framework.sugar.data.QueryParam;
 import com.vt1314.framework.sugar.data.QueryUtils;
 import com.vt1314.framework.sugar.tools.StringConverters;
 import com.ysotek.customer.modules.security.entity.SystemAuthority;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -41,10 +40,6 @@ public class SystemAuthorityDao implements CrudDao<SystemAuthority> {
 
 		for (String queryKey : queryHash.keySet()) {
 			String queryValue = queryHash.get(queryKey);
-
-			if (StringUtils.isEmpty(queryKey)) {
-				continue;
-			}
 
 			switch (queryKey) {
 				case "authorityName":
