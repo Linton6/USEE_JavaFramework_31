@@ -4,7 +4,6 @@ import com.vt1314.framework.extend.dao.CrudDao;
 import com.vt1314.framework.sugar.data.QueryParam;
 import com.vt1314.framework.sugar.data.QueryUtils;
 import com.ysotek.customer.modules.security.entity.SystemRole;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -38,23 +37,18 @@ public class SystemRoleDao implements CrudDao<SystemRole> {
 			return conditionHash;
 		}
 
-		String roleName = queryHash.get("roleName");
-		if (!StringUtils.isEmpty(roleName)) {
-			conditionHash.put("roleName = ?{paramIndex} ", roleName);
-		}
+		for (String queryKey : queryHash.keySet()) {
+			String queryValue = queryHash.get(queryKey);
 
-        /*String String = queryHash.get("String");
-		if (!StringUtils.isEmpty(String)) {
-			conditionHash.put("String like ?{paramIndex} ", "%" + String + "%");
+			switch (queryKey) {
+				case "roleName":
+					conditionHash.put("roleName = ?{paramIndex} ", queryValue);
+					continue;
+			}
+
+			conditionHash.put("resourceId < ?{paramIndex}", 0L);
+			break;
 		}
-		Integer Integer = TypeConvertUtils.StringToInteger(queryHash.get("Integer"));
-		if (Integer != null && Integer > -1) {
-			conditionHash.put("Integer = ?{paramIndex} ", Integer);
-		}
-		Date Date = TypeConvertUtils.StringToDate(queryHash.get("Date"));
-		if (Date != null) {
-			conditionHash.put("Date >= ?{paramIndex} ", Date);
-		}*/
 
 		return conditionHash;
 	}

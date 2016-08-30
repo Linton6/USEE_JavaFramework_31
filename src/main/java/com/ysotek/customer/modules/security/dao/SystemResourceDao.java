@@ -38,28 +38,28 @@ public class SystemResourceDao implements CrudDao<SystemResource> {
 			return conditionHash;
 		}
 
-		Long existsAuthId = StringConverters.ToLong(queryHash.get("existsAuthId"));
-		if (existsAuthId != null && existsAuthId > -1) {
-			conditionHash.put("exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", existsAuthId);
-		}
+		for (String queryKey : queryHash.keySet()) {
+			String queryValue = queryHash.get(queryKey);
 
-		Long notExistsAuthId = StringConverters.ToLong(queryHash.get("notExistsAuthId"));
-		if (notExistsAuthId != null && notExistsAuthId > -1) {
-			conditionHash.put("not exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", notExistsAuthId);
-		}
+			switch (queryKey) {
+				case "existsAuthId":
+					Long existsAuthId = StringConverters.ToLong(queryValue);
+					if (existsAuthId != null && existsAuthId > -1) {
+						conditionHash.put("exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", existsAuthId);
+					}
+					continue;
 
-        /*String String = queryHash.get("String");
-		if (!StringUtils.isEmpty(String)) {
-			conditionHash.put("String like ?{paramIndex} ", "%" + String + "%");
+				case "notExistsAuthId":
+					Long notExistsAuthId = StringConverters.ToLong(queryValue);
+					if (notExistsAuthId != null && notExistsAuthId > -1) {
+						conditionHash.put("not exists (select authority from s.authoritySet authority where authority.authorityId = ?{paramIndex}) ", notExistsAuthId);
+					}
+					continue;
+			}
+
+			conditionHash.put("resourceId < ?{paramIndex}", 0L);
+			break;
 		}
-		Integer Integer = TypeConvertUtils.StringToInteger(queryHash.get("Integer"));
-		if (Integer != null && Integer > -1) {
-			conditionHash.put("Integer = ?{paramIndex} ", Integer);
-		}
-		Date Date = TypeConvertUtils.StringToDate(queryHash.get("Date"));
-		if (Date != null) {
-			conditionHash.put("Date >= ?{paramIndex} ", Date);
-		}*/
 
 		return conditionHash;
 	}

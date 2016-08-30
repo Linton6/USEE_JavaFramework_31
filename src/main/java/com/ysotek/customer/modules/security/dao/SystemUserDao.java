@@ -8,7 +8,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -59,23 +58,18 @@ public class SystemUserDao implements CrudDao<SystemUser> {
 			return conditionHash;
 		}
 
-		String userAccount = queryHash.get("userAccount");
-		if (!StringUtils.isEmpty(userAccount)) {
-			conditionHash.put("s.userAccount = ?{paramIndex} ", userAccount);
-		}
+		for (String queryKey : queryHash.keySet()) {
+			String queryValue = queryHash.get(queryKey);
 
-        /*String String = queryHash.get("String");
-		if (!StringUtils.isEmpty(String)) {
-			conditionHash.put("String like ?{paramIndex} ", "%" + String + "%");
+			switch (queryKey) {
+				case "userAccount":
+					conditionHash.put("s.userAccount = ?{paramIndex} ", queryValue);
+					continue;
+			}
+
+			conditionHash.put("resourceId < ?{paramIndex}", 0L);
+			break;
 		}
-		Integer Integer = TypeConvertUtils.StringToInteger(queryHash.get("Integer"));
-		if (Integer != null && Integer > -1) {
-			conditionHash.put("Integer = ?{paramIndex} ", Integer);
-		}
-		Date Date = TypeConvertUtils.StringToDate(queryHash.get("Date"));
-		if (Date != null) {
-			conditionHash.put("Date >= ?{paramIndex} ", Date);
-		}*/
 
 		return conditionHash;
 	}
