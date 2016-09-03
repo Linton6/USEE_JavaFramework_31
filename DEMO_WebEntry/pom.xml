@@ -29,7 +29,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ASG_Modules</artifactId>
+            <artifactId>DEMO_Modules</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

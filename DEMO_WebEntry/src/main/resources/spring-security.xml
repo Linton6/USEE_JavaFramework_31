@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- 配置 Spring Security -->
+    <http pattern="/security/login.action" security="none"/>
+    <http pattern="/security/403.jsp" security="none"/>
+    <http pattern="/security/resources/**" security="none"/>
+    <http pattern="/api/**" security="none"/>
+    <http pattern="/tools/taobaoAuth.jsp" security="none"/>
+    <http pattern="/resources/**" security="none"/>
+
+    <http use-expressions="true" entry-point-ref="authenticationEntryPoint"><!-- access-denied-page="/security/403.jsp"-->
+        <!--配置所有进入验证【chain】的【url】都需要【ROLE_USER】权限-->
+        <intercept-url pattern="/pages/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/web/admin/**" access="isAuthenticated()"/>
+        <!--<form-login login-page="/security/login.action"
+                    login-processing-url="/j_spring_security_check"
+                    username-parameter="j_username"
+                    password-parameter="j_password"
+                    authentication-failure-url="/security/login.action?error=true"
+                    always-use-default-target="true"
+                    default-target-url="/pages/index.jsp"/>-->
+        <!--默认退出路径为【/j_spring_security_logout】,但可以通过【logout-url】属性自定义.-->
+        <logout logout-success-url="/security/login.action?error=logout-success" logout-url="/logout.action"/>
+        <!-- session管理 -->
+        <session-management session-authentication-error-url="/security/login.action?error=invalid-session-authentication-error"
+                            invalid-session-url="/security/login.action?error=invalid-session"/>
+        <!-- 增加一个filter -->
+        <custom-filter position="FORM_LOGIN_FILTER" ref="validateCodeAuthenticationFilter"/>
+        <!-- 增加一个filter，这点与Acegi是不一样的，不能修改默认的filter了， 这个filter位于FILTER_SECURITY_INTERCEPTOR之前 -->
+        <custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="myFilter"/>
+        <csrf disabled="true"/>
+        <headers>
+            <frame-options policy="SAMEORIGIN"/>
+        </headers>
+    </http>
+
+    <beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg index="0" value="/security/login.action"/>
+    </beans:bean>
+
+    <beans:bean id="validateCodeAuthenticationFilter" class="com.useeinfo.demo.modules.security.extend.ValidateCodeUsernamePasswordAuthenticationFilter">
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="filterProcessesUrl" value="/j_spring_security_check"/>
+        <beans:property name="usernameParameter" value="j_username"/>
+        <beans:property name="passwordParameter" value="j_password"/>
+        <beans:property name="authenticationFailureHandler">
+            <beans:bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+                <beans:property name="defaultFailureUrl" value="/security/login.action?error=true"/>
+            </beans:bean>
+        </beans:property>
+        <beans:property name="AuthenticationSuccessHandler">
+            <beans:bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+                <beans:property name="defaultTargetUrl" value="/pages/index2.jsp"/>
+                <beans:property name="alwaysUseDefaultTargetUrl" value="true"/>
+            </beans:bean>
+        </beans:property>
+    </beans:bean>
+
+    <!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性，
+        我们的所有控制将在这三个类中实现，解释详见具体配置 -->
+    <beans:bean id="myFilter" class="com.useeinfo.demo.modules.security.extend.MyFilterSecurityInterceptor">
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="accessDecisionManager" ref="myAccessDecisionManagerBean"/>
+        <beans:property name="securityMetadataSource" ref="securityMetadataSource"/>
+    </beans:bean>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref='myUserDetailsService'/>
+    </authentication-manager>
+
+    <!--在这个类中，你就可以从数据库中读入用户的密码，角色信息，是否锁定，账号是否过期等-->
+    <beans:bean id="myUserDetailsService" class="com.useeinfo.demo.modules.security.extend.MyUserDetailsService">
+        <beans:property name="systemUserBiz" ref="systemUserBiz"/>
+        <beans:property name="systemAuthorityBiz" ref="systemAuthorityBiz"/>
+    </beans:bean>
+
+    <!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+    <beans:bean id="myAccessDecisionManagerBean" class="com.useeinfo.demo.modules.security.extend.MyAccessDecisionManager"/>
+
+    <!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 -->
+    <beans:bean id="securityMetadataSource" class="com.useeinfo.demo.modules.security.extend.MyInvocationSecurityMetadataSource">
+        <beans:constructor-arg name="systemAuthorityBiz" ref="systemAuthorityBiz"/>
+        <beans:constructor-arg name="systemResourceBiz" ref="systemResourceBiz"/>
+    </beans:bean>
+
+    <!--这里提供数据查询对象-->
+    <beans:bean id="systemUserBiz" class="com.useeinfo.demo.modules.security.biz.SystemUserBiz"/>
+    <beans:bean id="systemRoleBiz" class="com.useeinfo.demo.modules.security.biz.SystemRoleBiz"/>
+    <beans:bean id="systemAuthorityBiz" class="com.useeinfo.demo.modules.security.biz.SystemAuthorityBiz"/>
+    <beans:bean id="systemResourceBiz" class="com.useeinfo.demo.modules.security.biz.SystemResourceBiz"/>
+
+</beans:beans>

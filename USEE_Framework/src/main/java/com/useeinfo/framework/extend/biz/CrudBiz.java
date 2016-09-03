@@ -140,11 +140,6 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 	public Integer update(T model) {
 		return dao.update(model);
 	}
-
-	public Integer delete_logic(T model) {
-
-		return dao.delete_logic(model);
-	}
 	// ******************************************************************************
 	// ********************************** CRUD END **********************************
 	// ******************************************************************************
