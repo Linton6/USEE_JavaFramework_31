@@ -8,6 +8,10 @@
     <artifactId>USEE_DemoProject</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>DEMO_Common</module>
+        <module>DEMO_Modules</module>
+        <module>DEMO_Refer</module>
+        <module>DEMO_WebEntry</module>
         <module>USEE_Framework</module>
     </modules>
     <packaging>pom</packaging>
