@@ -63,7 +63,7 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 
 		queryParam = CommonSugar.getTypedDefault(queryParam, new QueryParam(0));
 		List<T> list = this.findList(queryParam);
-		Long totalNum = this.totalRecord(queryParam.getSqlMap());
+		Long totalNum = this.totalRecord(queryParam);
 
 		return new QueryData<>(list, totalNum);
 	}
@@ -87,8 +87,8 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 		return this.totalRecord(null);
 	}
 
-	public Long totalRecord(Map<String, String> queryHash) {
-		return dao.totalRecord(queryHash);
+	public Long totalRecord(QueryParam queryParam) {
+		return dao.totalRecord(queryParam);
 	}
 
 	/**
