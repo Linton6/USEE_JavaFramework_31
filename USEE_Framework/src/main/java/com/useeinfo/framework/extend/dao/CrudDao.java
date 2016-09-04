@@ -21,7 +21,7 @@ public interface CrudDao<T> extends BaseDao {
 	// ********************************* CRUD START *********************************
 	// ******************************************************************************
 
-	public Map<String, Object> getSearchCondition(Map<String, String> queryHash);
+	public Map<String, Object> getSearchCondition(QueryParam queryParam);
 
 	/**
 	 * 获取总记录数
