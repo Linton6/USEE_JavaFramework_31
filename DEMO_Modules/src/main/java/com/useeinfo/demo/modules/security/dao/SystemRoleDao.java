@@ -50,7 +50,7 @@ public class SystemRoleDao implements CrudDao<SystemRole> {
 					continue;
 			}
 
-			conditionHash.put("resourceId < ?{paramIndex}", 0L);
+			conditionHash.put("roleId < ?{paramIndex}", 0L);
 			break;
 		}
 

@@ -71,7 +71,7 @@ public class SystemUserDao implements CrudDao<SystemUser> {
 					continue;
 			}
 
-			conditionHash.put("resourceId < ?{paramIndex}", 0L);
+			conditionHash.put("userId < ?{paramIndex}", 0L);
 			break;
 		}
 
