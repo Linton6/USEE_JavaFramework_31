@@ -131,15 +131,6 @@ public abstract class CrudBiz<D extends CrudDao<T>, T extends DataEntity<T>> ext
 		dao.delete(id);
 	}
 
-	@Transactional(readOnly = false)
-	public Integer save(T model) {
-		return dao.add(model);
-	}
-
-	@Transactional(readOnly = false)
-	public Integer update(T model) {
-		return dao.update(model);
-	}
 	// ******************************************************************************
 	// ********************************** CRUD END **********************************
 	// ******************************************************************************
