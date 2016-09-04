@@ -13,7 +13,7 @@
 
     <packaging>war</packaging>
     <build>
-        <finalName>asg</finalName>
+        <finalName>demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
