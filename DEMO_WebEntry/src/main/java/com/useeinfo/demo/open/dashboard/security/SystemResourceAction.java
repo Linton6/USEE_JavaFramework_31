@@ -47,7 +47,7 @@ public class SystemResourceAction extends BaseAction {
 	public JSONObject getSystemResourceListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                            @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam);
+		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam, 0);
 		return systemResourceBiz.findJSONList(queryParam);
 	}
 

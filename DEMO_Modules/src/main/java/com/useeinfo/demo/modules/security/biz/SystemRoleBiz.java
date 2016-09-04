@@ -32,7 +32,7 @@ public class SystemRoleBiz extends CrudBiz<SystemRoleDao, SystemRole> {
 		}
 
 		//根据角色名查询
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("roleName", systemRole.getRoleName());
 		List<SystemRole> systemRoleList = findList(queryParam);
 
@@ -48,7 +48,7 @@ public class SystemRoleBiz extends CrudBiz<SystemRoleDao, SystemRole> {
 
 	public List<SystemRole> findByAuthorityId(Long authorityId) {
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("existsAuthorityId", authorityId == null ? "-1" : authorityId.toString());
 
 		return findList(queryParam);

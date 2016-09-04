@@ -28,7 +28,7 @@ public class SystemAuthorityBiz extends CrudBiz<SystemAuthorityDao, SystemAuthor
 	public void addSystemAuthorityFirst(String authorityName) {
 		logger.info("authorityName的值为：" + authorityName);
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("authorityName", authorityName);
 		List<SystemAuthority> systemAuthorityList = findList(queryParam);
 		//若list为空则做新增操作
@@ -47,7 +47,7 @@ public class SystemAuthorityBiz extends CrudBiz<SystemAuthorityDao, SystemAuthor
 		}
 
 		//根据权限名称查询
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("authorityName", systemAuthority.getAuthorityName());
 		List<SystemAuthority> systemAuthorityList = findList(queryParam);
 
@@ -63,7 +63,7 @@ public class SystemAuthorityBiz extends CrudBiz<SystemAuthorityDao, SystemAuthor
 
 	public List<SystemAuthority> getAuthoritiesByRoleId(Long roleId) {
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("existsRoleId", roleId == null ? "-1" : roleId.toString());
 
 		return findList(queryParam);
@@ -71,7 +71,7 @@ public class SystemAuthorityBiz extends CrudBiz<SystemAuthorityDao, SystemAuthor
 
 	public List<SystemAuthority> getOtherAuthoritiesByRoleId(Long roleId) {
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("notExistsRoleId", roleId == null ? "-1" : roleId.toString());
 
 		return findList(queryParam);

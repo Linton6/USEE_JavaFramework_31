@@ -16,7 +16,7 @@ public class SystemResourceBiz extends CrudBiz<SystemResourceDao, SystemResource
 
 	public List<SystemResource> getResourceByAuthId(Long authId) {
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("existsAuthId", authId == null ? "-1" : authId.toString());
 
 		return findList(queryParam);
@@ -24,7 +24,7 @@ public class SystemResourceBiz extends CrudBiz<SystemResourceDao, SystemResource
 
 	public List<SystemResource> getOtherResourceByAuthId(Long authId) {
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("notExistsAuthId", authId == null ? "-1" : authId.toString());
 
 		return findList(queryParam);

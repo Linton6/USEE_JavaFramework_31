@@ -115,7 +115,7 @@ public class SystemRoleAction extends BaseAction {
 	public JSONObject getSystemRoleListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                        @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam);
+		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam, 0);
 		return systemRoleBiz.findJSONList(queryParam);
 	}
 

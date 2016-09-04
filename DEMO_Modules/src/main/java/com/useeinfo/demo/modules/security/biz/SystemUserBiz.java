@@ -25,7 +25,7 @@ public class SystemUserBiz extends CrudBiz<SystemUserDao, SystemUser> {
 		}
 
 		//根据入库单号查询
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("userAccount", systemUser.getUserAccount());
 		List<SystemUser> systemUserList = findList(queryParam);
 
@@ -46,7 +46,7 @@ public class SystemUserBiz extends CrudBiz<SystemUserDao, SystemUser> {
 			return null;
 		}
 
-		QueryParam queryParam = new QueryParam();
+		QueryParam queryParam = new QueryParam(1);
 		queryParam.getSqlMap().put("userAccount", userAccount);
 
 		List<SystemUser> systemUserList = findList(queryParam);

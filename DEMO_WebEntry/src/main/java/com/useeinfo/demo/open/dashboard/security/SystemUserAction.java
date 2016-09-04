@@ -57,7 +57,7 @@ public class SystemUserAction extends BaseAction {
 	public JSONObject getSystemUserListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                        @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam);
+		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam, 0);
 		return systemUserBiz.findJSONList(queryParam);
 	}
 

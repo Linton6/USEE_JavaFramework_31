@@ -110,7 +110,7 @@ public class SystemAuthorityAction extends BaseAction {
 	public JSONObject getSystemAuthorityListJSON(@RequestParam(value = "page", required = false) String pageNowParam,
 	                                             @RequestParam(value = "rows", required = false) String pageSizeParam) {
 
-		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam);
+		QueryParam queryParam = new QueryParam(pageNowParam, pageSizeParam, 0);
 		return systemAuthorityBiz.findJSONList(queryParam);
 	}
 
