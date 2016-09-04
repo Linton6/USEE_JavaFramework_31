@@ -26,7 +26,7 @@ public interface CrudDao<T> extends BaseDao {
 	/**
 	 * 获取总记录数
 	 */
-	public Long totalRecord(Map<String, String> queryHash);
+	public Long totalRecord(QueryParam queryParam);
 
 	/**
 	 * 分页列表
