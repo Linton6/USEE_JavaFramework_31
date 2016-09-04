@@ -62,7 +62,16 @@ public class QueryParam {
 	/**
 	 * 自定义SQL（SQL标识，SQL内容）
 	 */
+	private Integer sqlMapSize;
 	private Map<String, String> sqlMap;
+
+	public Integer getSqlMapSize() {
+		return CommonSugar.getTypedDefault(sqlMapSize, 1000);
+	}
+
+	public void setSqlMapSize(Integer sqlMapSize) {
+		this.sqlMapSize = sqlMapSize;
+	}
 
 	public Map<String, String> getSqlMap() {
 		if (sqlMap == null) {
@@ -117,6 +126,7 @@ public class QueryParam {
 	 * *********************************************************************************
 	 * *********************************************************************************
 	 */
+	/*
 	public QueryParam() {
 	}
 
@@ -137,6 +147,31 @@ public class QueryParam {
 	public QueryParam(Integer pageNow, Integer pageSize) {
 		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
 		this.pageSize = CommonSugar.getTypedDefault(pageSize, defaultPageSize);
+	}
+	*/
+	public QueryParam(Integer sqlMapSize) {
+		this.sqlMapSize = sqlMapSize;
+	}
+
+	public QueryParam(String pageNowParam, String pageSizeParam, Integer sqlMapSize) {
+
+		Integer pageNow = StringConverters.ToInteger(pageNowParam);
+		Integer pageSize = StringConverters.ToInteger(pageSizeParam);
+
+		if (pageNow == null || pageSize == null) {
+			pageNow = 1;
+			pageSize = defaultPageSize;
+		}
+
+		this.pageNow = pageNow;
+		this.pageSize = pageSize;
+		this.sqlMapSize = sqlMapSize;
+	}
+
+	public QueryParam(Integer pageNow, Integer pageSize, Integer sqlMapSize) {
+		this.pageNow = CommonSugar.getTypedDefault(pageNow, 1);
+		this.pageSize = CommonSugar.getTypedDefault(pageSize, defaultPageSize);
+		this.sqlMapSize = sqlMapSize;
 	}
 
 	/*
