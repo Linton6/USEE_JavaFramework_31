@@ -46,7 +46,7 @@
             <div class="pull-right" style="width:320px;">
                 <div style="margin:0 0 15px;font-size:40px;padding:20px 0 0 10px;"><%----%>
                     <%--<img src="<c:url value="/resources/images/login/logo1120.png" />" style="width:320px;margin-left:-30px;" title="" />--%>
-                    BaseProject
+                    USEE_DemoProject
                 </div>
                 <form action="<c:url value="/j_spring_security_check" />" method="post">
                     <div class="form-group">
