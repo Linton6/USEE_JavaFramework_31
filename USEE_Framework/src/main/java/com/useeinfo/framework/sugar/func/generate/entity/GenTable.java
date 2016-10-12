@@ -23,13 +23,9 @@ public class GenTable {
 	private String className;        // 实体类名称
 	private String parentTable;        // 关联父表
 	private String parentTableFk;        // 关联父表外键
-
 	private List<GenTableColumn> columnList = new ArrayList<>();    // 表列
-
 	private String nameLike;    // 按名称模糊查询
-
 	private List<String> pkList; // 当前表主键列表
-
 	private GenTable parent;    // 父表对象
 	private List<GenTable> childList = new ArrayList<>();    // 子表列表
 

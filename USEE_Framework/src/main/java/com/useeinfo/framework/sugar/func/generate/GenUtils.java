@@ -353,10 +353,10 @@ public class GenUtils {
 			//System.out.println(JaxbMapper.toXml(config));
 
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("packageName", "测试1");
-			map.put("moduleName", "测试2");
-			map.put("subModuleName", "测试3");
-			map.put("ClassName", "测试4");
+			map.put("packageName", "com");
+			map.put("moduleName", "useeinfo");
+			map.put("subModuleName", "framework");
+			map.put("ClassName", "TestGen");
 
 			GenTemplate template = fileToObject("test.xml", GenTemplate.class);
 			generateToFile(template, map, true);

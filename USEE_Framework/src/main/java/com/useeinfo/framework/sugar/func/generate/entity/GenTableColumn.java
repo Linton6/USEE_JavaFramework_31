@@ -38,10 +38,6 @@ public class GenTableColumn {
 	public GenTableColumn() {
 	}
 
-	public GenTableColumn(GenTable genTable) {
-		this.genTable = genTable;
-	}
-
 	public GenTable getGenTable() {
 		return genTable;
 	}
