@@ -349,6 +349,7 @@ public class GenUtils {
 			for (int i = 0; i < 5; i++) {
 				GenTableColumn genTableColumn = new GenTableColumn();
 				genTableColumn.setName("列" + i);
+				genTableColumn.setJavaType("String");
 				genTableColumnList.add(genTableColumn);
 			}
 

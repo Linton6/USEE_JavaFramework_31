@@ -8,7 +8,7 @@
 package ${packageName}
 
 <#list table.columnList as c>
-    ${c.name}
+    private ${c.simpleJavaType} ${c.name}
 </#list>
 
 ]]>
