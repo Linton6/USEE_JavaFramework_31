@@ -4,6 +4,8 @@
 package com.useeinfo.framework.sugar.func.generate;
 
 import com.useeinfo.framework.sugar.func.file.FileUtils;
+import com.useeinfo.framework.sugar.func.generate.entity.GenTable;
+import com.useeinfo.framework.sugar.func.generate.entity.GenTableColumn;
 import com.useeinfo.framework.sugar.func.generate.entity.GenTemplate;
 import com.useeinfo.framework.sugar.func.generate.tools.FreeMarkers;
 import com.useeinfo.framework.sugar.func.generate.tools.JaxbMapper;
@@ -15,7 +17,9 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -165,8 +169,6 @@ public class GenUtils {
 
 	/**
 	 * 获取模板路径
-	 *
-	 * @return
 	 */
 	public static String getTemplatePath() {
 		try {
@@ -184,10 +186,6 @@ public class GenUtils {
 
 	/**
 	 * XML文件转换为对象
-	 *
-	 * @param fileName
-	 * @param clazz
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T fileToObject(String fileName, Class<?> clazz) {
@@ -312,11 +310,6 @@ public class GenUtils {
 
 	/**
 	 * 生成到文件
-	 *
-	 * @param tpl
-	 * @param model
-	 * @param
-	 * @return
 	 */
 	public static String generateToFile(GenTemplate tpl, Map<String, Object> model, boolean isReplaceFile) {
 		// 获取生成文件
@@ -352,11 +345,23 @@ public class GenUtils {
 			//System.out.println(config);
 			//System.out.println(JaxbMapper.toXml(config));
 
-			Map<String, Object> map = new HashMap<String, Object>();
+			List<GenTableColumn> genTableColumnList = new ArrayList<>();
+			for (int i = 0; i < 5; i++) {
+				GenTableColumn genTableColumn = new GenTableColumn();
+				genTableColumn.setName("列" + i);
+				genTableColumnList.add(genTableColumn);
+			}
+
+			GenTable genTable = new GenTable();
+			genTable.setName("表");
+			genTable.setColumnList(genTableColumnList);
+
+			Map<String, Object> map = new HashMap<>();
 			map.put("packageName", "com");
 			map.put("moduleName", "useeinfo");
 			map.put("subModuleName", "framework");
 			map.put("ClassName", "TestGen");
+			map.put("table", genTable);
 
 			GenTemplate template = fileToObject("test.xml", GenTemplate.class);
 			generateToFile(template, map, true);

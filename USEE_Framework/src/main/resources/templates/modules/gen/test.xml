@@ -5,7 +5,11 @@
 	<fileName>${ClassName}Controller.java</fileName>
 	<content><![CDATA[
 
-package ${packageName}测试
+package ${packageName}
+
+<#list table.columnList as c>
+    ${c.name}
+</#list>
 
 ]]>
 	</content>
