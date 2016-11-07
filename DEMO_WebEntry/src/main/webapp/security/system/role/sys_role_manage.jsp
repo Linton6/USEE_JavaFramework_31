@@ -140,14 +140,14 @@
 <body class="">
 <!--<![endif]-->
 
-<div class="header">
-	<h1 class="page-title">系统管理</h1>
-</div>
+<!--<div class="header">
+		<h1 class="page-title">系统管理</h1>
+	</div>
 
-<ul class="breadcrumb">
-	<li><a href="<c:url value="/web/admin/systemRole/getSystemRoleListPage.action" />">角色管理</a> <%--<span class="divider">/</span>--%></li>
-	<li class="active">角色修改</li>
-</ul>
+	<ul class="breadcrumb">
+		<li><a href="<c:url value="/web/admin/systemRole/getSystemRoleListPage.action" />">角色管理</a> <%--<span class="divider">/</span>--%></li>
+		<li class="active">角色修改</li>
+	</ul>-->
 
 <div class="container-fluid">
 	<div class="row-fluid">
