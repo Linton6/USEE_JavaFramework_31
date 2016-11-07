@@ -32,8 +32,10 @@
                         if(row.roleId < 0) { return ''; }
                         var viewUrl = "<c:url value="/web/admin/systemRole/getSystemRoleViewPage.action?roleId=" />" + row.roleId;
                         var editUrl = "<c:url value="/web/admin/systemRole/getSystemRoleEditPage.action?roleId=" />" + row.roleId;
+                        var updateUrl = "<c:url value="/web/admin/systemRole/updateRolePage.action?roleId=" />" + row.roleId;
                         return '&nbsp;' +
-                                '<a href="<c:url value="/web/admin/systemRole/updateRolePage.action?roleId=" />' + row.roleId + '">修改</a>' +
+                                '<a href="javascript:void(0)" onclick="openIFrameWindow(\'#wSystemRoleFrame\', \'' + updateUrl + '\')">修改</a>' +
+                                /*'<a href="<c:url value="/web/admin/systemRole/updateRolePage.action?roleId=" />' + row.roleId + '">修改</a>' +*/
                                 '&nbsp;|&nbsp;' +
                                 '<a href="javascript:void(0)" onclick="openWindow(\'#wSystemRole\', \'' + viewUrl + '\')">详情</a>' +
                                 '&nbsp;|&nbsp;' +
@@ -55,6 +57,23 @@
                 closed:true,
                 iconCls:'icon-save'
             });
+
+            vEasyUIUtil.createWindow("wSystemRoleFrame", {
+                title: '角色修改',
+                width:'96%',
+                height:vSugar.getMaxWinHeight("mainPanel", 600),
+                modal:true,
+                maximized:false,
+                closed:true,
+                collapsible:false,
+                minimizable:false,
+                maximizable:true,
+                iconCls:'icon-save'/*,
+                 onClose:function(){
+                 $('#dgOrderBase').datagrid('reload');
+                 }*/
+            });
+            $("#wSystemRoleFrame").window("body").css("padding","0");
         });
 
         /******************************* 数据操作 *******************************/
@@ -77,9 +96,9 @@
             );
         }
 
-        function submitSearch(){        
+        function submitSearch(){
             var dgSystemRole = $('#dgSystemRole');
-        
+
             dgSystemRole.datagrid('options').pageNumber = 1;
             dgSystemRole.datagrid('getPager').pagination("options").pageNumber = 1;
             var param = {
