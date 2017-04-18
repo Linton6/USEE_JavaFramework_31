@@ -2,6 +2,7 @@ package com.useeinfo.framework.sugar.func.file;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import java.util.Random;
  * Author: 居泽平  Date: 13-7-5, 下午1:54
  */
 @SuppressWarnings("unused")
-public class FileUtils {
+public class FileUtils extends org.apache.commons.io.FileUtils {
 
 	private final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
@@ -232,5 +233,125 @@ public class FileUtils {
 		return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
 				+ "_"
 				+ new Random().nextInt(1000);
+	}
+
+	/**
+	 * 写入文件
+	 *
+	 * @param fileName 要写入的文件
+	 */
+	public static void writeToFile(String fileName, String content, boolean append) {
+		try {
+			FileUtils.write(new File(fileName), content, "utf-8", append);
+			logger.debug("文件 " + fileName + " 写入成功!");
+		} catch (IOException e) {
+			logger.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
+		}
+	}
+
+	/**
+	 * 写入文件
+	 *
+	 * @param fileName 要写入的文件
+	 */
+	public static void writeToFile(String fileName, String content, String encoding, boolean append) {
+		try {
+			FileUtils.write(new File(fileName), content, encoding, append);
+			logger.debug("文件 " + fileName + " 写入成功!");
+		} catch (IOException e) {
+			logger.debug("文件 " + fileName + " 写入失败! " + e.getMessage());
+		}
+	}
+
+	/**
+	 * 创建单个文件
+	 *
+	 * @param descFileName 文件名，包含路径
+	 * @return 如果创建成功，则返回true，否则返回false
+	 */
+	public static boolean createFile(String descFileName) {
+		File file = new File(descFileName);
+		if (file.exists()) {
+			logger.debug("文件 " + descFileName + " 已存在!");
+			return false;
+		}
+		if (descFileName.endsWith(File.separator)) {
+			logger.debug(descFileName + " 为目录，不能创建目录!");
+			return false;
+		}
+		if (!file.getParentFile().exists()) {
+			// 如果文件所在的目录不存在，则创建目录
+			if (!file.getParentFile().mkdirs()) {
+				logger.debug("创建文件所在的目录失败!");
+				return false;
+			}
+		}
+
+		// 创建文件
+		try {
+			if (file.createNewFile()) {
+				logger.debug(descFileName + " 文件创建成功!");
+				return true;
+			} else {
+				logger.debug(descFileName + " 文件创建失败!");
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.debug(descFileName + " 文件创建失败!");
+			return false;
+		}
+	}
+
+	/**
+	 *
+	 * 删除单个文件
+	 *
+	 * @param fileName 被删除的文件名
+	 * @return 如果删除成功，则返回true，否则返回false
+	 */
+	public static boolean deleteFile(String fileName) {
+		File file = new File(fileName);
+		if (file.exists() && file.isFile()) {
+			if (file.delete()) {
+				logger.debug("删除文件 " + fileName + " 成功!");
+				return true;
+			} else {
+				logger.debug("删除文件 " + fileName + " 失败!");
+				return false;
+			}
+		} else {
+			logger.debug(fileName + " 文件不存在!");
+			return true;
+		}
+	}
+
+	/**
+	 * 获取工程路径
+	 * @return
+	 */
+	public static String getProjectPath(){
+		// 如果配置了工程路径，则直接返回，否则自动获取。
+		String projectPath = "";
+		try {
+			File file = new DefaultResourceLoader().getResource("").getFile();
+			if (file != null){
+				while(true){
+					File f = new File(file.getPath() + File.separator + "src" + File.separator + "main");
+					if (f == null || f.exists()){
+						break;
+					}
+					if (file.getParentFile() != null){
+						file = file.getParentFile();
+					}else{
+						break;
+					}
+				}
+				projectPath = file.toString();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return projectPath;
 	}
 }
