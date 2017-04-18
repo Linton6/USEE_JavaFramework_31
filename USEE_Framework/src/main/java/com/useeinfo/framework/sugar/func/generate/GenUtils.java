@@ -9,6 +9,7 @@ import com.useeinfo.framework.sugar.func.generate.entity.GenTableColumn;
 import com.useeinfo.framework.sugar.func.generate.entity.GenTemplate;
 import com.useeinfo.framework.sugar.func.generate.tools.FreeMarkers;
 import com.useeinfo.framework.sugar.func.generate.tools.JaxbMapper;
+import com.useeinfo.framework.sugar.tools.DateTimeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +18,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 代码生成工具类
@@ -313,7 +311,7 @@ public class GenUtils {
 	 */
 	public static String generateToFile(GenTemplate tpl, Map<String, Object> model, boolean isReplaceFile) {
 		// 获取生成文件
-		String fileName = FileUtils.getProjectPath() + File.separator
+		String fileName = FileUtils.getProjectPath() + "\\.." + File.separator
 				+ StringUtils.replaceEach(FreeMarkers.renderString(tpl.getFilePath() + "/", model),
 				new String[]{"//", "/", "."}, new String[]{File.separator, File.separator, File.separator})
 				+ FreeMarkers.renderString(tpl.getFileName(), model);
@@ -346,10 +344,11 @@ public class GenUtils {
 			//System.out.println(JaxbMapper.toXml(config));
 
 			List<GenTableColumn> genTableColumnList = new ArrayList<>();
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 2; i++) {
 				GenTableColumn genTableColumn = new GenTableColumn();
-				genTableColumn.setName("列" + i);
+				genTableColumn.setName("li" + i);
 				genTableColumn.setJavaType("String");
+				genTableColumn.setComments("列" + i);
 				genTableColumnList.add(genTableColumn);
 			}
 
@@ -358,13 +357,15 @@ public class GenUtils {
 			genTable.setColumnList(genTableColumnList);
 
 			Map<String, Object> map = new HashMap<>();
-			map.put("packageName", "com");
-			map.put("moduleName", "useeinfo");
+			map.put("preFix", "DEMO");
+			map.put("packageName", "com.useeinfo.demo");
+			map.put("moduleName", "project");
 			map.put("subModuleName", "framework");
-			map.put("ClassName", "TestGen");
+			map.put("ClassName", "Project");
 			map.put("table", genTable);
+			map.put("date", DateTimeUtils.formatDateToStringWithTime(new Date()));
 
-			GenTemplate template = fileToObject("test.xml", GenTemplate.class);
+			GenTemplate template = fileToObject("g_java_entity.xml", GenTemplate.class);
 			generateToFile(template, map, true);
 
 			logger.info("");

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>controller</name>
+	<filePath>${preFix}_Modules/src/main/java/${packageName}/modules/${moduleName}/entity</filePath>
+	<fileName>${ClassName}.java</fileName>
+	<content><![CDATA[
+
+package ${packageName}.modules.${moduleName}.entity;
+
+import com.useeinfo.framework.extend.entity.DataEntity;
+import com.useeinfo.framework.sugar.tools.CommonSugar;
+import net.sf.json.JSONObject;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import javax.persistence.*;
+
+/**
+ * Author: AutoGenerate  Date: ${date}
+ */
+@Entity
+@Table(name = "usee_test")
+@GenericGenerator(name = "USEE_SYSTEM_USER_GEN", strategy = "enhanced-table",
+		parameters = {
+				@Parameter(name = "table_name", value = "table_generator"),
+				@Parameter(name = "value_column_name", value = "next"),
+				@Parameter(name = "segment_column_name", value = "segment_name"),
+				@Parameter(name = "segment_value", value = "usee_test_id"),
+				@Parameter(name = "initial_value", value = "1000"),
+				@Parameter(name = "increment_size", value = "10"),
+				@Parameter(name = "optimizer", value = "pooled-lo")
+		})
+public class ${ClassName} extends DataEntity<${ClassName}> {
+
+	private Long id;
+
+	@Id
+	@GeneratedValue(generator = "USEE_SYSTEM_USER_GEN")
+	@Column(name = "id")
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+<#list table.columnList as c>
+
+	/**
+	 * ${c.comments}
+	 */
+    private ${c.simpleJavaType} ${c.name};
+
+	@Column(name = "${c.name}")
+	public ${c.simpleJavaType} get${c.name}() {
+		return ${c.name};
+	}
+
+	public void set${c.name}(String ${c.name}) {
+		this.${c.name} = ${c.name};
+	}
+</#list>
+
+	@Override
+	public JSONObject toJSONObject() {
+		JSONObject jsonObject = new JSONObject();
+
+		jsonObject.put("userId", CommonSugar.getTypedDefault(0L, 0L));
+		jsonObject.put("userAccount", CommonSugar.getTypedDefault("", ""));
+
+		return jsonObject;
+	}
+}
+
+]]>
+	</content>
+</template>
