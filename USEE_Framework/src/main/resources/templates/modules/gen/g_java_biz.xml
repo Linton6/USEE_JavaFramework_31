@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>controller</name>
-	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
-	<fileName>${ClassName}Controller.java</fileName>
+	<name>biz</name>
+	<filePath>${preFix}_Modules/src/main/java/${packageName}/modules/${moduleName}/biz</filePath>
+	<fileName>${ClassName}Biz.java</fileName>
 	<content><![CDATA[
 
-package ${packageName}
+package ${packageName}.modules.${moduleName}.biz;
 
-<#list table.columnList as c>
-    private ${c.simpleJavaType} ${c.name}
-</#list>
+import com.useeinfo.framework.extend.biz.BaseBiz;
+import org.springframework.stereotype.Service;
+
+/**
+ * Author: AutoGenerate  Date: ${date}
+ */
+@Service("${className}Biz")
+public class ${ClassName}Biz extends BaseBiz {
+}
 
 ]]>
 	</content>

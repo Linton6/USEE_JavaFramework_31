@@ -337,6 +337,65 @@ public class GenUtils {
 		}
 	}
 
+	public static void generate(GenTable genTable, String preFix, String packageName, String moduleName, String subModuleName, String ClassName) {
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("preFix", preFix);
+			map.put("packageName", packageName);
+			map.put("moduleName", moduleName);
+			map.put("subModuleName", subModuleName);
+			map.put("ClassName", ClassName);
+			map.put("className", StringUtils.uncapitalize(ClassName));
+			map.put("table", genTable);
+			map.put("date", DateTimeUtils.formatDateToStringWithTime(new Date()));
+
+			GenTemplate g_java_entity = fileToObject("g_java_entity.xml", GenTemplate.class);
+			generateToFile(g_java_entity, map, true);
+
+			GenTemplate g_java_biz = fileToObject("g_java_biz.xml", GenTemplate.class);
+			generateToFile(g_java_biz, map, true);
+
+			GenTemplate g_java_dao = fileToObject("g_java_dao.xml", GenTemplate.class);
+			generateToFile(g_java_dao, map, true);
+
+			GenTemplate g_java_action = fileToObject("g_java_action.xml", GenTemplate.class);
+			generateToFile(g_java_action, map, true);
+
+			GenTemplate g_page_list = fileToObject("g_page_list.xml", GenTemplate.class);
+			generateToFile(g_page_list, map, true);
+
+			GenTemplate g_page_edit = fileToObject("g_page_edit.xml", GenTemplate.class);
+			generateToFile(g_page_edit, map, true);
+
+			GenTemplate g_page_view = fileToObject("g_page_view.xml", GenTemplate.class);
+			generateToFile(g_page_view, map, true);
+
+			logger.info("");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+
+		List<GenTableColumn> genTableColumnList = new ArrayList<>();
+		for (int i = 1; i < 5; i++) {
+			GenTableColumn genTableColumn = new GenTableColumn();
+			genTableColumn.setName("aaa");
+			genTableColumn.setJavaType("String");
+			genTableColumn.setJavaField("li" + i);
+			genTableColumn.setComments("列" + i);
+			genTableColumnList.add(genTableColumn);
+		}
+
+		GenTable genTable = new GenTable();
+		genTable.setName("表");
+		genTable.setColumnList(genTableColumnList);
+
+		generate(genTable, "DEMO", "com.useeinfo.demo", "project", "framework", "NewProject");
+	}
+
+/*
 	public static void main(String[] args) {
 		try {
 			//GenConfig config = getConfig();
@@ -373,5 +432,6 @@ public class GenUtils {
 			e.printStackTrace();
 		}
 	}
+*/
 
 }

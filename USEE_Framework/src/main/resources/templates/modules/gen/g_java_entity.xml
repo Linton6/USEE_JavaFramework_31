@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>controller</name>
+	<name>entity</name>
 	<filePath>${preFix}_Modules/src/main/java/${packageName}/modules/${moduleName}/entity</filePath>
 	<fileName>${ClassName}.java</fileName>
 	<content><![CDATA[
@@ -33,6 +33,9 @@ import javax.persistence.*;
 public class ${ClassName} extends DataEntity<${ClassName}> {
 
 	private Long id;
+<#list table.columnList as c>
+    private ${c.simpleJavaType} ${c.simpleJavaField}; //${c.comments}
+</#list>
 
 	@Id
 	@GeneratedValue(generator = "USEE_SYSTEM_USER_GEN")
@@ -40,7 +43,6 @@ public class ${ClassName} extends DataEntity<${ClassName}> {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -49,15 +51,12 @@ public class ${ClassName} extends DataEntity<${ClassName}> {
 	/**
 	 * ${c.comments}
 	 */
-    private ${c.simpleJavaType} ${c.name};
-
-	@Column(name = "${c.name}")
-	public ${c.simpleJavaType} get${c.name}() {
-		return ${c.name};
+	@Column(name = "${c.simpleJavaField}")
+	public ${c.simpleJavaType} get${c.simpleJavaField?cap_first}() {
+		return ${c.simpleJavaField};
 	}
-
-	public void set${c.name}(String ${c.name}) {
-		this.${c.name} = ${c.name};
+	public void set${c.simpleJavaField?cap_first}(String ${c.simpleJavaField}) {
+		this.${c.simpleJavaField} = ${c.simpleJavaField};
 	}
 </#list>
 
