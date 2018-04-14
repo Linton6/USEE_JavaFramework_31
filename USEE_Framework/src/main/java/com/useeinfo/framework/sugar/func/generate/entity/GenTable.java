@@ -19,6 +19,7 @@ public class GenTable {
 
 	private static final long serialVersionUID = 1L;
 	private String name;    // 名称
+	private String namePre;
 	private String comments;        // 描述
 	private String className;        // 实体类名称
 	private String parentTable;        // 关联父表
@@ -33,9 +34,24 @@ public class GenTable {
 	public String getName() {
 		return StringUtils.lowerCase(name);
 	}
+	public String getNameU(){
+		return StringUtils.upperCase(name);
+	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNamePre() {
+		return StringUtils.lowerCase(namePre);
+	}
+
+	public String getNamePreU() {
+		return StringUtils.upperCase(namePre);
+	}
+
+	public void setNamePre(String namePre) {
+		this.namePre = namePre;
 	}
 
 	public String getComments() {

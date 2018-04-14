@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>controller</name>
-	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
-	<fileName>${ClassName}Controller.java</fileName>
+	<name>view</name>
+	<filePath>${preFix}_WebEntry/src/main/webapp/pages/${packageName}/${moduleName}/web/${subModuleName}</filePath>
+	<fileName>${ClassName}ViewPart.jsp</fileName>
 	<content><![CDATA[
 
-package ${packageName}
+<%--
+  User: val.jzp
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<#list table.columnList as c>
-    private ${c.simpleJavaType} ${c.name}
-</#list>
+<form id="myFormBasicWarehouse" name="" action="<c:url value="/web/admin/basicWarehouse/executeBasicWarehouseEdit.action" />" method="post">
+    <table class="table-container">
+        <tr>
+            <td class="item-name">&nbsp;</td>
+            <td class="item-value">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeWindow('#wBasicWarehouse')">关闭</a>
+            </td>
+        </tr>
+        <c:if test="%%%%%{basicWarehouse != null}">
+        <tr>
+            <td class="item-name">编号：</td>
+            <td class="item-value">
+                <p>%%%%%{basicWarehouse.warehouseId}</p>
+                <input type="hidden" name="warehouseId" value="%%%%%{basicWarehouse.warehouseId}" />
+            </td>
+        </tr>
+        </c:if>
+        <tr>
+            <td class="item-name">仓库名称：</td>
+            <td class="item-value">
+                %%%%%{basicWarehouse.warehouseName}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">创建日期：</td>
+            <td class="item-value">
+                <fmt:formatDate value="%%%%%{basicWarehouse.createDate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">更新日期：</td>
+            <td class="item-value">
+                <fmt:formatDate value="%%%%%{basicWarehouse.updateDate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<%-- <fmt:formatDate value="%%%%%{record.createDate}" pattern="yyyy-MM-dd" /> --%>
 
 ]]>
 	</content>

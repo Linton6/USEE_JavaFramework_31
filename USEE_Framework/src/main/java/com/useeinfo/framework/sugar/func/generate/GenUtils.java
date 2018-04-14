@@ -389,10 +389,11 @@ public class GenUtils {
 		}
 
 		GenTable genTable = new GenTable();
-		genTable.setName("表");
+		genTable.setNamePre("ZR");
+		genTable.setName("ORDER_DEMO");
 		genTable.setColumnList(genTableColumnList);
 
-		generate(genTable, "DEMO", "com.useeinfo.demo", "project", "framework", "NewProject");
+		generate(genTable, "DEMO", "com.useeinfo.demo", "moduleKKK", "subModelNameKKK", "NewProject");
 	}
 
 /*

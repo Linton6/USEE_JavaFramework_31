@@ -1,15 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-	<name>controller</name>
-	<filePath>src/main/java/${packageName}/${moduleName}/web/${subModuleName}</filePath>
-	<fileName>${ClassName}Controller.java</fileName>
+	<name>edit</name>
+	<filePath>${preFix}_WebEntry/src/main/webapp/pages/${packageName}/${moduleName}/web/${subModuleName}</filePath>
+	<fileName>${ClassName}EditPart.jsp</fileName>
 	<content><![CDATA[
 
-package ${packageName}
+<%--
+  User: val.jzp
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<#list table.columnList as c>
-    private ${c.simpleJavaType} ${c.name}
-</#list>
+<form id="myFormBasicWarehouse" name="" method="post" enctype="multipart/form-data">
+    <table class="table-container">
+        <tr>
+            <td class="item-name">&nbsp;</td>
+            <td class="item-value">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitEdit()">提交</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeWindow('#wBasicWarehouse')">取消</a>
+            </td>
+        </tr>
+        <c:if test="%%%%%{basicWarehouse != null}">
+        <tr>
+            <td class="item-name">编号：</td>
+            <td class="item-value">
+                <p>%%%%%{basicWarehouse.warehouseId}</p>
+                <input type="hidden" name="warehouseId" value="%%%%%{basicWarehouse.warehouseId}" />
+            </td>
+        </tr>
+        </c:if>
+        <tr>
+            <td class="item-name"><label for="f_warehouseName">仓库名称：</label></td>
+            <td class="item-value">
+                <input type="text" id="f_warehouseName" name="warehouseName" value="%%%%%{basicWarehouse.warehouseName}" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    function submitEdit(){
+
+        $("#myFormBasicWarehouse").form('submit', {
+            url: '<c:url value="/web/admin/basicWarehouse/executeBasicWarehouseEdit.action" />',
+            onSubmit: function(){
+                if(!$(this).form('validate')){
+                    return false;
+                }
+        		$.messager.progress({
+            		title:'操作中',
+            		msg:'正在操作。。。'
+        		});
+                return true;
+            },
+            success: function(data){
+                $.messager.progress('close');
+                if(data == 1){
+                    $("#wBasicWarehouse").window('close');
+                    $('#dgBasicWarehouse').datagrid('reload');
+                } else {
+                    vEasyUIUtil.showAjaxError("errorWin", data);
+                }
+            }
+        });
+    }
+</script>
 
 ]]>
 	</content>
