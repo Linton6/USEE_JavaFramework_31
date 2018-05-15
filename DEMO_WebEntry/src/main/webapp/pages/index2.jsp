@@ -70,6 +70,9 @@
                         <sec:authorize access="hasAnyAuthority('系统权限')">
                             <li><a class="J_menuItem" href="<c:url value="/web/admin/systemAuthority/getSystemAuthorityListPage.action" />">系统权限</a></li>
                         </sec:authorize>
+                        <sec:authorize access="hasAnyAuthority('测试页面')">
+                            <li><a class="J_menuItem" href="<c:url value="/web/admin/people/getSystemPeopleListPage.action" />">测试页面</a></li>
+                        </sec:authorize>
                     </ul>
                 </li>
                 </sec:authorize>
@@ -201,7 +204,7 @@
             <a href="<c:url value="/logout.action"/>" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<c:url value="/pages/welcome.jsp"/>" frameborder="0" data-id="index_v1.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<c:url value="/web/admin/work/getSystemWorkListPage.action"/>" frameborder="0" data-id="index_v1.html" seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">
