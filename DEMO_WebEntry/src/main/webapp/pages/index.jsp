@@ -72,7 +72,7 @@
 
             <div class="panel-group" id="accordion">
 
-                <sec:authorize access="hasAnyAuthority('系统用户','系统角色','系统权限')">
+                <sec:authorize access="hasAnyAuthority('系统用户','系统角色','系统权限','测试页面')">
                 <div class="panel panel-default">
                     <div class="panel-heading" data-toggle="collapse" data-parent="#accordion-auth" data-target="#collapse-auth">
                         <span class="glyphicon glyphicon-asterisk pull-left"></span>
@@ -91,6 +91,9 @@
 
                                 <sec:authorize access="hasAnyAuthority('系统权限')">
                                     <li><a class="link_url" target="mainframe" href="<c:url value="/web/admin/systemAuthority/getSystemAuthorityListPage.action" />"><span>系统权限</span></a></li>
+                                </sec:authorize>
+                                <sec:authorize access="hasAnyAuthority('测试页面')">
+                                    <li><a class="J_menuItem" href="<c:url value="/web/admin/work/getSystemWorkListPage.action" />">测试页面</a></li>
                                 </sec:authorize>
                             </ul>
                         </div>

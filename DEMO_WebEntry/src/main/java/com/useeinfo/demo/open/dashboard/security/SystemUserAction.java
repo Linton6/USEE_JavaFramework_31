@@ -104,6 +104,7 @@ public class SystemUserAction extends BaseAction {
 		modelAndView.addObject("systemUser", systemUser);
 		modelAndView.addObject("roleList", roleList);
 		modelAndView.addObject("isPage", isPageParam);
+
 		return modelAndView;
 	}
 

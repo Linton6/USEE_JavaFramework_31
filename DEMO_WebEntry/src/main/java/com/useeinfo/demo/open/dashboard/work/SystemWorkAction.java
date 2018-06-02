@@ -166,10 +166,10 @@ public class SystemWorkAction extends BaseAction {
 	@ResponseBody
 	public String executeSystemWorkEdit(SystemWork systemWork) {
 
-		//判断角色名是否重复
-//		if (systemWorkBiz.existWorkName(systemWork)) {
-//			return "您输入的角色名为空或已存在，请重新输入";
-//		}
+//		判断角色名是否重复
+		if (systemWorkBiz.existWorkName(systemWork)) {
+			return "您输入的角色名为空或已存在，请重新输入";
+		}
 
 		systemWorkBiz.addOrUpdate(systemWork);
 		return "1";

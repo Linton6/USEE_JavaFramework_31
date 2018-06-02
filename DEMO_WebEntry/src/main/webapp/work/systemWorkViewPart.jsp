@@ -23,9 +23,51 @@
         </tr>
         </c:if>
         <tr>
-            <td class="item-name">名称：</td>
+            <td class="item-name">名称1：</td>
             <td class="item-value">
                 ${systemWork.workName}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">防滑参数：</td>
+            <td class="item-value">
+                ${systemWork.antiskidMode}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">防水参数：</td>
+            <td class="item-value">
+                ${systemWork.drainageMode}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">防热辐射：</td>
+            <td class="item-value">
+                ${systemWork.antiThermalRadiation}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">底部水幕：</td>
+            <td class="item-value">
+                ${systemWork.bottomWaterCurtain}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">呼吸装置：</td>
+            <td class="item-value">
+                ${systemWork.breathingEquipment}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">额定荷载：</td>
+            <td class="item-value">
+                ${systemWork.bucketRatedLoad}
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">创建时间：</td>
+            <td class="item-value">
+                ${systemWork.createTime}
             </td>
         </tr>
         <%--<tr>--%>

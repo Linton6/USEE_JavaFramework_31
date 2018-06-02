@@ -3,6 +3,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:formatDate value="${createTime}" pattern="yyyy-MM-dd"/>
+<
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String dateStr = sdf.format(createTime);
+/>
+
 <html>
 <head>
     <title>SystemWork列表</title>
@@ -25,6 +34,14 @@
                 columns:[[
                     {field:'workId',title:'编号',width:8,align:'center'},
                     {field:'workName',title:'名称',width:8,align:'center'},
+                    {field:'antiskidMode',title:'防滑参数',width:8,align:'center'},
+                    {field:'drainageMode',title:'防水参数',width:8,align:'center'},
+                    {field:'antiThermalRadiation',title:'防热辐射',width:8,align:'center'},
+                    {field:'bottomWaterCurtain',title:'底部水幕',width:8,align:'center'},
+                    {field:'breathingEquipment',title:'呼吸装置',width:8,align:'center'},
+                    {field:'bucketRatedLoad',title:'额定荷载',width:8,align:'center'},
+
+                    {field:'createTime',title:'创建时间',width:16,align:'center'},
                     // {field:'workDescription',title:'角色描述',width:8,align:'center'},
                     // {field:'systemManager',title:'是否平台管理',width:8,align:'center'},
                     // {field:'enabled',title:'是否禁用',width:8,align:'center'},
@@ -37,8 +54,8 @@
                                 // '<a href="javascript:void(0)" onclick="openIFrameWindow(\'#wSystemWorkFrame\', \'' + updateUrl + '\')">修改</a>' +
                                 <%--/*'<a href="<c:url value="/web/admin/work/updateWorkPage.action?workId=" />' + row.workId + '">修改</a>' +*/--%>
                                 // '&nbsp;|&nbsp;' +
-                                // '<a href="javascript:void(0)" onclick="openWindow(\'#wSystemWork\', \'' + viewUrl + '\')">详情</a>' +
-                                // '&nbsp;|&nbsp;' +
+                                '<a href="javascript:void(0)" onclick="openWindow(\'#wSystemWork\', \'' + viewUrl + '\')">详情</a>' +
+                                '&nbsp;|&nbsp;' +
                                 '<a href="javascript:void(0)" onclick="openWindow(\'#wSystemWork\', \'' + editUrl + '\')">编辑</a>' +
                                 '&nbsp;|&nbsp;' +
                                 '<a href="javascript:void(0)" onclick="submitRemove(\'' + row.workId + '\', \'1\')">删除</a>' +

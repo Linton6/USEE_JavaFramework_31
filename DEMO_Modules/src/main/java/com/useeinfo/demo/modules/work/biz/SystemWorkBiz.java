@@ -22,12 +22,12 @@ import java.util.Map;
  * Author: 居泽平
  */
 @Service("systemWorkBizWeb")
-public class SystemWorkBiz extends CrudBiz<SystemWorkDao, SystemWork> {
+public class  SystemWorkBiz extends CrudBiz<SystemWorkDao, SystemWork> {
 
 	@Autowired
 	private SystemAuthorityBiz systemAuthorityBiz;
 
-	public Boolean existWorkName(SystemWork systemWork) {
+	public Boolean existWorkName(SystemWork systemWork) {                /****m没有判断属性是否存在***/
 		//若角色名为空
 		logger.info("角色名为：" + systemWork.getWorkName());
 		if (StringUtils.isBlank(systemWork.getWorkName())) {
@@ -45,7 +45,8 @@ public class SystemWorkBiz extends CrudBiz<SystemWorkDao, SystemWork> {
 		} else {
 			//修改操作，情况一：判断list长度是否为1，并且与自身相同，那么就是不存在，所以结果取反
 			//修改操作，情况二：判断list长度是0
-			return !((systemWorkList.size() == 1 && systemWorkList.get(0).getWorkId().equals(systemWork.getWorkId())) || systemWorkList.size() == 0);
+			return !((systemWorkList.size() == 1 && systemWorkList.get(0).getWorkId().equals(systemWork.
+					getWorkId())) || systemWorkList.size() == 0);
 		}
 	}
 
@@ -65,6 +66,14 @@ public class SystemWorkBiz extends CrudBiz<SystemWorkDao, SystemWork> {
 //		List ownAuth = systemAuthorityBiz.getAuthoritiesByWorkId(workId);
 //		List otherAuth = systemAuthorityBiz.getOtherAuthoritiesByWorkId(workId);
 		map.put("work", systemWork);
+		map.put("antiskidMode",systemWork);
+		map.put("drainageMode",systemWork);
+		map.put("antiThermalRadiation",systemWork);
+		map.put("bottomWaterCurtain",systemWork);
+		map.put("breathingEquipment",systemWork);
+		map.put("bucketRatedLoad",systemWork);
+		map.put("createTime",systemWork);
+
 //		map.put("ownAuth", ownAuth);
 //		map.put("otherAuth", otherAuth);
 		return map;

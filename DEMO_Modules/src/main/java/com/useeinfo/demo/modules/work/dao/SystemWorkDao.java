@@ -47,6 +47,26 @@ public class SystemWorkDao implements CrudDao<SystemWork> {
 				case "workName":
 					conditionHash.put("workName = ?{paramIndex} ", queryValue);
 					continue;
+				case "antiskidMode":
+					conditionHash.put("antiskidMode = ?{paramIndex} ", queryValue);
+					continue;
+				case "drainageMode":
+					conditionHash.put("drainageMode = ?{paramIndex} ", queryValue);
+					continue;
+				case "antiThermalRadiation":
+					conditionHash.put("antiThermalRadiation = ?{paramIndex} ", queryValue);
+					continue;
+
+				case "bottomWaterCurtain":
+					conditionHash.put("bottomWaterCurtain = ?{paramIndex} ", queryValue);
+					continue;
+
+				case "breathingEquipment":
+					conditionHash.put("breathingEquipment = ?{paramIndex} ", queryValue);
+					continue;
+
+
+
 			}
 
 			conditionHash.put("workId < ?{paramIndex}", 0L);
@@ -60,23 +80,26 @@ public class SystemWorkDao implements CrudDao<SystemWork> {
 	public Long totalRecord(QueryParam queryParam) {
 
 		Map<String, Object> conditions = getSearchCondition(queryParam);
-		TypedQuery<Long> typedQuery = QueryUtils.getTypedQueryByCondition("select count(s) from SystemWork s ", conditions, entityManager, Long.class);
+		TypedQuery<Long> typedQuery = QueryUtils.getTypedQueryByCondition("select count(s) from " +
+				"SystemWork s ", conditions, entityManager, Long.class);
 		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public List<SystemWork> findList(QueryParam queryParam) {
 
-		String sqlInfo = queryParam.joinJPQL("select s from SystemWork s ", "order by s.workId desc ");
+		String sqlInfo = queryParam.joinJPQL("select s from SystemWork s ",
+				"order by s.workId desc ");										/*******存疑*****/
 
 		Map<String, Object> conditions = getSearchCondition(queryParam);
-		TypedQuery<SystemWork> typedQuery = QueryUtils.getTypedQueryByCondition(sqlInfo, conditions, entityManager, SystemWork.class);
+		TypedQuery<SystemWork> typedQuery = QueryUtils.getTypedQueryByCondition(sqlInfo, conditions,
+				entityManager, SystemWork.class);
 
 		return queryParam.findPageList(typedQuery);
 	}
 
 	@Override
-	public SystemWork findModel(Long workId) {
+	public SystemWork findModel(Long workId) {												/*******存疑*****/
 		return entityManager.find(SystemWork.class, workId);
 	}
 
@@ -91,6 +114,14 @@ public class SystemWorkDao implements CrudDao<SystemWork> {
 	public Integer update(SystemWork systemWork) {
 		SystemWork existSystemWork = entityManager.find(SystemWork.class, systemWork.getWorkId());
 		existSystemWork.setWorkName(systemWork.getWorkName());
+		existSystemWork.setAntiskidMode(systemWork.getAntiskidMode());
+		existSystemWork.setDrainageMode(systemWork.getDrainageMode());
+		existSystemWork.setAntiThermalRadiation(systemWork.getAntiThermalRadiation());
+		existSystemWork.setBottomWaterCurtain(systemWork.getBottomWaterCurtain());
+		existSystemWork.setBreathingEquipment(systemWork.getBreathingEquipment());
+		existSystemWork.setBucketRatedLoad(systemWork.getBucketRatedLoad());
+		existSystemWork.setCreateTime(systemWork.getCreateTime());
+
 //		existSystemWork.setWorkDescription(systemWork.getWorkDescription());
 //		existSystemWork.setSystemManager(systemRole.isSystemManager());
 //		existSystemWork.setEnabled(systemRole.isEnabled());

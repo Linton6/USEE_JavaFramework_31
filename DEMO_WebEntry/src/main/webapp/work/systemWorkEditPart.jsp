@@ -29,6 +29,48 @@
                 <input type="text" name="workName" value="${systemWork.workName}" />
             </td>
         </tr>
+        <tr>
+            <td class="item-name">防滑参数：</td>
+            <td class="item-value">
+                <input type="text" name="antiskidMode" value="${systemWork.antiskidMode}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">防水参数：</td>
+            <td class="item-value">
+                <input type="text" name="drainageMode" value="${systemWork.drainageMode}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">防热辐射：</td>
+            <td class="item-value">
+                <input type="text" name="antiThermalRadiation" value="${systemWork.antiThermalRadiation}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">底部水幕：</td>
+            <td class="item-value">
+                <input type="text" name="bottomWaterCurtain" value="${systemWork.bottomWaterCurtain}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">呼吸装置：</td>
+            <td class="item-value">
+                <input type="text" name="breathingEquipment" value="${systemWork.breathingEquipment}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">额定荷载：</td>
+            <td class="item-value">
+                <input type="text" name="bucketRatedLoad" value="${systemWork.bucketRatedLoad}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="item-name">创建时间：</td>
+            <td class="item-value">
+                <input type="text" name="createTime" value="${systemWork.createTime}" />
+            </td>
+        </tr>
         <%--<tr>--%>
             <%--<td class="item-name">角色描述：</td>--%>
             <%--<td class="item-value">--%>

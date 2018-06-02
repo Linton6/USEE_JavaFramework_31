@@ -18,6 +18,10 @@ public class CommonSugar {
 		return StringUtils.isBlank(s1) ? s2 : s1;
 	}
 
+//	public static  getStringDefault(String s1, String s2) {
+//		return StringUtils.isBlank(s1) ? s2 : s1;
+//	}
+
 	public static boolean isContainChinese(String str) {
 		Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
 		Matcher m = p.matcher(str);
